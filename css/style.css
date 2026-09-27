@@ -1,0 +1,593 @@
+/* Baruch · illustrare mondi
+   Tutto il linguaggio visivo viene dagli elementi dipinti a mano (cartella img/ui).
+   Il CSS si limita a comporli: carta bianca, inchiostro verde, un solo accento terracotta. */
+
+:root {
+  --paper: #fefdfb;
+  --ink: #34432f;          /* verde scuro dei nomi della barra */
+  --ink-soft: #55624f;
+  --leaf: #6b8a5a;         /* verde delle icone social */
+  --terracotta: #c9623f;   /* colore del titolo BARUCH, unico accento */
+  --salmon: #b86e52;       /* testo della presentazione di Caterina (contrasto AA su carta) */
+  --line: #dfe6d8;
+
+  --hand: "Kalam", "Segoe Print", "Bradley Hand", cursive;
+  --text: "Barlow Semi Condensed", "Avenir Next Condensed", "Arial Narrow", sans-serif;
+
+  --gutter: clamp(16px, 4vw, 56px);
+  --max: 1320px;
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
+
+  /* scala z-index: nav 20, menu mobile 30, lightbox 40 */
+  color-scheme: light; /* il sito è carta: una sola resa, chiara */
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--text);
+  font-size: clamp(17px, 1.05vw + 12px, 19px);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+img { display: block; max-width: 100%; height: auto; }
+a { color: inherit; }
+button { font: inherit; color: inherit; }
+:focus-visible { outline: 2px dashed var(--terracotta); outline-offset: 4px; border-radius: 6px; }
+.sr-only {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+}
+.skip {
+  position: absolute; left: 12px; top: -60px; z-index: 50;
+  background: var(--paper); padding: 8px 14px; border: 1px solid var(--line); border-radius: 8px;
+}
+.skip:focus { top: 12px; }
+
+/* ---------- Barra di navigazione ---------- */
+.site-nav {
+  position: sticky; top: 0; z-index: 20;
+  background: color-mix(in srgb, var(--paper) 94%, transparent);
+  backdrop-filter: blur(6px);
+}
+.site-nav__inner {
+  display: flex; align-items: center; justify-content: space-between; gap: 24px;
+  max-width: 1480px; margin: 0 auto; padding: 6px var(--gutter);
+}
+/* la striscia di macchie dipinte, con i nomi scritti a mano sopra, nelle stesse coordinate dell'originale */
+.strip {
+  position: relative; flex: 1 1 auto; max-width: 900px;
+  aspect-ratio: 2721 / 231;
+  background: url(../img/ui/nav-strip.webp) center / 100% 100% no-repeat;
+  margin: 0; padding: 0; list-style: none;
+}
+.strip li { position: absolute; top: 0; height: 100%; }
+.strip a {
+  position: absolute; inset: 0; display: block;
+}
+.strip img {
+  position: absolute; width: 100%; height: auto;
+  transform-origin: 50% 60%;
+  transition: transform .45s var(--ease);
+}
+.strip a:hover img, .strip a:focus-visible img { transform: translateY(-2px) rotate(-2deg) scale(1.06); }
+.strip a[aria-current="page"] img { transform: rotate(-1.5deg) scale(1.08); }
+.strip a[aria-current="page"]::after {
+  /* sottolineatura a pastello, stesso terracotta del titolo */
+  content: ""; position: absolute; left: 12%; right: 12%; bottom: 10%; height: 3px;
+  background: var(--terracotta); border-radius: 3px; opacity: .75;
+  transform: rotate(-1deg);
+}
+/* posizioni ricavate dal file originale (canvas 2721 x 231) */
+.strip .n-home           { left: 0;      width: 13.41%; }
+.strip .n-home img       { left: 15.34%; width: 79.45%; top: 27.27%; }
+.strip .n-chi            { left: 13.41%; width: 18.41%; }
+.strip .n-chi img        { left: 3.99%;  width: 92.61%; top: 23.81%; }
+.strip .n-diario         { left: 31.83%; width: 12.02%; }
+.strip .n-diario img     { left: 5.2%;   width: 87.46%; top: 32.9%; }
+.strip .n-collaborazioni { left: 43.84%; width: 24.84%; }
+.strip .n-collaborazioni img { left: 3.55%; width: 93.05%; top: 29.44%; }
+.strip .n-shop           { left: 68.69%; width: 11.61%; }
+.strip .n-shop img       { left: 7.28%;  width: 82.91%; top: 26.84%; }
+.strip .n-contatti       { left: 80.3%;  width: 19.7%; }
+.strip .n-contatti img   { left: 5.78%;  width: 83.4%;  top: 29%; }
+
+.social { display: flex; align-items: center; gap: clamp(10px, 1.4vw, 22px); margin: 0; padding: 0; list-style: none; }
+.social a {
+  display: grid; place-items: center; width: 44px; height: 44px;
+  color: var(--leaf); font-size: 34px; text-decoration: none;
+  transition: transform .35s var(--ease), color .2s;
+}
+.social a:hover { color: var(--ink); transform: rotate(-8deg) scale(1.08); }
+.social a[aria-disabled="true"] { cursor: default; }
+.social a[aria-disabled="true"]:hover { transform: none; color: var(--leaf); }
+
+.nav-home-mobile, .menu-toggle { display: none; }
+
+/* ---------- Menu mobile ---------- */
+@media (max-width: 880px) {
+  .site-nav__inner { padding-block: 10px; }
+  .nav-home-mobile { display: block; width: 132px; }
+  .menu-toggle {
+    display: grid; place-items: center; width: 48px; height: 48px;
+    background: url(../img/ui/pennellata-crema.webp) center / 140% 90% no-repeat;
+    border: 0; font-size: 28px; color: var(--ink); cursor: pointer;
+  }
+  .site-nav .strip, .site-nav .social { display: none; }
+  .mobile-menu {
+    position: fixed; inset: 0; z-index: 30;
+    background: var(--paper);
+    display: flex; flex-direction: column; padding: 20px var(--gutter) 32px;
+    overflow-y: auto;
+    opacity: 0; visibility: hidden; transform: translateY(-8px);
+    transition: opacity .3s var(--ease), transform .4s var(--ease), visibility 0s linear .4s;
+  }
+  .mobile-menu.is-open { opacity: 1; visibility: visible; transform: none; transition-delay: 0s; }
+  .mobile-menu__top { display: flex; justify-content: space-between; align-items: center; }
+  .mobile-menu ul { list-style: none; margin: 28px 0 0; padding: 0; display: grid; gap: 14px; }
+  .mobile-menu li:nth-child(odd) { justify-self: start; }
+  .mobile-menu li:nth-child(even) { justify-self: end; }
+  .mobile-menu li a {
+    display: block; padding: 22px 34px;
+    background: url(../img/ui/pennellata-verde.webp) center / 100% 100% no-repeat;
+  }
+  .mobile-menu li:nth-child(3n+2) a { background-image: url(../img/ui/pennellata-pesca.webp); }
+  .mobile-menu li:nth-child(3n) a { background-image: url(../img/ui/pennellata-crema.webp); }
+  .mobile-menu li img { height: 34px; width: auto; }
+  .mobile-menu li a[aria-current="page"] img { transform: rotate(-2deg) scale(1.06); }
+  .mobile-menu .social { margin-top: auto; padding-top: 28px; justify-content: center; }
+}
+@media (min-width: 881px) { .mobile-menu { display: none; } }
+
+/* ---------- Hero ---------- */
+.hero { position: relative; overflow: hidden; background: #2f5a22; }
+.hero__art { width: 100%; aspect-ratio: 2200 / 1080; object-fit: cover; }
+.hero__title {
+  position: absolute; margin: 0;
+  left: 18.59%; top: 12.5%; width: 40.82%; aspect-ratio: 898 / 468;
+}
+.hero__title > * { position: absolute; }
+.hero__bg  { left: 0; top: 0; width: 100%; }
+.hero__word { left: 11.9%; top: 7.7%; width: 69.8%; }
+.hero__sub { left: 1.1%; top: 61.3%; width: 90.4%; }
+
+@media (max-width: 760px) {
+  .hero__art { aspect-ratio: 4 / 5; object-position: 80% 50%; }
+  .hero__title { left: 6%; top: 7%; width: 86%; }
+}
+
+/* entrata: il pennello stende lo sfondo, poi arriva la scritta */
+@media (prefers-reduced-motion: no-preference) {
+  .hero__art { animation: settle 1.6s var(--ease) both; }
+  .hero__bg { animation: brush .9s .25s var(--ease) both; }
+  .hero__word { animation: rise .8s .8s var(--ease) both; }
+  .hero__sub { animation: brush .8s 1.05s var(--ease) both; }
+}
+@keyframes settle { from { transform: scale(1.04); } to { transform: none; } }
+@keyframes brush { from { clip-path: inset(0 100% 0 0); } to { clip-path: inset(0 0 0 0); } }
+@keyframes rise { from { opacity: 0; transform: translateY(14px) rotate(-2deg); } to { opacity: 1; transform: none; } }
+
+/* ---------- Blocchi della home ---------- */
+.home-notes {
+  max-width: var(--max); margin: 0 auto;
+  padding: clamp(28px, 4vw, 56px) var(--gutter) 0;
+  display: grid; grid-template-columns: 1fr 1.1fr; align-items: center; gap: 32px;
+}
+.home-notes .scrivimi { justify-self: center; margin-left: -6%; }
+.progetto {
+  justify-self: center; text-align: center; margin: 0;
+  width: min(100%, 560px); aspect-ratio: 1100 / 413;
+  display: grid; place-items: center;
+  background: url(../img/ui/pennellata-verde.webp) center / 100% 100% no-repeat;
+  font-family: var(--hand); font-size: clamp(19px, 1.7vw, 26px); line-height: 1.45; color: var(--ink);
+  padding: 0 12%;
+}
+@media (max-width: 760px) {
+  .home-notes { grid-template-columns: 1fr; gap: 8px; }
+  .home-notes .scrivimi { margin-left: 0; }
+  .progetto { order: -1; }
+}
+
+/* ---------- "Scrivimi un messaggio": pianta, pennellata, Baruch con la lettera ---------- */
+.scrivimi {
+  position: relative; display: block; width: min(92vw, 440px); aspect-ratio: 440 / 430;
+  text-decoration: none; color: var(--ink);
+}
+.scrivimi > * { position: absolute; }
+.scrivimi__pianta { left: 0; bottom: 0; width: 42%; transform-origin: 50% 100%; transition: transform .8s var(--ease); }
+.scrivimi__stain { left: 33%; bottom: 8%; width: 67%; }
+.scrivimi__baruch { left: 46%; bottom: 31%; width: 17%; transform-origin: 50% 100%; transition: transform .5s var(--ease); }
+.scrivimi__text {
+  left: 42%; right: 2%; bottom: 14%; text-align: center;
+  font-family: var(--hand); font-size: clamp(22px, 2.1vw, 30px); line-height: 1.2;
+}
+.scrivimi:hover .scrivimi__pianta, .scrivimi:focus-visible .scrivimi__pianta { transform: rotate(-3deg); }
+.scrivimi:hover .scrivimi__baruch, .scrivimi:focus-visible .scrivimi__baruch { transform: translateY(-6px) rotate(4deg); }
+.scrivimi:active .scrivimi__text { transform: translateY(1px); }
+
+/* ---------- Pagine interne ---------- */
+.page { max-width: var(--max); margin: 0 auto; padding: clamp(36px, 5vw, 72px) var(--gutter) 0; }
+.page-title { margin: 0 0 clamp(24px, 4vw, 48px); }
+.page-title img { width: clamp(180px, 22vw, 300px); transform: rotate(-2deg); }
+.page-title--wide img { width: clamp(240px, 32vw, 420px); }
+
+.lead-hand { font-family: var(--hand); font-size: clamp(21px, 1.8vw, 26px); line-height: 1.4; max-width: 34ch; margin: 0; }
+
+/* Chi è Baruch */
+.about {
+  display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  gap: clamp(28px, 5vw, 80px); align-items: start;
+}
+.about__art { margin: 0; }
+.about__text h1 {
+  margin: 0 0 12px; font-weight: 500; font-size: 1em; letter-spacing: .06em; text-transform: uppercase;
+}
+.about__text p { margin: 0 0 .9em; max-width: 64ch; color: var(--ink); }
+.cate {
+  display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 4fr);
+  gap: clamp(28px, 5vw, 80px); align-items: center;
+  margin-top: clamp(56px, 8vw, 120px);
+}
+.cate__text h2 { margin: 0 0 10px; font-family: var(--hand); font-weight: 400; font-size: clamp(26px, 2.4vw, 34px); color: var(--terracotta); line-height: 1.2; }
+.cate__text p { margin: 0 0 .8em; color: var(--salmon); max-width: 62ch; }
+.cate__photo { margin: 0; justify-self: center; width: min(100%, 320px); }
+@media (max-width: 760px) {
+  .about, .cate { grid-template-columns: 1fr; }
+  .about__art { width: min(80%, 360px); }
+}
+
+/* Diario: disegni sparsi sul foglio */
+.diario {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  grid-auto-rows: minmax(40px, auto);
+  row-gap: clamp(24px, 3vw, 40px);
+}
+.diary-item {
+  position: relative; display: block; padding: 0; margin: 0; border: 0; background: none;
+  cursor: pointer; text-align: center;
+}
+.diary-item img { width: 100%; transition: transform .6s var(--ease); }
+.diary-item:hover img, .diary-item:focus-visible img { transform: rotate(-2.5deg) translateY(-6px); }
+.diary-item__label {
+  display: inline-block; margin-top: 10px; padding: 10px 26px;
+  font-family: var(--hand); font-size: clamp(18px, 1.5vw, 22px); line-height: 1.25; color: var(--ink);
+  background: url(../img/ui/pennellata-crema.webp) center / 100% 100% no-repeat;
+  transform: rotate(-1.5deg);
+  transition: transform .45s var(--ease);
+}
+.diary-item { text-decoration: none; color: var(--ink); }
+.diary-item:hover .diary-item__label, .diary-item:focus-visible .diary-item__label { transform: rotate(1deg) scale(1.05); }
+
+.d-mondi   { grid-column: 2 / span 4; grid-row: 1; }
+.d-fiori   { grid-column: 8 / span 3; grid-row: 1 / span 2; margin-top: 20px; }
+.d-avv     { grid-column: 1 / span 3; grid-row: 2; margin-top: 30px; }
+.d-cost    { grid-column: 4 / span 4; grid-row: 3; margin-top: -40px; }
+.d-magiche { grid-column: 8 / span 4; grid-row: 3; margin-top: 40px; }
+@media (max-width: 760px) {
+  .diario { grid-template-columns: repeat(6, minmax(0, 1fr)); row-gap: 36px; }
+  .d-mondi   { grid-column: 1 / span 5; grid-row: auto; }
+  .d-fiori   { grid-column: 3 / span 3; grid-row: auto; margin: 0; }
+  .d-avv     { grid-column: 1 / span 4; grid-row: auto; margin: 0; }
+  .d-cost    { grid-column: 2 / span 5; grid-row: auto; margin: 0; }
+  .d-magiche { grid-column: 1 / span 5; grid-row: auto; margin: 0; }
+}
+
+/* ---------- Taccuino: le pagine del diario ---------- */
+.hand-title {
+  font-family: var(--hand); font-weight: 400; color: var(--ink);
+  font-size: clamp(28px, 2.6vw, 38px); line-height: 1.2; margin: 0 0 clamp(20px, 3vw, 36px);
+}
+.hand-title--big { font-size: clamp(36px, 4.4vw, 60px); line-height: 1.1; padding-bottom: 4px; }
+.journal { margin-top: clamp(72px, 10vw, 140px); }
+.journal .hand-title {
+  display: inline-block; padding: 12px 44px 14px 30px;
+  background: url(../img/ui/pennellata-verde.webp) center / 100% 100% no-repeat;
+}
+.journal--more { padding-top: 0; }
+
+/* due colonne sfalsate, come fotografie appoggiate sul foglio */
+.entries {
+  display: grid; grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: clamp(28px, 6vw, 96px); row-gap: clamp(48px, 6vw, 80px);
+}
+.entries > :nth-child(even) { margin-top: clamp(40px, 7vw, 110px); }
+.entry__link { display: block; text-decoration: none; color: var(--ink); }
+.entry__photo {
+  display: block; overflow: hidden; background: #eef0e8;
+  transform: rotate(-.8deg); transition: transform .6s var(--ease);
+  box-shadow: 0 14px 30px -18px rgba(52, 67, 47, .45);
+}
+.entries > :nth-child(3n+2) .entry__photo { transform: rotate(.9deg); }
+.entries > :nth-child(3n) .entry__photo { transform: rotate(-.3deg); }
+.entry__photo img { width: 100%; aspect-ratio: 3 / 2; object-fit: cover; transition: transform .9s var(--ease); }
+.entry__link:hover .entry__photo, .entry__link:focus-visible .entry__photo { transform: rotate(0) translateY(-4px); }
+.entry__link:hover .entry__photo img { transform: scale(1.03); }
+.entry__meta {
+  display: flex; flex-wrap: wrap; gap: 4px 14px; margin-top: 22px;
+  font-family: var(--hand); font-size: 18px; color: var(--terracotta);
+}
+.entry__sez { color: var(--ink-soft); }
+.entry__title { margin: 4px 0 8px; font-family: var(--hand); font-weight: 400; font-size: clamp(26px, 2.3vw, 34px); line-height: 1.15; }
+.entry__text { display: block; max-width: 52ch; color: var(--ink-soft); }
+.entry__more {
+  display: inline-flex; align-items: center; gap: 8px; margin-top: 12px;
+  font-weight: 500; letter-spacing: .02em;
+  border-bottom: 2px solid #c8d5bd; padding-bottom: 2px;
+  transition: border-color .25s, gap .35s var(--ease);
+}
+.entry__link:hover .entry__more { border-color: var(--terracotta); gap: 12px; }
+@media (max-width: 760px) {
+  .entries { grid-template-columns: 1fr; }
+  .entries > :nth-child(even) { margin-top: 0; }
+}
+
+/* testata delle sezioni: il disegno accanto al titolo scritto a mano */
+.back {
+  display: inline-flex; align-items: center; gap: 10px; margin-bottom: clamp(20px, 3vw, 36px);
+  font-family: var(--hand); font-size: 20px; color: var(--ink); text-decoration: none;
+}
+.back:hover { color: var(--terracotta); }
+.back__art { width: 54px; height: 54px; object-fit: contain; transition: transform .4s var(--ease); }
+.back:hover .back__art { transform: rotate(-6deg); }
+.sez-head {
+  display: grid; grid-template-columns: minmax(0, 4fr) minmax(0, 7fr); gap: clamp(28px, 5vw, 80px);
+  align-items: center; margin-bottom: clamp(56px, 8vw, 110px);
+}
+.sez-head__art img { max-height: 420px; width: auto; margin-inline: auto; }
+.sez-head__text p { max-width: 58ch; }
+.sez-head__text p:first-of-type { font-size: 1.12em; }
+@media (max-width: 760px) {
+  .sez-head { grid-template-columns: 1fr; }
+  .sez-head__art img { max-height: 240px; }
+}
+
+/* opere su commissione e oggetti */
+.works { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: clamp(28px, 4vw, 56px) clamp(20px, 3vw, 44px); }
+.work { margin: 0; grid-column: span 2; }
+.work:nth-child(1), .work:nth-child(2) { grid-column: span 3; }
+.work:nth-child(2) { margin-top: 60px; }
+.work { display: block; text-decoration: none; color: var(--ink); }
+.work__img { display: block; overflow: hidden; box-shadow: 0 14px 30px -18px rgba(52, 67, 47, .45); }
+.work__img img { width: 100%; transition: transform .9s var(--ease); }
+.work:hover .work__img img, .work:focus-visible .work__img img { transform: scale(1.03); }
+.work__cat { display: block; margin-top: 16px; font-family: var(--hand); font-size: 17px; color: var(--terracotta); }
+.work__title { display: block; font-family: var(--hand); font-size: clamp(22px, 1.9vw, 27px); color: var(--ink); line-height: 1.2; }
+.work__tec { display: block; color: var(--ink-soft); font-size: .95em; }
+.work:hover .entry__more { border-color: var(--terracotta); gap: 12px; }
+
+/* pagina di un progetto su commissione */
+.opera__intro {
+  display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); gap: clamp(28px, 5vw, 64px);
+  align-items: start;
+}
+.opera__cover { margin: 0; }
+.opera__cover img { box-shadow: 0 22px 44px -28px rgba(52, 67, 47, .5); }
+.opera__text p { margin: 0 0 1em; }
+.opera__facts { display: grid; gap: 6px; margin: 0 0 22px; padding: 16px 22px; background: url(../img/ui/pennellata-crema.webp) center / 100% 100% no-repeat; }
+.opera__facts div { display: flex; gap: 10px; flex-wrap: wrap; }
+.opera__facts dt { font-weight: 500; }
+.opera__facts dt::after { content: ":"; }
+.opera__facts dd { margin: 0; }
+.opera__pdf { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+.opera__pdf small { color: var(--ink-soft); }
+.opera .art-quote { max-width: 820px; margin-inline: auto; }
+.opera .article__head .hand-title--big { font-size: clamp(34px, 3.6vw, 48px); text-wrap: balance; }
+.opera__plates { margin-top: clamp(48px, 7vw, 96px); }
+.plates { columns: 3; column-gap: clamp(12px, 2vw, 24px); }
+.plates .plate { break-inside: avoid; margin-bottom: clamp(12px, 2vw, 24px); }
+.plates .plate--wide { column-span: all; }
+.opera__nav {
+  display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap;
+  margin-top: clamp(40px, 6vw, 72px); font-family: var(--hand); font-size: 22px;
+}
+.opera__nav a { display: inline-flex; align-items: center; gap: 8px; color: var(--ink); text-decoration: none; }
+.opera__nav a:hover { color: var(--terracotta); }
+@media (max-width: 760px) {
+  .opera__intro { grid-template-columns: 1fr; }
+  .plates { columns: 2; }
+}
+@media (max-width: 760px) {
+  .works { grid-template-columns: 1fr; }
+  .work, .work:nth-child(1), .work:nth-child(2) { grid-column: auto; margin-top: 0; }
+}
+.objects { margin-top: clamp(40px, 6vw, 80px); }
+.objects .hand-title {
+  display: inline-block; padding: 10px 40px 12px 28px;
+  background: url(../img/ui/pennellata-pesca.webp) center / 100% 100% no-repeat;
+}
+.objects__row { display: flex; flex-wrap: wrap; align-items: flex-end; gap: clamp(20px, 3vw, 44px); }
+.objects__row .obj { flex: 1 1 220px; max-width: 380px; }
+.more-link { margin-top: clamp(40px, 6vw, 72px); }
+
+.art-fig { display: block; width: 100%; padding: 0; border: 0; background: none; cursor: zoom-in; }
+.art-fig img { width: 100%; transition: transform .6s var(--ease); }
+.art-fig:hover img, .art-fig:focus-visible img { transform: translateY(-3px) rotate(-.4deg); }
+
+/* ---------- Articolo ---------- */
+.article { max-width: 1000px; margin: 0 auto; padding: clamp(28px, 4vw, 56px) var(--gutter) 0; }
+.article > .back { display: flex; width: fit-content; }
+.article__head { max-width: 760px; margin: 0 auto clamp(28px, 4vw, 48px); text-align: center; }
+.article__date { margin: 0 0 6px; font-family: var(--hand); font-size: 19px; color: var(--terracotta); }
+.article__head .hand-title { margin-bottom: 10px; }
+.article__sub { margin: 0; font-size: 1.12em; color: var(--ink-soft); }
+.article__cover { margin: 0 0 clamp(36px, 5vw, 64px); }
+.article__cover img { width: 100%; box-shadow: 0 22px 44px -28px rgba(52, 67, 47, .5); }
+.article__body { max-width: 720px; margin: 0 auto; }
+.article__body > p { margin: 0 0 1.1em; }
+.article__body > p:first-child::first-letter {
+  float: left; font-family: var(--hand); font-size: 3.6em; line-height: .9; padding: 6px 10px 0 0; color: var(--terracotta);
+}
+.article__body h2 { font-family: var(--hand); font-weight: 400; font-size: clamp(24px, 2.2vw, 30px); line-height: 1.25; margin: 0 0 16px; }
+.art-figs { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; margin: clamp(28px, 4vw, 44px) -8%; }
+.art-figs--one { grid-template-columns: 1fr; margin-inline: -4%; }
+.art-figs:not(.art-figs--one) > :nth-child(odd):last-child { grid-column: 1 / -1; }
+.art-quote {
+  margin: clamp(32px, 5vw, 56px) -6%; padding: clamp(34px, 4vw, 52px) clamp(40px, 8%, 90px);
+  background: url(../img/ui/pennellata-verde.webp) center / 100% 100% no-repeat;
+  text-align: center;
+}
+.art-quote p { margin: 0; font-family: var(--hand); font-size: clamp(21px, 2vw, 27px); line-height: 1.4; color: var(--ink); }
+.art-quote--wide { max-width: 860px; margin: clamp(48px, 7vw, 96px) auto 0; }
+.article__sign { font-family: var(--hand); font-size: 30px; color: var(--terracotta); text-align: right; margin: 8px 0 0; transform: rotate(-3deg); }
+@media (max-width: 760px) {
+  .art-figs, .art-figs--one { grid-template-columns: 1fr; margin-inline: 0; }
+  .art-quote { margin-inline: -4%; padding-inline: 34px; }
+}
+
+/* Chi è Baruch: due fotografie di Caterina, oggi e da bambina */
+.cate__text h2 { font-size: clamp(24px, 2.2vw, 32px); }
+.cate__text h3 { margin: 1.4em 0 .3em; font-weight: 500; letter-spacing: .06em; text-transform: uppercase; font-size: .9em; color: var(--salmon); }
+.cate__photos { position: relative; justify-self: center; width: min(100%, 340px); }
+.cate__photos .cate__photo { width: 100%; }
+.cate__child {
+  position: absolute; width: 46%; right: -14%; bottom: -12%; margin: 0;
+  border: 8px solid #fff; box-shadow: 0 14px 28px -16px rgba(52, 67, 47, .5); transform: rotate(5deg);
+}
+@media (max-width: 760px) {
+  .cate__photos { order: -1; width: min(72%, 280px); margin-bottom: 40px; }
+  .cate__child { right: -18%; }
+}
+
+/* Collaborazioni: galleria a colonne come nelle bozze */
+.gallery { columns: 3 260px; column-gap: clamp(20px, 3vw, 44px); }
+.gallery__item {
+  break-inside: avoid; margin: 0 0 clamp(20px, 3vw, 44px);
+  display: block; width: 100%; padding: 0; border: 0; background: none; cursor: zoom-in;
+}
+.gallery__item img {
+  width: 100%; height: auto; background: #f3f1ea;
+  transition: transform .5s var(--ease);
+}
+.gallery__item img.is-cutout { background: none; }
+.gallery__item:nth-child(3n+1) img { width: 88%; margin-left: auto; }
+.gallery__item:nth-child(4n+2) img { width: 94%; }
+.gallery__item:hover img, .gallery__item:focus-visible img { transform: translateY(-4px) rotate(-.8deg); }
+@media (max-width: 560px) { .gallery { columns: 2; column-gap: 16px; } .gallery__item { margin-bottom: 16px; } }
+
+/* Shop */
+.shop {
+  display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: clamp(28px, 5vw, 72px); align-items: center;
+}
+.shop__text p { max-width: 46ch; }
+.shop__objects {
+  display: grid; grid-template-columns: 1.1fr 1fr; grid-template-rows: auto auto; gap: clamp(16px, 2.4vw, 32px); align-items: end;
+}
+.shop__objects figure { margin: 0; }
+.shop__objects .o-sedia { grid-row: 1 / span 2; }
+.shop__objects .o-fragole { grid-column: 1 / -1; }
+@media (max-width: 760px) { .shop { grid-template-columns: 1fr; } }
+
+.cta {
+  display: inline-flex; align-items: center; gap: 10px; margin-top: 12px;
+  padding: 18px 38px; text-decoration: none; white-space: nowrap;
+  font-family: var(--hand); font-size: 22px; color: var(--ink);
+  background: url(../img/ui/pennellata-pesca.webp) center / 100% 100% no-repeat;
+  transition: transform .35s var(--ease);
+}
+.cta:hover { transform: rotate(-1.5deg) scale(1.03); }
+.cta:active { transform: translateY(1px) scale(.98); }
+
+/* Contatti */
+.contact {
+  display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: clamp(32px, 6vw, 96px); align-items: start;
+}
+.form { display: grid; gap: 22px; max-width: 560px; }
+.field { display: grid; gap: 6px; }
+.field label { font-weight: 500; letter-spacing: .02em; }
+.field input, .field textarea {
+  width: 100%; padding: 12px 14px; font: inherit; color: var(--ink);
+  background: #fff; border: 1.5px solid #9fb092; border-radius: 10px 14px 12px 9px;
+  transition: border-color .2s, box-shadow .2s;
+}
+.field textarea { min-height: 160px; resize: vertical; }
+.field input:focus, .field textarea:focus { outline: none; border-color: var(--ink); box-shadow: 0 0 0 3px #dfe9d6; }
+.field .help { font-size: .88em; color: var(--ink-soft); margin: 0; }
+.field .error { font-size: .9em; color: #a2401f; margin: 0; min-height: 1.2em; }
+.field [aria-invalid="true"] { border-color: #a2401f; }
+.form .cta { border: 0; cursor: pointer; justify-self: start; }
+.form__note { margin: 0; color: var(--ink-soft); font-size: .92em; }
+.form__status { margin: 0; font-family: var(--hand); font-size: 20px; color: var(--ink); min-height: 1.4em; }
+
+.contact__info address { font-style: normal; line-height: 1.8; }
+.contact__info a { text-decoration-color: #b8c7ad; text-underline-offset: 4px; }
+.contact__info a:hover { text-decoration-color: var(--terracotta); }
+.contact__info .social { margin-top: 18px; }
+.contact__baruch { width: 150px; margin: 28px 0 0 10px; transform: rotate(3deg); }
+@media (max-width: 760px) { .contact { grid-template-columns: 1fr; } }
+
+/* ---------- Piede di pagina: i quadretti disegnati ---------- */
+.footer { position: relative; margin-top: clamp(56px, 8vw, 110px); }
+.footer__scrivimi { max-width: var(--max); margin: 0 auto; padding: 0 var(--gutter); position: relative; z-index: 1; margin-bottom: -9%; }
+.footer__grid {
+  position: relative;
+  min-height: 240px; aspect-ratio: 2400 / 586;
+  background: url(../img/ui/quadretti.webp) center top / cover no-repeat;
+  display: grid; align-items: end; justify-items: center;
+  padding: 0 var(--gutter) clamp(28px, 5vw, 70px);
+}
+.footer__line {
+  margin: 0; text-align: center;
+  font-family: "Barlow Condensed", var(--text); font-size: clamp(16px, 1.9vw, 30px); color: var(--ink);
+  text-shadow: 0 0 6px var(--paper), 0 0 12px var(--paper), 0 0 2px var(--paper);
+  padding: 2px 10px;
+}
+.footer__line a { text-decoration: none; }
+.footer__line a:hover { text-decoration: underline; text-decoration-color: var(--terracotta); }
+.footer__line span { white-space: nowrap; }
+.footer__line .sep { font-style: normal; white-space: pre; }
+.to-top {
+  position: absolute; right: var(--gutter); top: 14%;
+  width: clamp(44px, 4.4vw, 64px);
+  transition: transform .45s var(--ease);
+}
+.to-top:hover { transform: translateY(-6px) rotate(-6deg); }
+.to-top:active { transform: scale(.96); }
+@media (max-width: 760px) {
+  .footer__grid { aspect-ratio: auto; min-height: 280px; background-size: auto 100%; }
+  .footer__line span { display: block; }
+  .footer__line .sep { display: none; }
+  .footer__line { line-height: 1.7; }
+  .footer__scrivimi { margin-bottom: -60px; }
+  .to-top { top: 10%; }
+}
+
+/* ---------- Lightbox ---------- */
+.lightbox {
+  width: 100vw; height: 100dvh; max-width: none; max-height: none; margin: 0; padding: 0; border: 0;
+  background: color-mix(in srgb, var(--paper) 97%, transparent);
+}
+.lightbox::backdrop { background: rgba(52, 67, 47, .25); }
+.lightbox[open] { display: grid; grid-template-rows: auto 1fr auto; }
+.lightbox__bar { display: flex; justify-content: flex-end; padding: 12px var(--gutter); }
+.lightbox__stage { position: relative; display: grid; place-items: center; min-height: 0; padding: 0 clamp(56px, 8vw, 110px); }
+.lightbox__stage img { max-width: 100%; max-height: 100%; object-fit: contain; }
+.lightbox__caption {
+  text-align: center; font-family: var(--hand); font-size: clamp(20px, 1.8vw, 26px); margin: 0; padding: 14px var(--gutter) 24px; min-height: 1.5em;
+}
+.lightbox__caption small { display: block; font-family: var(--text); font-size: 16px; color: var(--ink-soft); margin-top: 4px; }
+.icon-btn {
+  display: grid; place-items: center; width: 52px; height: 52px; border: 0; cursor: pointer;
+  background: url(../img/ui/pennellata-crema.webp) center / 150% 100% no-repeat;
+  font-size: 26px; color: var(--ink); transition: transform .3s var(--ease);
+}
+.icon-btn:hover { transform: rotate(-6deg) scale(1.06); }
+.lightbox__prev, .lightbox__next { position: absolute; top: 50%; translate: 0 -50%; }
+.lightbox__prev { left: clamp(4px, 2vw, 32px); }
+.lightbox__next { right: clamp(4px, 2vw, 32px); }
+@media (prefers-reduced-motion: no-preference) {
+  .lightbox[open] .lightbox__stage img { animation: rise .5s var(--ease) both; }
+}
+
+/* ---------- Comparsa allo scorrimento ---------- */
+@media (prefers-reduced-motion: no-preference) {
+  .js .reveal { opacity: 0; transform: translateY(22px); transition: opacity .9s var(--ease), transform 1s var(--ease); transition-delay: var(--d, 0s); }
+  .js .reveal.is-in { opacity: 1; transform: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { transition-duration: .01ms !important; animation-duration: .01ms !important; }
+}
