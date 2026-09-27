@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Contatti · Baruch illustrare mondi</title>
+  <meta name="description" content="Scrivi a Caterina Santambrogio per illustrazioni, laboratori creativi e collaborazioni.">
+  <meta name="theme-color" content="#fefdfb">
+  <meta property="og:title" content="Contatti · Baruch illustrare mondi">
+  <meta property="og:description" content="Scrivi a Caterina Santambrogio per illustrazioni, laboratori creativi e collaborazioni.">
+  <meta property="og:image" content="assets/img/ui/hero-1100.webp">
+  <link rel="icon" href="../assets/img/ui/favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400&family=Barlow+Semi+Condensed:wght@400;500&family=Kalam:wght@400&display=swap">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/bold/style.css">
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body id="top">
+  <a class="skip" href="#contenuto">Vai al contenuto</a>
+  <header class="site-nav">
+    <nav class="site-nav__inner" aria-label="Principale">
+      <ul class="strip">
+        <li class="n-home"><a href="../index.html"><img src="../assets/img/ui/nav-home.webp" alt="Home"></a></li>
+        <li class="n-chi"><a href="../chi-e-baruch/index.html"><img src="../assets/img/ui/nav-chi.webp" alt="Chi è Baruch"></a></li>
+        <li class="n-diario"><a href="../diario/index.html"><img src="../assets/img/ui/nav-diario.webp" alt="Diario"></a></li>
+        <li class="n-collaborazioni"><a href="../collaborazioni/index.html"><img src="../assets/img/ui/nav-collaborazioni.webp" alt="Collaborazioni"></a></li>
+        <li class="n-shop"><a href="../shop/index.html"><img src="../assets/img/ui/nav-shop.webp" alt="Shop"></a></li>
+        <li class="n-contatti"><a href="../contatti/index.html" aria-current="page"><img src="../assets/img/ui/nav-contatti.webp" alt="Contatti"></a></li>
+      </ul>
+      <ul class="social">
+        <li><a data-social="instagram" href="#" aria-label="Instagram"><i class="ph-bold ph-instagram-logo" aria-hidden="true"></i></a></li>
+        <li><a data-social="linkedin" href="#" aria-label="LinkedIn"><i class="ph-bold ph-linkedin-logo" aria-hidden="true"></i></a></li>
+        <li><a data-social="facebook" href="#" aria-label="Facebook"><i class="ph-bold ph-facebook-logo" aria-hidden="true"></i></a></li>
+      </ul>
+      <a class="nav-home-mobile" href="../index.html"><img src="../assets/img/ui/title.webp" alt="Baruch, torna alla home" width="627" height="187"></a>
+      <button class="menu-toggle" type="button" data-menu-open aria-expanded="false" aria-controls="mobile-menu" aria-label="Apri il menu"><i class="ph-bold ph-list" aria-hidden="true"></i></button>
+    </nav>
+  </header>
+  <div class="mobile-menu" id="mobile-menu" role="dialog" aria-modal="true" aria-label="Menu">
+    <div class="mobile-menu__top">
+      <a class="nav-home-mobile" href="../index.html"><img src="../assets/img/ui/title.webp" alt="Baruch, torna alla home" width="627" height="187"></a>
+      <button class="menu-toggle" type="button" data-menu-close aria-label="Chiudi il menu"><i class="ph-bold ph-x" aria-hidden="true"></i></button>
+    </div>
+    <ul>
+        <li><a href="../index.html"><img src="../assets/img/ui/nav-home.webp" alt="Home"></a></li>
+        <li><a href="../chi-e-baruch/index.html"><img src="../assets/img/ui/nav-chi.webp" alt="Chi è Baruch"></a></li>
+        <li><a href="../diario/index.html"><img src="../assets/img/ui/nav-diario.webp" alt="Diario"></a></li>
+        <li><a href="../collaborazioni/index.html"><img src="../assets/img/ui/nav-collaborazioni.webp" alt="Collaborazioni"></a></li>
+        <li><a href="../shop/index.html"><img src="../assets/img/ui/nav-shop.webp" alt="Shop"></a></li>
+        <li><a href="../contatti/index.html" aria-current="page"><img src="../assets/img/ui/nav-contatti.webp" alt="Contatti"></a></li>
+    </ul>
+    <ul class="social">
+        <li><a data-social="instagram" href="#" aria-label="Instagram"><i class="ph-bold ph-instagram-logo" aria-hidden="true"></i></a></li>
+        <li><a data-social="linkedin" href="#" aria-label="LinkedIn"><i class="ph-bold ph-linkedin-logo" aria-hidden="true"></i></a></li>
+        <li><a data-social="facebook" href="#" aria-label="Facebook"><i class="ph-bold ph-facebook-logo" aria-hidden="true"></i></a></li>
+      </ul>
+  </div>
+  <main id="contenuto">
+    <div class="page">
+      <h1 class="page-title reveal"><img src="../assets/img/ui/titolo-contatti.webp" alt="Contatti" width="570" height="214"></h1>
+      <section class="contact">
+        <form class="form reveal" id="contact-form" novalidate>
+          <p class="lead-hand">Per illustrazioni, laboratori o una semplice domanda.</p>
+          <div class="field">
+            <label for="nome">Nome</label>
+            <input id="nome" name="nome" type="text" autocomplete="name" required aria-describedby="nome-error">
+            <p class="error" id="nome-error" aria-live="polite"></p>
+          </div>
+          <div class="field">
+            <label for="email">Email</label>
+            <input id="email" name="email" type="email" autocomplete="email" required aria-describedby="email-help email-error">
+            <p class="help" id="email-help">Serve solo per risponderti.</p>
+            <p class="error" id="email-error" aria-live="polite"></p>
+          </div>
+          <div class="field">
+            <label for="messaggio">Messaggio</label>
+            <textarea id="messaggio" name="messaggio" required aria-describedby="messaggio-error"></textarea>
+            <p class="error" id="messaggio-error" aria-live="polite"></p>
+          </div>
+          <button class="cta" type="submit">Invia il messaggio</button>
+          <p class="form__note"></p>
+          <p class="form__status" role="status"></p>
+        </form>
+        <div class="contact__info reveal" style="--d:.12s">
+          <address>
+            Caterina Santambrogio<br>
+            Via Chiesa di Rorai 3<br>
+            Pordenone<br>
+            cell. <a href="tel:+393404742250">340 474 2250</a><br>
+            P.I. 01980800930<br>
+            PEC <a href="mailto:caterinasa@pec.it">caterinasa@pec.it</a>
+          </address>
+          <ul class="social">
+        <li><a data-social="instagram" href="#" aria-label="Instagram"><i class="ph-bold ph-instagram-logo" aria-hidden="true"></i></a></li>
+        <li><a data-social="linkedin" href="#" aria-label="LinkedIn"><i class="ph-bold ph-linkedin-logo" aria-hidden="true"></i></a></li>
+        <li><a data-social="facebook" href="#" aria-label="Facebook"><i class="ph-bold ph-facebook-logo" aria-hidden="true"></i></a></li>
+      </ul>
+          <img class="contact__baruch" src="../assets/img/ui/baruch-lettera.webp" alt="Baruch con una lettera in mano" width="360" height="507" loading="lazy">
+        </div>
+      </section>
+    </div>
+  </main>
+  <footer class="footer">
+    <div class="footer__grid">
+      <a class="to-top" href="#top" aria-label="Torna su"><img src="../assets/img/ui/bottone-freccia.webp" alt="" width="254" height="550" loading="lazy"></a>
+      <p class="footer__line">
+        <span>Caterina Santambrogio</span><i class="sep"> - </i><span>Via Chiesa di Rorai 3 Pordenone</span><i class="sep"> - </i><span>cell. <a href="tel:+393404742250">3404742250</a></span><i class="sep"> - </i><span>P.I. 01980800930</span>
+      </p>
+    </div>
+  </footer>
+  <script src="../assets/js/main.js" defer></script>
+</body>
+</html>

@@ -1,3 +1,7 @@
+# Materiali di lavoro originali: restano solo sul computer
+IMMAGINI e TESTI/
+.claude/
+
 __pycache__/
 *.pyc
 .DS_Store
