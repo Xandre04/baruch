@@ -11,7 +11,7 @@ Pagine da cui partire:
 - [Home](https://xandre04.github.io/baruch/)
 - [Chi è Baruch](https://xandre04.github.io/baruch/chi-e-baruch/)
 - [Diario](https://xandre04.github.io/baruch/diario/), con le cinque sezioni e gli articoli
-- [I mondi disegnati di Baruch](https://xandre04.github.io/baruch/diario/i-mondi-disegnati-di-baruch/): i progetti su commissione con le tavole e i calendari
+- [Mondi illustrati](https://xandre04.github.io/baruch/diario/mondi-illustrati/): i progetti su commissione con le tavole e i calendari
 - [Collaborazioni](https://xandre04.github.io/baruch/collaborazioni/)
 - [Contatti](https://xandre04.github.io/baruch/contatti/)
 

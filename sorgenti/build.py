@@ -18,7 +18,7 @@ SITO = SORGENTI.parent / "sito"    # cartella pubblicata
 # indirizzi delle pagine, sempre relativi alla radice del sito
 HOME, CHI, DIARIO = "index.html", "chi-e-baruch/index.html", "diario/index.html"
 COLLAB, SHOP, CONTATTI = "collaborazioni/index.html", "shop/index.html", "contatti/index.html"
-MONDI_SLUG = "i-mondi-disegnati-di-baruch"
+MONDI_SLUG = "mondi-illustrati"
 
 
 def versione(file):
@@ -226,6 +226,9 @@ OPERE = opere()
 # le pagine del diario si rigenerano da zero: un articolo cancellato o rinominato non resta online
 for vecchia in (SITO / "diario").rglob("*.html"):
     vecchia.unlink()
+for cartella in sorted((SITO / "diario").glob("*/"), reverse=True):
+    if cartella.is_dir() and not any(cartella.iterdir()):
+        cartella.rmdir()
 
 
 def pic(percorso, alt, lazy=True, sizes="(max-width: 760px) 100vw, 720px"):
@@ -292,7 +295,7 @@ def sez_drawing(s, cls=""):
 
 # i cinque disegni delle sezioni, in griglia sotto la home:
 # a sinistra due righe da due, a destra il ramo di fiori alto quanto le due righe
-GRIGLIA = ["i-mondi-disegnati-di-baruch", "le-avventure-di-baruch", "come-fiori-selvatici",
+GRIGLIA = ["mondi-illustrati", "le-avventure-di-baruch", "come-fiori-selvatici",
            "costruire-con-baruch", "le-cose-magiche-di-baruch"]
 
 
@@ -320,7 +323,7 @@ filtro = "\n".join(
 page(
     DIARIO, "diario",
     "Diario · Baruch illustrare mondi",
-    "Il diario di Baruch: mondi disegnati, fiori selvatici, avventure, cose magiche e laboratori da costruire insieme.",
+    "Il diario di Baruch: mondi illustrati, fiori selvatici, avventure, cose magiche e laboratori da costruire insieme.",
     f"""    <div class="page">
       <h1 class="page-title reveal"><img src="assets/img/ui/titolo-diario.webp" alt="Diario" width="371" height="201"></h1>
       <nav class="filtro reveal" aria-label="Filtra per sezione" data-filtro>
@@ -443,7 +446,7 @@ for i, o in enumerate(OPERE):
     )
     page(
         url_opera(o), "diario",
-        f"{breve} · I mondi disegnati di Baruch",
+        f"{breve} · Mondi illustrati",
         html.escape(re.sub(r"\s+", " ", IMG_MD.sub("", o.get("testo") or o["titolo"]).strip().split("\n\n")[0])[:155]),
         f"""    <article class="article opera">
       <a class="back reveal" href="{url_sezione(MONDI_SLUG)}">{sez_drawing(MONDI, "back__art")} {MONDI['titolo']}</a>

@@ -1,7 +1,7 @@
 """Legge i contenuti scritti con l'editor (cartella contenuti/) e prepara le immagini.
 
 - contenuti/articoli/*.json  articoli del Diario (il nome del file è l'indirizzo della pagina)
-- contenuti/opere/*.json     progetti su commissione della sezione "I mondi disegnati"
+- contenuti/opere/*.json     progetti su commissione della sezione "Mondi illustrati"
 - contenuti/media/           foto caricate: qui vengono convertite nelle due misure del sito
 """
 import hashlib

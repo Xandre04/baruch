@@ -91,9 +91,9 @@ Ogni modifica viene conservata: se cancelli qualcosa per sbaglio, si può recupe
 
 ## Aggiungere un progetto su commissione
 
-I progetti della sezione **I mondi disegnati di Baruch** (calendari, rassegne teatrali, storie illustrate):
+I progetti della sezione **Mondi illustrati** (calendari, rassegne teatrali, storie illustrate):
 
-1. A sinistra scegli **I mondi disegnati**, poi **Nuovo**.
+1. A sinistra scegli **Mondi illustrati**, poi **Nuovo**.
 2. Compila titolo, titolo breve, tipo di lavoro, committente, tecnica e immagine principale.
 3. **Posizione nell'elenco**: 1 è il primo progetto della sezione.
 4. Le tavole:

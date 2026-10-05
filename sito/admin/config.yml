@@ -109,9 +109,9 @@ collections:
 
   # ---------------------------------------------------------------- Opere
   - name: opere
-    label: I mondi disegnati
+    label: Mondi illustrati
     label_singular: Progetto su commissione
-    description: I progetti su commissione della sezione "I mondi disegnati di Baruch", con le loro tavole.
+    description: I progetti su commissione della sezione "Mondi illustrati", con le loro tavole.
     folder: contenuti/opere
     format: json
     create: true

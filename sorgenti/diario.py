@@ -39,8 +39,8 @@ SEZIONI = [
         ],
     },
     {
-        "slug": "i-mondi-disegnati-di-baruch",
-        "titolo": "I mondi disegnati di Baruch",
+        "slug": "mondi-illustrati",
+        "titolo": "Mondi illustrati",
         "disegno": "mondi-disegnati", "w": 900, "h": 543,
         "alt": "Una casetta fatta di foglie d’autunno con la sua ombra",
         "classe": "d-mondi",
