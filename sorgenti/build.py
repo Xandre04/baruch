@@ -4,14 +4,16 @@ Intestazione, menu e piè di pagina sono definiti una sola volta qui sotto.
 Dopo una modifica, dalla cartella principale del progetto:  python sorgenti/build.py
 """
 import hashlib
+import html
 import json
 import re
 from pathlib import Path
 
-from diario import ARTICOLI, OPERE, SEZIONI
+from contenuti import IMG_MD, articoli, blocchi, immagine, in_linea, opere, pdf, prepara_immagini
+from diario import SEZIONI
 
 SORGENTI = Path(__file__).parent
-DATI = SORGENTI / "dati"          # misure delle immagini, usate per width/height
+DATI = SORGENTI / "dati"          # misure delle immagini della galleria collaborazioni
 SITO = SORGENTI.parent / "sito"    # cartella pubblicata
 
 # indirizzi delle pagine, sempre relativi alla radice del sito
@@ -192,12 +194,15 @@ page(
     preload='\n  <link rel="preload" as="image" href="assets/img/ui/hero.webp" imagesrcset="assets/img/ui/hero-1100.webp 1100w, assets/img/ui/hero.webp 2200w" imagesizes="100vw">',
 )
 
+prepara_immagini()
+CATERINA_BAMBINA = immagine("/contenuti/media/caterina-santambrogio-01.webp")
+
 # ---------------- CHI È BARUCH ----------------
 page(
     CHI, "chi",
     "Chi è Baruch · Baruch illustrare mondi",
     "Baruch è un personaggio e un progetto: un mondo di natura e meraviglia disegnato da Caterina Santambrogio.",
-    """    <div class="page">
+    f"""    <div class="page">
       <section class="about">
         <figure class="about__art reveal">
           <img src="assets/img/chi/baruch-cavallo.webp" alt="Baruch, con i capelli ricci e una matita in mano, cavalca un animale fatto di sassi" width="900" height="840">
@@ -228,7 +233,7 @@ page(
             <img src="assets/img/chi/caterina.webp" alt="Ritratto in bianco e nero di Caterina Santambrogio con un piccolo Baruch disegnato sulla testa" width="524" height="665" loading="lazy">
           </figure>
           <figure class="cate__child reveal" style="--d:.24s">
-            <img src="assets/img/articoli/caterina-santambrogio-01-720.webp" alt="Caterina da bambina, con un piccolo Baruch disegnato tra i capelli" width="720" height="720" loading="lazy">
+            <img src="{CATERINA_BAMBINA['piccola']}" alt="Caterina da bambina, con un piccolo Baruch disegnato tra i capelli" width="720" height="720" loading="lazy">
           </figure>
         </div>
       </section>
@@ -236,18 +241,20 @@ page(
 )
 
 # ---------------- DIARIO ----------------
-SIZES = {d: json.loads((DATI / f"{d}.json").read_text(encoding="utf-8")) for d in ("articoli", "opere")}
 SEZ = {s["slug"]: s for s in SEZIONI}
-ART = sorted(ARTICOLI, key=lambda a: a["data"], reverse=True)
-OP = {o["cover"]: o for o in OPERE}
+ART = articoli()
+OPERE = opere()
+
+# le pagine del diario si rigenerano da zero: un articolo cancellato o rinominato non resta online
+for vecchia in (SITO / "diario").rglob("*.html"):
+    vecchia.unlink()
 
 
-def pic(name, alt, cls="", lazy=True, sizes="(max-width: 760px) 100vw, 720px", folder="articoli"):
-    w, h = SIZES[folder][name]
+def pic(percorso, alt, lazy=True, sizes="(max-width: 760px) 100vw, 720px"):
+    i = immagine(percorso)
     lz = ' loading="lazy"' if lazy else ""
-    c = f' class="{cls}"' if cls else ""
-    return (f'<img{c} src="assets/img/{folder}/{name}-720.webp" srcset="assets/img/{folder}/{name}-720.webp 720w, assets/img/{folder}/{name}-1400.webp 1400w" '
-            f'sizes="{sizes}" alt="{alt}" width="{w}" height="{h}"{lz}>')
+    return (f'<img src="{i["piccola"]}" srcset="{i["piccola"]} 720w, {i["grande"]} 1400w" '
+            f'sizes="{sizes}" alt="{html.escape(alt)}" width="{i["w"]}" height="{i["h"]}"{lz}>')
 
 
 def entries(arts, heading_tag="h3"):
@@ -255,10 +262,9 @@ def entries(arts, heading_tag="h3"):
     out = []
     for i, a in enumerate(arts):
         s = SEZ[a["sezione"]]
-        img, alt = a["cover"]
         out.append(f"""        <article class="entry reveal" style="--d:{(i % 2) * 0.1:.1f}s">
           <a class="entry__link" href="{url_articolo(a)}">
-            <span class="entry__photo">{pic(img, alt, sizes="(max-width: 760px) 100vw, 560px")}</span>
+            <span class="entry__photo">{pic(a['copertina'], a['copertina_alt'], sizes="(max-width: 760px) 100vw, 560px")}</span>
             <span class="entry__meta"><time datetime="{a['data']}">{a['data_it']}</time> <span class="entry__sez">{s['titolo']}</span></span>
             <{heading_tag} class="entry__title">{a['titolo']}</{heading_tag}>
             <span class="entry__text">{a['estratto']}</span>
@@ -268,9 +274,9 @@ def entries(arts, heading_tag="h3"):
     return "\n".join(out)
 
 
-def blocks(bl):
-    """Trasforma i blocchi dell'articolo in HTML; immagini consecutive diventano una griglia."""
-    html, run = [], []
+def testo(md):
+    """Testo scritto nell'editor -> HTML; immagini consecutive diventano una griglia ingrandibile."""
+    out, run = [], []
 
     def flush():
         if not run:
@@ -278,25 +284,27 @@ def blocks(bl):
         one = len(run) == 1
         cls = "art-figs art-figs--one" if one else "art-figs"
         figs = "\n".join(
-            f'          <button class="art-fig" type="button" data-full="assets/img/articoli/{n}-1400.webp" data-title="">{pic(n, a, sizes="(max-width: 760px) 100vw, " + ("820px" if one else "420px"))}</button>'
-            for n, a in run
+            f'          <button class="art-fig" type="button" data-full="{immagine(src)["grande"]}" data-title="">{pic(src, alt, sizes="(max-width: 760px) 100vw, " + ("820px" if one else "420px"))}</button>'
+            for src, alt in run
         )
-        html.append(f'        <div class="{cls} reveal">\n{figs}\n        </div>')
+        out.append(f'        <div class="{cls} reveal">\n{figs}\n        </div>')
         run.clear()
 
-    for b in bl:
+    for b in blocchi(md):
         if b[0] == "img":
             run.append((b[1], b[2]))
             continue
         flush()
         if b[0] == "p":
-            html.append(f"        <p>{b[1]}</p>")
+            out.append(f"        <p>{b[1]}</p>")
         elif b[0] == "h":
-            html.append(f"        <h2>{b[1]}</h2>")
+            out.append(f"        <h2>{b[1]}</h2>")
         elif b[0] == "q":
-            html.append(f'        <blockquote class="art-quote reveal"><p>{b[1]}</p></blockquote>')
+            out.append(f'        <blockquote class="art-quote reveal"><p>{b[1]}</p></blockquote>')
+        else:
+            out.append(f"        <{b[0]}>{b[1]}</{b[0]}>")
     flush()
-    return "\n".join(html)
+    return "\n".join(out)
 
 
 def sez_drawing(s, cls=""):
@@ -340,16 +348,16 @@ for s in SEZIONI:
         body = f"""      <div class="entries">
 {entries(arts, "h2")}
       </div>"""
-    if "opere" in s:
+    if s["slug"] == MONDI_SLUG:
         cells = "\n".join(
-            f"""        <a class="work reveal" href="{url_opera(OP[n])}">
-          <span class="work__img">{pic(n, alt, sizes="(max-width: 760px) 100vw, 600px")}</span>
-          <span class="work__cat">{OP[n]['categoria']}</span>
-          <span class="work__title">{t}</span>
-          <span class="work__tec">{tec}</span>
+            f"""        <a class="work reveal" href="{url_opera(o)}">
+          <span class="work__img">{pic(o['copertina'], o['copertina_alt'], sizes="(max-width: 760px) 100vw, 600px")}</span>
+          <span class="work__cat">{o['categoria']}</span>
+          <span class="work__title">{o['titolo']}</span>
+          <span class="work__tec">{o['tecnica']}</span>
           <span class="entry__more">Scopri il progetto <i class="ph-bold ph-arrow-right" aria-hidden="true"></i></span>
         </a>"""
-            for n, t, tec, alt in s["opere"]
+            for o in OPERE
         )
         body += f"""      <div class="works">
 {cells}
@@ -359,7 +367,11 @@ for s in SEZIONI:
         for gt, objs in s["gruppi"]:
             cells = "\n".join(
                 f'          <button class="art-fig obj" type="button" data-full="{full}" data-title="{gt}"><img src="{src}" alt="{alt}" width="{w}" height="{h}" loading="lazy"></button>'
-                for src, full, alt, w, h in objs
+                for src, full, alt, w, h in (
+                    # una foto di contenuti/media si indica con (percorso, descrizione)
+                    (immagine(o[0])["piccola"], immagine(o[0])["grande"], o[1], immagine(o[0])["w"], immagine(o[0])["h"]) if len(o) == 2 else o
+                    for o in objs
+                )
             )
             body += f"""
       <section class="objects reveal">
@@ -389,52 +401,57 @@ for s in SEZIONI:
     )
 
 # pagine delle opere su commissione
-MONDI = SEZ["i-mondi-disegnati-di-baruch"]
-COVER_ALT = {n: alt for n, _, _, alt in MONDI["opere"]}
+MONDI = SEZ[MONDI_SLUG]
 for i, o in enumerate(OPERE):
-    testi = "\n".join(f"        <p>{t}</p>" for t in o["testi"])
-    quote = f'\n        <blockquote class="art-quote reveal"><p>{o["citazione"]}</p></blockquote>' if o["citazione"] else ""
-    pdf = ""
-    if o["pdf"]:
-        url, label, peso = o["pdf"]
-        pdf = f'\n        <p class="opera__pdf reveal"><a class="cta" href="{url}" target="_blank" rel="noopener" type="application/pdf">{label} <i class="ph-bold ph-book-open" aria-hidden="true"></i></a><small>{peso}</small></p>'
+    breve = o.get("titolo_breve") or o["titolo"]
+    quote = f'\n        <blockquote class="art-quote reveal"><p>{in_linea(o["citazione"])}</p></blockquote>' if o.get("citazione") else ""
+    pdf_html = ""
+    if o.get("pdf"):
+        url, peso = pdf(o["pdf"])
+        label = o.get("pdf_etichetta") or "Sfoglia il PDF"
+        pdf_html = f'\n        <p class="opera__pdf reveal"><a class="cta" href="{url}" target="_blank" rel="noopener" type="application/pdf">{label} <i class="ph-bold ph-book-open" aria-hidden="true"></i></a><small>{peso}</small></p>'
     tavole = "\n".join(
-        f'          <button class="art-fig plate{" plate--wide" if SIZES["opere"][n][0] > 2 * SIZES["opere"][n][1] else ""}" type="button" data-full="assets/img/opere/{n}-1400.webp" data-title="{o["breve"]}">{pic(n, alt, sizes="(max-width: 760px) 50vw, 400px", folder="opere")}</button>'
-        for n, alt in o["tavole"]
+        f'          <button class="art-fig plate{" plate--wide" if immagine(t["immagine"])["w"] > 2 * immagine(t["immagine"])["h"] else ""}" type="button" data-full="{immagine(t["immagine"])["grande"]}" data-title="{breve}">{pic(t["immagine"], t.get("alt", ""), sizes="(max-width: 760px) 50vw, 400px")}</button>'
+        for t in o.get("tavole") or []
     )
-    prev_o, next_o = OPERE[i - 1], OPERE[(i + 1) % len(OPERE)]
-    sub = f'\n        <p class="article__sub">{o["sottotitolo"]}</p>' if o.get("sottotitolo") else ""
-    page(
-        url_opera(o), "diario",
-        f"{o['breve']} · I mondi disegnati di Baruch",
-        o["testi"][0][:155],
-        f"""    <article class="article opera">
-      <a class="back reveal" href="{url_sezione(MONDI['slug'])}">{sez_drawing(MONDI, "back__art")} {MONDI['titolo']}</a>
-      <header class="article__head reveal">
-        <p class="article__date">{o['categoria']}</p>
-        <h1 class="hand-title hand-title--big">{o['titolo']}</h1>{sub}
-      </header>
-      <div class="opera__intro">
-        <figure class="opera__cover reveal">
-          <button class="art-fig" type="button" data-full="assets/img/articoli/{o['cover']}-1400.webp" data-title="{o['breve']}">{pic(o['cover'], COVER_ALT[o['cover']], lazy=False, sizes="(max-width: 760px) 100vw, 520px")}</button>
-        </figure>
-        <div class="opera__text reveal" style="--d:.1s">
-          <dl class="opera__facts">
-            <div><dt>Committente</dt><dd>{o['con']}</dd></div>
-            <div><dt>Tecnica</dt><dd>{o['tecnica'].replace('Tecnica mista: ', 'mista, ')}</dd></div>
-          </dl>
-{testi}{pdf}
-        </div>
-      </div>{quote}
+    tavole_html = f"""
       <section class="opera__plates" aria-labelledby="tavole">
         <h2 class="hand-title reveal" id="tavole">Le tavole</h2>
         <div class="plates reveal">
 {tavole}
         </div>
-      </section>
+      </section>""" if tavole else ""
+    prev_o, next_o = OPERE[i - 1], OPERE[(i + 1) % len(OPERE)]
+    sub = f'\n        <p class="article__sub">{o["sottotitolo"]}</p>' if o.get("sottotitolo") else ""
+    facts = "\n".join(
+        f"            <div><dt>{dt}</dt><dd>{dd}</dd></div>"
+        for dt, dd in (("Committente", o.get("committente")), ("Tecnica", (o.get("tecnica") or "").replace("Tecnica mista: ", "mista, ")))
+        if dd
+    )
+    page(
+        url_opera(o), "diario",
+        f"{breve} · I mondi disegnati di Baruch",
+        html.escape(re.sub(r"\s+", " ", IMG_MD.sub("", o.get("testo") or o["titolo"]).strip().split("\n\n")[0])[:155]),
+        f"""    <article class="article opera">
+      <a class="back reveal" href="{url_sezione(MONDI_SLUG)}">{sez_drawing(MONDI, "back__art")} {MONDI['titolo']}</a>
+      <header class="article__head reveal">
+        <p class="article__date">{o.get('categoria', '')}</p>
+        <h1 class="hand-title hand-title--big">{o['titolo']}</h1>{sub}
+      </header>
+      <div class="opera__intro">
+        <figure class="opera__cover reveal">
+          <button class="art-fig" type="button" data-full="{immagine(o['copertina'])['grande']}" data-title="{breve}">{pic(o['copertina'], o['copertina_alt'], lazy=False, sizes="(max-width: 760px) 100vw, 520px")}</button>
+        </figure>
+        <div class="opera__text reveal" style="--d:.1s">
+          <dl class="opera__facts">
+{facts}
+          </dl>
+{testo(o.get('testo'))}{pdf_html}
+        </div>
+      </div>{quote}{tavole_html}
       <nav class="opera__nav reveal" aria-label="Altri progetti">
-        <a href="{url_opera(prev_o)}"><i class="ph-bold ph-arrow-left" aria-hidden="true"></i> {prev_o['breve']}</a>
-        <a href="{url_opera(next_o)}">{next_o['breve']} <i class="ph-bold ph-arrow-right" aria-hidden="true"></i></a>
+        <a href="{url_opera(prev_o)}"><i class="ph-bold ph-arrow-left" aria-hidden="true"></i> {prev_o.get('titolo_breve') or prev_o['titolo']}</a>
+        <a href="{url_opera(next_o)}">{next_o.get('titolo_breve') or next_o['titolo']} <i class="ph-bold ph-arrow-right" aria-hidden="true"></i></a>
       </nav>
     </article>""",
         extra="\n  " + LIGHTBOX.format(single=""),
@@ -443,10 +460,10 @@ for i, o in enumerate(OPERE):
 # pagine degli articoli
 for a in ART:
     s = SEZ[a["sezione"]]
-    img, alt = a["cover"]
     altri = [x for x in ART if x["sezione"] == a["sezione"] and x is not a][:2]
     if len(altri) < 2:
         altri += [x for x in ART if x["sezione"] != a["sezione"]][: 2 - len(altri)]
+    sub = f'\n        <p class="article__sub">{a["sottotitolo"]}</p>' if a.get("sottotitolo") else ""
     page(
         url_articolo(a), "diario",
         f"{a['titolo']} · Diario di Baruch",
@@ -455,12 +472,11 @@ for a in ART:
       <a class="back reveal" href="{url_sezione(s['slug'])}">{sez_drawing(s, "back__art")} {s['titolo']}</a>
       <header class="article__head reveal">
         <p class="article__date"><time datetime="{a['data']}">{a['data_it']}</time></p>
-        <h1 class="hand-title hand-title--big">{a['titolo']}</h1>
-        <p class="article__sub">{a['sottotitolo']}</p>
+        <h1 class="hand-title hand-title--big">{a['titolo']}</h1>{sub}
       </header>
-      <figure class="article__cover reveal">{pic(img, alt, lazy=False, sizes="(max-width: 1040px) 100vw, 1000px")}</figure>
+      <figure class="article__cover reveal">{pic(a['copertina'], a['copertina_alt'], lazy=False, sizes="(max-width: 1040px) 100vw, 1000px")}</figure>
       <div class="article__body">
-{blocks(a['blocchi'])}
+{testo(a['testo'])}
         <p class="article__sign">Caterina</p>
       </div>
     </article>
@@ -516,14 +532,14 @@ for r in lst:
           <img{cut} src="assets/img/galleria/{n}-720.webp" alt="{alt}" width="{r['w']}" height="{r['h']}" loading="lazy">
         </button>"""
     )
-# opere su commissione pubblicate su illustraremondi.it
-for n, t, tec, alt in SEZ["i-mondi-disegnati-di-baruch"]["opere"]:
-    if n in ("teatro-sotto-gli-alberi",):
-        continue  # già presente nella galleria
-    w, h = SIZES["articoli"][n]
+# copertine delle opere su commissione (Teatro sotto gli alberi è già nella galleria)
+for o in OPERE:
+    if o["slug"] == "teatro-sotto-gli-alberi":
+        continue
+    i = immagine(o["copertina"])
     cells.insert(0,
-        f"""        <button class="gallery__item reveal" type="button" data-full="assets/img/articoli/{n}-1400.webp" data-title="{t}" data-note="{tec}">
-          <img src="assets/img/articoli/{n}-720.webp" alt="{alt}" width="{w}" height="{h}" loading="lazy">
+        f"""        <button class="gallery__item reveal" type="button" data-full="{i['grande']}" data-title="{o['titolo']}" data-note="{o.get('tecnica', '')}">
+          <img src="{i['piccola']}" alt="{html.escape(o['copertina_alt'])}" width="{i['w']}" height="{i['h']}" loading="lazy">
         </button>"""
     )
 page(
@@ -617,7 +633,7 @@ page(
 # arrivano alla pagina nuova con un reindirizzamento permanente (301).
 # /chi-e-baruch/, /diario/ e /contatti/ esistono già con lo stesso indirizzo.
 # Il file .htaccess funziona su Keliweb (Apache); l'anteprima su GitHub Pages lo ignora.
-ART_BY = {a["slug"]: a for a in ARTICOLI}
+ART_BY = {a["slug"]: a for a in ART}
 OPERA_BY = {o["slug"]: o for o in OPERE}
 REDIRECT = {
     "mondi-illustrati": url_sezione(MONDI_SLUG),

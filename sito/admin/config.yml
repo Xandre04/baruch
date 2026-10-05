@@ -1,0 +1,192 @@
+# Editor del sito Baruch (Sveltia CMS).
+# Ogni salvataggio diventa una modifica nel repository GitHub; il workflow
+# .github/workflows/pubblica.yml rigenera il sito e lo mette online.
+
+backend:
+  name: github
+  repo: Xandre04/baruch
+  branch: main
+  commit_messages:
+    create: "Nuovo contenuto: {{slug}}"
+    update: "Modifica: {{slug}}"
+    delete: "Eliminato: {{slug}}"
+    uploadMedia: "Nuova foto: {{path}}"
+    deleteMedia: "Foto eliminata: {{path}}"
+
+site_url: https://xandre04.github.io/baruch/
+
+# Le foto caricate finiscono qui e il sito ne prepara da solo le versioni ridotte.
+media_folder: /contenuti/media
+public_folder: /contenuti/media
+
+media_libraries:
+  default:
+    config:
+      transformations:
+        # le foto molto grandi (fotocamera, scanner) vengono rimpicciolite prima di essere salvate
+        raster_image:
+          format: webp
+          quality: 88
+          width: 2400
+          height: 2400
+
+slug:
+  encoding: ascii
+  clean_accents: true
+
+collections:
+  # ---------------------------------------------------------------- Diario
+  - name: articoli
+    label: Diario
+    label_singular: Pagina del diario
+    description: Le pagine del Diario. Ogni pagina compare nella sua sezione e tra "Le ultime pagine".
+    folder: contenuti/articoli
+    format: json
+    create: true
+    delete: true
+    identifier_field: titolo
+    slug: "{{fields.titolo}}"
+    summary: "{{data}} · {{titolo}}"
+    sortable_fields: [data, titolo]
+    fields:
+      - name: titolo
+        label: Titolo
+        widget: string
+      - name: sottotitolo
+        label: Sottotitolo
+        widget: string
+        required: false
+        hint: Una riga sotto il titolo. Facoltativo.
+      - name: data
+        label: Data
+        widget: datetime
+        type: date
+      - name: sezione
+        label: Sezione del diario
+        widget: select
+        options:
+          - { label: "Come fiori selvatici (disegno naturalistico)", value: come-fiori-selvatici }
+          - { label: "Le avventure di Baruch (gite e territorio)", value: le-avventure-di-baruch }
+          - { label: "Costruire con Baruch (laboratori e sperimentazioni)", value: costruire-con-baruch }
+          - { label: "Le cose magiche di Baruch (oggetti)", value: le-cose-magiche-di-baruch }
+      - name: estratto
+        label: Riassunto
+        widget: text
+        hint: Una o due frasi. Compaiono nell'elenco delle pagine e su Google.
+      - name: copertina
+        label: Foto di copertina
+        widget: image
+        hint: La foto grande in cima alla pagina. Meglio orizzontale.
+      - name: copertina_alt
+        label: Descrizione della copertina
+        widget: string
+        hint: Cosa si vede nella foto, in poche parole (serve a chi non vede le immagini e a Google).
+      - name: testo
+        label: Testo
+        widget: markdown
+        modes: [rich_text]
+        buttons: [bold, italic, link, heading-two, quote, bulleted-list, numbered-list]
+        editor_components: [image]
+        linked_images: false
+        hint: >-
+          Le citazioni (pulsante virgolette) appaiono sulla pennellata verde.
+          Più foto una dopo l'altra diventano una griglia che si ingrandisce al clic.
+          Quando inserisci una foto, scrivi anche la sua descrizione.
+      - name: pubblicato
+        label: Pubblicata
+        widget: boolean
+        default: true
+        hint: Togli la spunta per tenerla come bozza, invisibile sul sito.
+
+  # ---------------------------------------------------------------- Opere
+  - name: opere
+    label: I mondi disegnati
+    label_singular: Progetto su commissione
+    description: I progetti su commissione della sezione "I mondi disegnati di Baruch", con le loro tavole.
+    folder: contenuti/opere
+    format: json
+    create: true
+    delete: true
+    identifier_field: titolo
+    slug: "{{fields.titolo_breve}}"
+    summary: "{{ordine}} · {{titolo}}"
+    sortable_fields: [ordine, titolo]
+    fields:
+      - name: titolo
+        label: Titolo
+        widget: string
+        hint: Per esempio Calendario “Prove di volo”.
+      - name: titolo_breve
+        label: Titolo breve
+        widget: string
+        hint: Per esempio Prove di volo. Si usa nei link tra un progetto e l'altro.
+      - name: sottotitolo
+        label: Sottotitolo
+        widget: string
+        required: false
+      - name: categoria
+        label: Tipo di lavoro
+        widget: select
+        options: [Illustrazioni, Rassegne teatrali, Storie illustrate]
+      - name: committente
+        label: Committente
+        widget: string
+        required: false
+        hint: Per esempio Con l’associazione Bereshit, oppure Per Molino Rosenkranz.
+      - name: tecnica
+        label: Tecnica
+        widget: string
+        required: false
+        hint: "Per esempio Tecnica mista: gouache e digitale."
+      - name: ordine
+        label: Posizione nell'elenco
+        widget: number
+        value_type: int
+        min: 1
+        hint: 1 è il primo progetto della sezione.
+      - name: copertina
+        label: Immagine principale
+        widget: image
+      - name: copertina_alt
+        label: Descrizione dell'immagine principale
+        widget: string
+      - name: testo
+        label: Testo
+        widget: markdown
+        modes: [rich_text]
+        buttons: [bold, italic, link]
+        minimal: true
+      - name: citazione
+        label: Frase sulla pennellata
+        widget: text
+        required: false
+        hint: Una frase che appare grande sulla pennellata verde. Facoltativa.
+      - name: tavole
+        label: Le tavole
+        label_singular: Tavola
+        widget: list
+        required: false
+        summary: "{{fields.alt}}"
+        fields:
+          - name: immagine
+            label: Immagine
+            widget: image
+          - name: alt
+            label: Descrizione
+            widget: string
+      - name: pdf
+        label: PDF da sfogliare
+        widget: file
+        required: false
+        media_folder: /sito/assets/pdf
+        public_folder: /assets/pdf
+        hint: Per esempio il calendario completo. Facoltativo.
+      - name: pdf_etichetta
+        label: Testo del pulsante del PDF
+        widget: string
+        required: false
+        default: Sfoglia il calendario
+      - name: pubblicato
+        label: Pubblicato
+        widget: boolean
+        default: true

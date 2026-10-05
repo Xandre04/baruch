@@ -1,0 +1,38 @@
+{
+  "titolo": "Calendario “Vuoi guarire?”",
+  "titolo_breve": "Vuoi guarire?",
+  "sottotitolo": "Dodici mesi per raccontare il ritorno alla vita",
+  "categoria": "Illustrazioni",
+  "committente": "Con l’associazione Bereshit",
+  "tecnica": "Tecnica mista: gouache e digitale",
+  "ordine": 5,
+  "copertina": "/contenuti/media/calendario.webp",
+  "copertina_alt": "Una donna dai capelli rossi suona un liuto",
+  "testo": "In questa collaborazione con l’associazione Bereshit, le parole del Vangelo incontrano il segno grafico per esplorare il concetto di guarigione.\n\nLe tavole giocano su una palette essenziale in cui il rosso e il blu si cercano, unite a una composizione serrata che stringe l’inquadratura sui dettagli essenziali.",
+  "citazione": "Eliminando il superfluo, ogni mese diventa uno spazio calmo dove riflettere sul senso del testo.",
+  "tavole": [
+    {
+      "immagine": "/contenuti/media/calendario-01.webp",
+      "alt": "Una donna dai capelli rossi dorme sotto una colomba bianca"
+    },
+    {
+      "immagine": "/contenuti/media/calendario-02.webp",
+      "alt": "Un angelo e una donna velata con una colomba blu"
+    },
+    {
+      "immagine": "/contenuti/media/calendario-03.webp",
+      "alt": "Tre donne suonano e cantano con strumenti antichi"
+    },
+    {
+      "immagine": "/contenuti/media/calendario-04.webp",
+      "alt": "Due uomini si abbracciano, uno vestito di rosso"
+    },
+    {
+      "immagine": "/contenuti/media/calendario-05.webp",
+      "alt": "Una tavola con pane e vino tra figure in abiti chiari"
+    }
+  ],
+  "pdf": "/assets/pdf/calendario-vuoi-guarire.pdf",
+  "pdf_etichetta": "Sfoglia il calendario 2021",
+  "pubblicato": true
+}

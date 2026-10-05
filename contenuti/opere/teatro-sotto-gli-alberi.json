@@ -1,0 +1,34 @@
+{
+  "titolo": "Teatro sotto gli alberi",
+  "titolo_breve": "Teatro sotto gli alberi",
+  "sottotitolo": "Un progetto di teatro e bosco",
+  "categoria": "Rassegne teatrali",
+  "committente": "Per Molino Rosenkranz",
+  "tecnica": "Tecnica mista: gouache e digitale",
+  "ordine": 3,
+  "copertina": "/contenuti/media/teatro-sotto-gli-alberi.webp",
+  "copertina_alt": "Bambini e animali giocano tra alberi con le gambe, in un prato fiorito",
+  "testo": "Per la rassegna estiva “A teatro sotto gli alberi” di Molino Rosenkranz, ho giocato con l’illusione delle ombre: braccia e mani si tendono verso l’alto per trasformarsi nei tronchi e nei rami di un bosco surreale.",
+  "citazione": "Un manifesto visivo dove la natura e la finzione teatrale si fondono in un unico segno, invitando il pubblico a entrare in un esterno magico.",
+  "tavole": [
+    {
+      "immagine": "/contenuti/media/teatro-sotto-gli-alberi-04.webp",
+      "alt": "Il manifesto A teatro sotto gli alberi con una mano verde che diventa albero"
+    },
+    {
+      "immagine": "/contenuti/media/teatro-sotto-gli-alberi-02.webp",
+      "alt": "Un albero con le gambe accanto a una tenda rossa in un prato fiorito"
+    },
+    {
+      "immagine": "/contenuti/media/teatro-sotto-gli-alberi-03.webp",
+      "alt": "Bambini che leggono sugli alberi e un uccello colorato nel prato"
+    },
+    {
+      "immagine": "/contenuti/media/teatro-sotto-gli-alberi-01.webp",
+      "alt": "Striscione orizzontale con alberi, bambini e fiori"
+    }
+  ],
+  "pdf": "",
+  "pdf_etichetta": "",
+  "pubblicato": true
+}

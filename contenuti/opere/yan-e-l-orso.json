@@ -1,0 +1,38 @@
+{
+  "titolo": "Yan e l’Orso",
+  "titolo_breve": "Yan e l’Orso",
+  "sottotitolo": "Le pareti di una yurta che si fanno pagina",
+  "categoria": "Storie illustrate",
+  "committente": "Per Molino Rosenkranz",
+  "tecnica": "Tecnica mista: acrilico e digitale",
+  "ordine": 4,
+  "copertina": "/contenuti/media/yan-e-lorso.webp",
+  "copertina_alt": "Un bambino dorme sulla schiena di un grande orso",
+  "testo": "Per Molino Rosenkranz ho disegnato una storia stampata su stoffa, pensata per avvolgere i piccoli spettatori all’interno di uno spazio circolare e protetto.",
+  "citazione": "Un allestimento dove l’illustrazione diventa scenografia e la stoffa si fa tenda tesa verso l’immaginario, per dare corpo ad una narrazione teatrale intima e pulsante.",
+  "tavole": [
+    {
+      "immagine": "/contenuti/media/yan-e-lorso-01.webp",
+      "alt": "Un’orsa abbraccia una madre e il suo bambino vestiti con abiti del nord"
+    },
+    {
+      "immagine": "/contenuti/media/yan-e-lorso-02.webp",
+      "alt": "Un bambino con abiti tradizionali cammina nella neve"
+    },
+    {
+      "immagine": "/contenuti/media/yan-e-lorso-03.webp",
+      "alt": "Una renna tra betulle, dipinta sulla stoffa"
+    },
+    {
+      "immagine": "/contenuti/media/yan-e-lorso-04.webp",
+      "alt": "Lo sviluppo circolare della tenda con tutte le scene della storia"
+    },
+    {
+      "immagine": "/contenuti/media/yan-e-lorso-05.webp",
+      "alt": "La tenda montata in un cortile accanto a un orso che saluta"
+    }
+  ],
+  "pdf": "",
+  "pdf_etichetta": "",
+  "pubblicato": true
+}

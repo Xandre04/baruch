@@ -1,0 +1,81 @@
+# Pubblica il sito a ogni modifica su main, comprese quelle fatte da Caterina con l'editor (/admin).
+#
+# 1. genera le pagine e le foto da contenuti/ (sorgenti/build.py)
+# 2. controlla che link e immagini non siano rotti
+# 3. salva nel repository le pagine rigenerate, così sito/ è sempre uguale a ciò che è online
+# 4. pubblica l'anteprima su GitHub Pages
+# 5. carica sito/ su Keliweb via FTP, solo quando i dati FTP sono stati inseriti nei segreti
+#    del repository (Settings > Secrets and variables > Actions):
+#      FTP_SERVER     es. ftp.illustraremondi.it
+#      FTP_USERNAME   utente FTP di Keliweb
+#      FTP_PASSWORD   password FTP
+#      FTP_CARTELLA   facoltativo, cartella del sito sul server (predefinita: public_html/)
+name: Pubblica il sito
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+# una pubblicazione alla volta, nell'ordine in cui arrivano le modifiche
+concurrency:
+  group: pubblica
+  cancel-in-progress: false
+
+jobs:
+  pubblica:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    env:
+      HA_FTP: ${{ secrets.FTP_SERVER != '' }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Genera il sito
+        run: |
+          pip install --quiet pillow
+          python sorgenti/build.py
+
+      - name: Controlla link e immagini
+        run: python sorgenti/controlla.py
+
+      - name: Salva le pagine rigenerate
+        run: |
+          git add sito
+          if git diff --cached --quiet; then exit 0; fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "Sito rigenerato: $(git log -1 --pretty=%s HEAD)"
+          git pull --rebase origin main
+          git push
+
+      - uses: actions/configure-pages@v5
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: sito
+
+      - id: deploy
+        uses: actions/deploy-pages@v4
+
+      - name: Carica su Keliweb
+        if: env.HA_FTP == 'true'
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          protocol: ftps
+          local-dir: ./sito/
+          server-dir: ${{ secrets.FTP_CARTELLA || 'public_html/' }}

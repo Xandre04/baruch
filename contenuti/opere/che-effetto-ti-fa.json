@@ -1,0 +1,42 @@
+{
+  "titolo": "Calendario “Che effetto ti fa?”",
+  "titolo_breve": "Che effetto ti fa?",
+  "sottotitolo": "Un atlante di volti ed emozioni",
+  "categoria": "Illustrazioni",
+  "committente": "Con l’associazione Bereshit",
+  "tecnica": "Tecnica mista: acrilico e pastello su carta",
+  "ordine": 2,
+  "copertina": "/contenuti/media/ritratto-07.webp",
+  "copertina_alt": "Ritratti di volti sorridenti tra fiori, foglie e ritagli",
+  "testo": "Questo calendario illustrato, realizzato in collaborazione con l’associazione Bereshit, nasce come un piccolo viaggio illustrato tra le sfumature che ci attraversano ogni giorno.\n\nAttraverso i disegni ho voluto dare forma e colore alla nostra “preziosa instabilità”: uno sguardo, un volto, la paura o la leggerezza diventano tracce visive per accorgerci di ciò che proviamo e ritrovare un’eco di noi stessi mese dopo mese.",
+  "citazione": "",
+  "tavole": [
+    {
+      "immagine": "/contenuti/media/ritratto-03.webp",
+      "alt": "Un ragazzo abbraccia il suo cane tra trifogli, con la parola fiducia"
+    },
+    {
+      "immagine": "/contenuti/media/ritratto-08.webp",
+      "alt": "Una donna con un foulard tra fiori, conchiglie e appunti"
+    },
+    {
+      "immagine": "/contenuti/media/ritratto-09.webp",
+      "alt": "Un uomo con la barba bianca tra foglie secche e il ritratto di un neonato"
+    },
+    {
+      "immagine": "/contenuti/media/ritratto-010.webp",
+      "alt": "Una madre stringe il suo bambino, con la scritta la tenerezza"
+    },
+    {
+      "immagine": "/contenuti/media/ritratto-011.webp",
+      "alt": "Un ragazzo urla divertito tra alchechengi e bacche"
+    },
+    {
+      "immagine": "/contenuti/media/ritratto-012.webp",
+      "alt": "Una ragazza e un uomo con il naso rosso da clown, con la scritta che stupore"
+    }
+  ],
+  "pdf": "",
+  "pdf_etichetta": "",
+  "pubblicato": true
+}

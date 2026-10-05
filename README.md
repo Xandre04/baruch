@@ -15,63 +15,85 @@ Pagine da cui partire:
 - [Collaborazioni](https://xandre04.github.io/baruch/collaborazioni/)
 - [Contatti](https://xandre04.github.io/baruch/contatti/)
 
+## ✏️ Pubblicare articoli: [l'editor](https://xandre04.github.io/baruch/admin/)
+
+Caterina scrive le pagine del Diario e i progetti su commissione dal browser, senza toccare file. Al salvataggio il sito si rigenera e va online da solo in un paio di minuti.
+
+**[Guida per Caterina](GUIDA-CATERINA.md)**: primo accesso, nuova pagina, foto, bozze.
+
 ## Come è organizzato
 
 ```
 baruch/
+├── contenuti/                     ← quello che Caterina scrive con l'editor
+│   ├── articoli/                  una pagina del Diario per file (JSON, testo in Markdown)
+│   ├── opere/                     un progetto su commissione per file
+│   └── media/                     le foto caricate, a piena qualità
+│
 ├── sito/                          ← quello che va online (su Keliweb si carica solo questa cartella)
 │   ├── index.html                 home
 │   ├── chi-e-baruch/
-│   ├── diario/
-│   │   ├── index.html             indice del diario
-│   │   ├── come-fiori-selvatici/  una cartella per sezione, con i suoi articoli
-│   │   ├── costruire-con-baruch/
-│   │   ├── i-mondi-disegnati-di-baruch/   anche le pagine delle opere su commissione
-│   │   ├── le-avventure-di-baruch/
-│   │   └── le-cose-magiche-di-baruch/
-│   ├── collaborazioni/
-│   ├── shop/
-│   ├── contatti/
+│   ├── diario/                    una cartella per sezione, con i suoi articoli e le opere
+│   ├── collaborazioni/  shop/  contatti/
+│   ├── admin/                     l'editor (Sveltia CMS) e la sua configurazione
 │   ├── assets/
-│   │   ├── css/                   stile
-│   │   ├── js/                    menu, ingrandimento immagini, modulo contatti
-│   │   ├── img/                   immagini ottimizzate (WebP)
-│   │   │   ├── ui/                elementi dipinti a mano: pennellate, barra, quadretti, titoli
-│   │   │   ├── chi/  diario/      illustrazioni delle pagine
-│   │   │   ├── articoli/          foto degli articoli del diario
-│   │   │   ├── opere/             tavole dei progetti su commissione
+│   │   ├── css/  js/
+│   │   ├── img/
+│   │   │   ├── ui/                elementi dipinti a mano: pennellate, barra, quadretti, titoli, icone
+│   │   │   ├── chi/  diario/      illustrazioni delle pagine fisse
+│   │   │   ├── contenuti/         foto di articoli e opere, generate da contenuti/media
 │   │   │   └── galleria/          collaborazioni
-│   │   └── pdf/                   calendari "Prove di volo" e "Vuoi guarire?"
+│   │   └── pdf/                   calendari e altri PDF
+│   ├── contatti/invia.php         invia i messaggi del modulo all'email di Caterina
 │   └── .htaccess                  vecchi indirizzi di illustraremondi.it → pagine nuove
 │
-├── sorgenti/                      ← quello che si modifica
+├── sorgenti/                      ← il codice che genera il sito
 │   ├── build.py                   genera tutte le pagine HTML in sito/
-│   ├── diario.py                  testi e dati di sezioni, articoli e opere
+│   ├── contenuti.py               legge contenuti/, interpreta il testo, prepara le foto
+│   ├── diario.py                  le cinque sezioni del Diario
 │   ├── controlla.py               verifica che link e immagini non siano rotti
-│   └── dati/                      misure delle immagini
+│   └── dati/                      misure delle immagini della galleria
 │
-└── .github/workflows/             pubblica sito/ come anteprima a ogni modifica
+├── .github/workflows/pubblica.yml ← genera, controlla e pubblica a ogni modifica
+└── GUIDA-CATERINA.md
 ```
 
-Le pagine HTML in `sito/` sono generate: non si modificano a mano. Si cambiano i testi in `sorgenti/` e si rigenerano.
+Le pagine HTML in `sito/` sono generate: non si modificano a mano.
 
-Sito statico in HTML, CSS e un po' di JavaScript: niente database, niente WordPress. Tutto lo stile viene dagli elementi dipinti a mano da Caterina, in `sito/assets/img/ui/`.
+## Come funziona la pubblicazione
 
-## Aggiungere un articolo (per ora)
+1. Caterina salva nell'editor → l'editor scrive il file in `contenuti/` su GitHub.
+2. Il workflow `pubblica.yml` genera pagine e foto, controlla i link e salva il risultato in `sito/`.
+3. Pubblica l'anteprima su GitHub Pages e, se configurato, carica `sito/` su Keliweb via FTP.
 
-1. Mettere le immagini in `sito/assets/img/articoli/` in due misure (`nome-720.webp` e `nome-1400.webp`) e aggiungerne le misure in `sorgenti/dati/articoli.json`.
-2. Aggiungere una voce in `ARTICOLI` dentro `sorgenti/diario.py`. Le istruzioni sono in cima al file.
-3. Dalla cartella principale, rigenerare e controllare:
+### Collegare Keliweb
 
-   ```bash
-   python sorgenti/build.py
-   python sorgenti/controlla.py
-   ```
+Nel repository, **Settings → Secrets and variables → Actions → New repository secret**:
 
-È una procedura provvisoria: il passo successivo è un editor online, così Caterina potrà pubblicare da sola dal browser.
+| Segreto | Valore |
+|---|---|
+| `FTP_SERVER` | server FTP indicato da Keliweb nel pannello |
+| `FTP_USERNAME` | utente FTP |
+| `FTP_PASSWORD` | password FTP |
+| `FTP_CARTELLA` | facoltativo: cartella del sito sul server (predefinita `public_html/`) |
+
+Dalla pubblicazione successiva il sito viene caricato anche su Keliweb. Quando il dominio punta a Keliweb, aggiornare `site_url` in `sito/admin/config.yml`.
+
+### Aggiungere Caterina all'editor
+
+Nel repository, **Settings → Collaborators → Add people** con il suo nome utente GitHub. Il resto è nella [guida](GUIDA-CATERINA.md).
+
+## Lavorare in locale
+
+```bash
+pip install pillow
+python sorgenti/build.py
+python sorgenti/controlla.py
+```
+
+Per vedere il sito: `python -m http.server --directory sito` e aprire <http://localhost:8000>.
 
 ## Da completare
 
-- Email per il modulo contatti e link di Instagram, LinkedIn e Facebook in `sito/assets/js/main.js`
 - Pagina privacy
 - Pubblicazione su Keliweb e collegamento del dominio

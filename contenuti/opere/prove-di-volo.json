@@ -1,0 +1,42 @@
+{
+  "titolo": "Calendario illustrato “Prove di volo”",
+  "titolo_breve": "Prove di volo",
+  "sottotitolo": "",
+  "categoria": "Illustrazioni",
+  "committente": "Con l’associazione Bereshit",
+  "tecnica": "Tecnica mista: gouache e digitale",
+  "ordine": 1,
+  "copertina": "/contenuti/media/06-prove-di-volo.webp",
+  "copertina_alt": "Un campo di papaveri rossi sotto un grande cielo arancione",
+  "testo": "Il calendario illustrato “Prove di volo” nasce dal bisogno profondo di ritrovare una spinta interiore e dare nuovo colore alle relazioni, agli incontri e all’ambiente che ci circonda.\n\nIn queste illustrazioni, realizzate in collaborazione con l’associazione Bereshit, non ci sono persone, volti o mani. Ci sono solo voli. Uccelli leggeri che decorano il cielo, respirano il tramonto, riflettono la notte e sollevano fiori.",
+  "citazione": "Un invito poetico a piantare lo sguardo dritto nel cuore della natura, per ripartire dalla bellezza della creazione.",
+  "tavole": [
+    {
+      "immagine": "/contenuti/media/01-prove-di-volo.webp",
+      "alt": "Un uccello fatto di foglie gialle vola sopra una scala e una casetta rossa nella notte blu"
+    },
+    {
+      "immagine": "/contenuti/media/03-prove-di-volo.webp",
+      "alt": "Un uccello verde tra canne e fiori sotto un cielo blu"
+    },
+    {
+      "immagine": "/contenuti/media/04-prove-di-volo.webp",
+      "alt": "Due uccelli trasparenti tra erbe al tramonto"
+    },
+    {
+      "immagine": "/contenuti/media/05-prove-di-volo.webp",
+      "alt": "Un uccello rosso e giallo tra foglie colorate"
+    },
+    {
+      "immagine": "/contenuti/media/08-prove-di-volo.webp",
+      "alt": "Un uccellino solleva un grande prato di fiori rossi e arancioni"
+    },
+    {
+      "immagine": "/contenuti/media/09-prove-di-volo.webp",
+      "alt": "Uccelli verdi in volo su uno sfondo giallo"
+    }
+  ],
+  "pdf": "/assets/pdf/calendario-prove-di-volo.pdf",
+  "pdf_etichetta": "Sfoglia il calendario 2023",
+  "pubblicato": true
+}
