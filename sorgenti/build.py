@@ -152,7 +152,7 @@ def page(file, key, title, desc, main, footer_scrivimi=True, extra="", preload="
     if up:
         # i percorsi sono scritti dalla radice del sito: nelle sottocartelle risalgono
         local = r"(?![a-z][a-z0-9+.-]*:|#|/|\.\./)"
-        html = re.sub(r'((?:href|src|data-full)=")' + local, r"\1" + up, html)
+        html = re.sub(r'((?:href|src|data-full|action)=")' + local, r"\1" + up, html)
         html = re.sub(r'((?:srcset|imagesrcset)="|, )(?=assets/)', r"\1" + up, html)
     (SITO / file).parent.mkdir(parents=True, exist_ok=True)
     (SITO / file).write_text(html, encoding="utf-8")
@@ -560,7 +560,7 @@ page(
     """    <div class="page">
       <h1 class="page-title reveal"><img src="assets/img/ui/titolo-contatti.webp" alt="Contatti" width="570" height="214"></h1>
       <section class="contact">
-        <form class="form reveal" id="contact-form" novalidate>
+        <form class="form reveal" id="contact-form" action="contatti/invia.php" method="post" novalidate>
           <p class="lead-hand">Per illustrazioni, laboratori o una semplice domanda.</p>
           <div class="field">
             <label for="nome">Nome</label>
@@ -578,8 +578,9 @@ page(
             <textarea id="messaggio" name="messaggio" required aria-describedby="messaggio-error"></textarea>
             <p class="error" id="messaggio-error" aria-live="polite"></p>
           </div>
+          <p class="form__trap" aria-hidden="true"><label>Lascia vuoto <input name="sito" tabindex="-1" autocomplete="off"></label></p>
           <button class="cta" type="submit">Invia il messaggio</button>
-          <p class="form__note"></p>
+          <p class="form__note">Il messaggio arriva direttamente a Caterina.</p>
           <p class="form__status" role="status"></p>
         </form>
         <div class="contact__info reveal" style="--d:.12s">
@@ -589,6 +590,7 @@ page(
             Pordenone<br>
             cell. <a href="tel:+393404742250">340 474 2250</a><br>
             P.I. 01980800930<br>
+            <a href="mailto:illustraremondi@gmail.com">illustraremondi@gmail.com</a><br>
             PEC <a href="mailto:caterinasa@pec.it">caterinasa@pec.it</a>
           </address>
           """ + SOCIAL + """

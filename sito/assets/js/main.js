@@ -1,11 +1,10 @@
 /* Baruch · comportamenti del sito */
 
-/* ===== Da completare con i dati reali =====
-   Finché l'email è vuota, il modulo contatti apre WhatsApp al numero indicato nel piè di pagina.
+/* Il modulo contatti invia i messaggi tramite sito/contatti/invia.php (stesso indirizzo lì).
+   Questa email serve solo di riserva, se l'invio non riesce.
    I link dei social sono in sorgenti/build.py (SOCIAL_LINK). */
 const CONFIG = {
-  email: "",                 // es. "ciao@baruch.it": se presente, il modulo apre la mail
-  whatsapp: "393404742250",  // numero in formato internazionale, senza + e spazi
+  email: "illustraremondi@gmail.com",
 };
 
 document.documentElement.classList.add("js");
@@ -115,11 +114,9 @@ if (box) {
 /* ---------- Modulo contatti ---------- */
 const form = document.getElementById("contact-form");
 if (form) {
-  const note = form.querySelector(".form__note");
   const status = form.querySelector(".form__status");
-  note.textContent = CONFIG.email
-    ? "Premendo il pulsante si apre il tuo programma di posta con il messaggio già scritto."
-    : "Premendo il pulsante il messaggio si apre su WhatsApp, pronto da inviare.";
+  const button = form.querySelector("[type=submit]");
+  const fields = [...form.querySelectorAll("[required]")];
 
   const rules = {
     nome: (v) => (v.trim().length >= 2 ? "" : "Scrivi il tuo nome."),
@@ -132,26 +129,32 @@ if (form) {
     document.getElementById(field.name + "-error").textContent = msg;
     return !msg;
   };
-  form.querySelectorAll("input, textarea").forEach((f) =>
-    f.addEventListener("blur", () => f.value && check(f))
-  );
+  fields.forEach((f) => f.addEventListener("blur", () => f.value && check(f)));
 
-  form.addEventListener("submit", (e) => {
+  form.addEventListener("submit", async (e) => {
     e.preventDefault();
-    const fields = [...form.querySelectorAll("input, textarea")];
-    const ok = fields.map(check).every(Boolean);
-    if (!ok) {
+    if (!fields.map(check).every(Boolean)) {
       fields.find((f) => f.getAttribute("aria-invalid") === "true")?.focus();
       status.textContent = "";
       return;
     }
-    const d = Object.fromEntries(new FormData(form));
-    const body = `${d.messaggio}\n\n${d.nome}\n${d.email}`;
-    const url = CONFIG.email
-      ? `mailto:${CONFIG.email}?subject=${encodeURIComponent("Messaggio dal sito Baruch")}&body=${encodeURIComponent(body)}`
-      : `https://wa.me/${CONFIG.whatsapp}?text=${encodeURIComponent(body)}`;
-    window.open(url, CONFIG.email ? "_self" : "_blank", "noopener");
-    status.textContent = "Grazie! Ti rispondo appena posso.";
-    form.reset();
+    const data = new FormData(form);
+    button.disabled = true;
+    status.textContent = "Invio in corso…";
+    try {
+      // invia.php spedisce il messaggio via email (su Keliweb)
+      const res = await fetch(form.action, { method: "POST", body: data });
+      if (!(await res.json()).ok) throw new Error();
+      status.textContent = "Grazie! Il messaggio è arrivato, ti rispondo appena posso.";
+      form.reset();
+    } catch {
+      // senza PHP (anteprima su GitHub) o se l'invio fallisce: si apre la posta con il messaggio già scritto
+      const d = Object.fromEntries(data);
+      const body = `${d.messaggio}\n\n${d.nome}\n${d.email}`;
+      location.href = `mailto:${CONFIG.email}?subject=${encodeURIComponent("Messaggio dal sito Baruch")}&body=${encodeURIComponent(body)}`;
+      status.textContent = `Si è aperto il tuo programma di posta. Se non vedi nulla, scrivi a ${CONFIG.email}.`;
+    } finally {
+      button.disabled = false;
+    }
   });
 }

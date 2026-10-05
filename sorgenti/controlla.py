@@ -13,7 +13,7 @@ rotti = 0
 pagine = sorted(SITO.rglob("*.html"))
 for f in pagine:
     html = f.read_text(encoding="utf-8")
-    refs = re.findall(r'(?:href|src|data-full)="([^"]+)"', html)
+    refs = re.findall(r'(?:href|src|data-full|action)="([^"]+)"', html)
     for ss in re.findall(r'(?:srcset|imagesrcset)="([^"]+)"', html):
         refs += [u.split()[0] for u in ss.split(",")]
     for r in refs:
