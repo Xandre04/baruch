@@ -59,16 +59,16 @@ SEZIONI = [
             "Uso il legno, l’argilla e il segno per trasformare l’uso comune in un viaggio visivo. Qui non ci sono serie uguali, ma oggetti singoli, che siano tazze illustrate, teiere o elementi d’arredo, che funzionano come bussole per l’immaginario.",
             "Frammenti di un mondo leggero che nascono per essere tenuti tra le mani e per traslocare una piccola storia nello spazio che abitiamo.",
         ],
-        # oggetti: (percorso immagine 720, percorso 1400/1600, titolo, alt, w, h)
+        # oggetti: (foto in contenuti/media, descrizione)
         "gruppi": [
             ("Ceramica", [
                 ("/contenuti/media/ceramica.webp", "Teiera in ceramica con tulipani"),
-                ("assets/img/galleria/img-6431-720.webp", "assets/img/galleria/img-6431-1600.webp", "Teiera in ceramica con un uccellino sul coperchio", 720, 821),
-                ("assets/img/galleria/15-ciondoli-720.webp", "assets/img/galleria/15-ciondoli-1600.webp", "Ciondoli in ceramica dipinti con volti e foglie blu", 720, 660),
+                ("/contenuti/media/img-6431.webp", "Teiera in ceramica con un uccellino sul coperchio"),
+                ("/contenuti/media/15-ciondoli.webp", "Ciondoli in ceramica dipinti con volti e foglie blu"),
             ]),
             ("Decorazione di mobili", [
                 ("/contenuti/media/decorazione-di-mobili.webp", "Un armadio dipinto con una figura tra gli alberi"),
-                ("assets/img/galleria/19-sedia-720.webp", "assets/img/galleria/19-sedia-1600.webp", "Una sedia di legno decorata con case e alberi", 720, 1018),
+                ("/contenuti/media/19-sedia.webp", "Una sedia di legno decorata con case e alberi"),
             ]),
         ],
     },

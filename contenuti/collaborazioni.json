@@ -1,0 +1,185 @@
+{
+  "carica": [],
+  "immagini": [
+    {
+      "immagine": "/contenuti/media/calendario.webp",
+      "titolo": "Calendario “Vuoi guarire?”",
+      "nota": "Tecnica mista: gouache e digitale",
+      "descrizione": "Una donna dai capelli rossi suona un liuto"
+    },
+    {
+      "immagine": "/contenuti/media/yan-e-lorso.webp",
+      "titolo": "Yan e l’Orso",
+      "nota": "Tecnica mista: acrilico e digitale",
+      "descrizione": "Un bambino dorme sulla schiena di un grande orso"
+    },
+    {
+      "immagine": "/contenuti/media/ritratto-07.webp",
+      "titolo": "Calendario “Che effetto ti fa?”",
+      "nota": "Tecnica mista: acrilico e pastello su carta",
+      "descrizione": "Ritratti di volti sorridenti tra fiori, foglie e ritagli"
+    },
+    {
+      "immagine": "/contenuti/media/06-prove-di-volo.webp",
+      "titolo": "Calendario illustrato “Prove di volo”",
+      "nota": "Tecnica mista: gouache e digitale",
+      "descrizione": "Un campo di papaveri rossi sotto un grande cielo arancione"
+    },
+    {
+      "immagine": "/contenuti/media/01-teatro-sotto-agli-alberi.webp",
+      "titolo": "Teatro sotto gli alberi",
+      "nota": "Tecnica mista: gouache e digitale",
+      "descrizione": "Bambini e animali giocano tra alberi con le gambe, in un prato fiorito"
+    },
+    {
+      "immagine": "/contenuti/media/02-prato-fiorito.webp",
+      "titolo": "Prato fiorito",
+      "nota": "",
+      "descrizione": "Un prato fitto di fiori colorati dipinti ad acquerello"
+    },
+    {
+      "immagine": "/contenuti/media/03-orsa.webp",
+      "titolo": "Yan e l’Orso",
+      "nota": "Tecnica mista: acrilico e digitale",
+      "descrizione": "Un’orsa abbraccia una madre e il suo bambino vestiti con abiti del nord"
+    },
+    {
+      "immagine": "/contenuti/media/04-maestra-lucia.webp",
+      "titolo": "La maestra Lucia",
+      "nota": "",
+      "descrizione": "La maestra Lucia in bicicletta tra rami disegnati"
+    },
+    {
+      "immagine": "/contenuti/media/05-casetta.webp",
+      "titolo": "Casetta",
+      "nota": "",
+      "descrizione": "Una casetta fatta di carte a fiori"
+    },
+    {
+      "immagine": "/contenuti/media/06-donnina-ingarbugliata.webp",
+      "titolo": "Donnina ingarbugliata",
+      "nota": "",
+      "descrizione": "Una donna con un filo rosso ingarbugliato sulla testa"
+    },
+    {
+      "immagine": "/contenuti/media/07-casa-con-personaggio.webp",
+      "titolo": "Casa con personaggio",
+      "nota": "",
+      "descrizione": "Una figura con una colomba dentro una casa gialla"
+    },
+    {
+      "immagine": "/contenuti/media/08-copertina-libro.webp",
+      "titolo": "Le grandi leggi dell’umanità",
+      "nota": "",
+      "descrizione": "Copertina del libro Le grandi leggi dell’umanità illustrata con un giardino"
+    },
+    {
+      "immagine": "/contenuti/media/09-tulipani.webp",
+      "titolo": "Tulipani",
+      "nota": "",
+      "descrizione": "Tulipani rossi fitti con piccole case tra gli steli"
+    },
+    {
+      "immagine": "/contenuti/media/10-donna-ai-piedi.webp",
+      "titolo": "Donna ai piedi",
+      "nota": "",
+      "descrizione": "Una donna dai capelli rossi dorme sotto una colomba bianca"
+    },
+    {
+      "immagine": "/contenuti/media/11-bambina-e-bambola.webp",
+      "titolo": "Bambina e bambola",
+      "nota": "",
+      "descrizione": "Una madre abbraccia una bambina su uno sfondo turchese con carte a fiori"
+    },
+    {
+      "immagine": "/contenuti/media/12-prove-di-volo.webp",
+      "titolo": "Calendario illustrato “Prove di volo”",
+      "nota": "Tecnica mista: gouache e digitale",
+      "descrizione": "Un uccello giallo vola sopra un campo di papaveri"
+    },
+    {
+      "immagine": "/contenuti/media/13-sassi-sul-naso.webp",
+      "titolo": "Sassi sul naso",
+      "nota": "",
+      "descrizione": "Una donna tiene in equilibrio una pila di sassi sul naso"
+    },
+    {
+      "immagine": "/contenuti/media/14-testa-fiorita.webp",
+      "titolo": "Testa fiorita",
+      "nota": "",
+      "descrizione": "Una donna con un garofano al posto dei capelli"
+    },
+    {
+      "immagine": "/contenuti/media/15-ciondoli.webp",
+      "titolo": "Ciondoli",
+      "nota": "",
+      "descrizione": "Ciondoli in ceramica dipinti con volti e foglie blu"
+    },
+    {
+      "immagine": "/contenuti/media/16-opera-16.webp",
+      "titolo": "",
+      "nota": "",
+      "descrizione": "Un uccello dalle piume rosse e dalla coda a righe colorate"
+    },
+    {
+      "immagine": "/contenuti/media/17-opera-17.webp",
+      "titolo": "",
+      "nota": "",
+      "descrizione": "Un uccello giallo fatto di due grandi foglie"
+    },
+    {
+      "immagine": "/contenuti/media/18-opera-18.webp",
+      "titolo": "",
+      "nota": "",
+      "descrizione": "Un uccello verde ad acquerello in volo"
+    },
+    {
+      "immagine": "/contenuti/media/19-sedia.webp",
+      "titolo": "Sedia",
+      "nota": "",
+      "descrizione": "Una sedia di legno decorata con case e alberi"
+    },
+    {
+      "immagine": "/contenuti/media/20-mappa.webp",
+      "titolo": "Mappa parlante di Casina",
+      "nota": "",
+      "descrizione": "Mappa illustrata del paese di Casina tra colline verdi"
+    },
+    {
+      "immagine": "/contenuti/media/21-arte-canusina.webp",
+      "titolo": "Arte canusina",
+      "nota": "",
+      "descrizione": "Una donna in camice legge un libro di arte canusina"
+    },
+    {
+      "immagine": "/contenuti/media/22-conoglio.webp",
+      "titolo": "Coniglio",
+      "nota": "",
+      "descrizione": "Un coniglio e uno scoiattolo con un rametto di alchechengi"
+    },
+    {
+      "immagine": "/contenuti/media/23-bambina-prato.webp",
+      "titolo": "Bambina nel prato",
+      "nota": "",
+      "descrizione": "Una bambina dorme nell’erba alta tra fiori gialli"
+    },
+    {
+      "immagine": "/contenuti/media/img-6334.webp",
+      "titolo": "",
+      "nota": "",
+      "descrizione": "Quattro fragole dipinte, due con un volto"
+    },
+    {
+      "immagine": "/contenuti/media/img-6431.webp",
+      "titolo": "",
+      "nota": "",
+      "descrizione": "Una teiera in ceramica con un uccellino sul coperchio"
+    },
+    {
+      "immagine": "/contenuti/media/img-6437.webp",
+      "titolo": "",
+      "nota": "",
+      "descrizione": "Una ragazza dai capelli al vento dentro una grande tazza blu"
+    }
+  ]
+}

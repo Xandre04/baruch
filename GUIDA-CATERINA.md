@@ -68,6 +68,10 @@ Dopo circa due minuti la pagina è online: nella sua sezione e tra "Le ultime pa
 
 Le foto possono essere grandi come escono dalla fotocamera o dallo scanner: il sito le rimpicciolisce da solo.
 
+### Tante foto insieme
+
+Per una gita o un laboratorio con molte foto, usa il campo **Galleria in fondo alla pagina**: premi il campo, seleziona tutte le foto in una volta (sul computer tieni premuto **Ctrl** mentre le clicchi, sul telefono selezionale dalla galleria) e salva. Compaiono in una griglia sotto il testo.
+
 ### Bozze
 
 Se togli la spunta **Pubblicata** e salvi, la pagina resta nell'editor ma non compare sul sito. Quando è pronta, rimetti la spunta e salva.
@@ -92,9 +96,27 @@ I progetti della sezione **I mondi disegnati di Baruch** (calendari, rassegne te
 1. A sinistra scegli **I mondi disegnati**, poi **Nuovo**.
 2. Compila titolo, titolo breve, tipo di lavoro, committente, tecnica e immagine principale.
 3. **Posizione nell'elenco**: 1 è il primo progetto della sezione.
-4. In **Le tavole** premi **Aggiungi** per ogni tavola: immagine e descrizione.
+4. Le tavole:
+   - per caricarle tutte insieme usa **Carica più tavole insieme**: selezionale in una volta e salva. Dopo la pubblicazione, riaprendo il progetto, le trovi nell'elenco **Le tavole**, dove puoi scrivere la descrizione di ciascuna;
+   - per aggiungerne una sola, in **Le tavole** premi **Aggiungi**.
 5. Se c'è un PDF da sfogliare (per esempio il calendario completo), caricalo in **PDF da sfogliare**.
 6. Premi **Salva**.
+
+---
+
+## Aggiungere immagini a Collaborazioni
+
+1. A sinistra scegli **Collaborazioni** e apri **Galleria delle collaborazioni**.
+2. In **Carica più immagini insieme** seleziona tutte le immagini in una volta e premi **Salva**.
+3. Dopo un paio di minuti compaiono in cima alla galleria del sito.
+4. Riaprendo la galleria nell'editor, le trovi in cima all'elenco **Immagini della galleria**. Lì puoi, se vuoi:
+   - dare a ciascuna un **titolo**, la **tecnica o il committente** e una **descrizione**;
+   - cambiarne l'ordine trascinandole (l'ordine dell'elenco è l'ordine della galleria);
+   - toglierne una dal menu dell'immagine.
+
+   Poi premi **Salva**.
+
+> Dopo aver caricato immagini in blocco, aspetta la pubblicazione e **ricarica l'editor** prima di fare altre modifiche alla galleria o al progetto, così lavori sulla versione aggiornata.
 
 ---
 

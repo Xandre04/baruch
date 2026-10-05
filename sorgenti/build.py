@@ -5,15 +5,14 @@ Dopo una modifica, dalla cartella principale del progetto:  python sorgenti/buil
 """
 import hashlib
 import html
-import json
 import re
 from pathlib import Path
 
-from contenuti import IMG_MD, articoli, blocchi, immagine, in_linea, opere, pdf, prepara_immagini
+from contenuti import (IMG_MD, accogli_caricamenti, articoli, blocchi, collaborazioni, immagine, in_linea,
+                       opere, pdf, prepara_immagini)
 from diario import SEZIONI
 
 SORGENTI = Path(__file__).parent
-DATI = SORGENTI / "dati"          # misure delle immagini della galleria collaborazioni
 SITO = SORGENTI.parent / "sito"    # cartella pubblicata
 
 # indirizzi delle pagine, sempre relativi alla radice del sito
@@ -194,6 +193,8 @@ page(
     preload='\n  <link rel="preload" as="image" href="assets/img/ui/hero.webp" imagesrcset="assets/img/ui/hero-1100.webp 1100w, assets/img/ui/hero.webp 2200w" imagesizes="100vw">',
 )
 
+for f in accogli_caricamenti():
+    print("foto caricate in blocco spostate nell'elenco:", f.name)
 prepara_immagini()
 CATERINA_BAMBINA = immagine("/contenuti/media/caterina-santambrogio-01.webp")
 
@@ -366,12 +367,8 @@ for s in SEZIONI:
     if "gruppi" in s:
         for gt, objs in s["gruppi"]:
             cells = "\n".join(
-                f'          <button class="art-fig obj" type="button" data-full="{full}" data-title="{gt}"><img src="{src}" alt="{alt}" width="{w}" height="{h}" loading="lazy"></button>'
-                for src, full, alt, w, h in (
-                    # una foto di contenuti/media si indica con (percorso, descrizione)
-                    (immagine(o[0])["piccola"], immagine(o[0])["grande"], o[1], immagine(o[0])["w"], immagine(o[0])["h"]) if len(o) == 2 else o
-                    for o in objs
-                )
+                f'          <button class="art-fig obj" type="button" data-full="{immagine(foto)["grande"]}" data-title="{gt}">{pic(foto, alt, sizes="(max-width: 760px) 100vw, 380px")}</button>'
+                for foto, alt in objs
             )
             body += f"""
       <section class="objects reveal">
@@ -457,6 +454,18 @@ for i, o in enumerate(OPERE):
         extra="\n  " + LIGHTBOX.format(single=""),
     )
 
+def galleria_articolo(a):
+    """Foto caricate insieme nel campo "Galleria in fondo alla pagina": griglia ingrandibile sotto il testo."""
+    foto = [f for f in (a.get("galleria") or []) if f]
+    if not foto:
+        return ""
+    figs = []
+    for n, f in enumerate(foto, 1):
+        img = pic(f, a["titolo"] + ", foto " + str(n), sizes="(max-width: 760px) 100vw, 420px")
+        figs.append(f'          <button class="art-fig" type="button" data-full="{immagine(f)["grande"]}" data-title="">{img}</button>')
+    return '\n        <div class="art-figs art-figs--galleria reveal">\n' + "\n".join(figs) + "\n        </div>"
+
+
 # pagine degli articoli
 for a in ART:
     s = SEZ[a["sezione"]]
@@ -476,7 +485,7 @@ for a in ART:
       </header>
       <figure class="article__cover reveal">{pic(a['copertina'], a['copertina_alt'], lazy=False, sizes="(max-width: 1040px) 100vw, 1000px")}</figure>
       <div class="article__body">
-{testo(a['testo'])}
+{testo(a['testo'])}{galleria_articolo(a)}
         <p class="article__sign">Caterina</p>
       </div>
     </article>
@@ -490,56 +499,15 @@ for a in ART:
     )
 
 # ---------------- COLLABORAZIONI ----------------
-TITLES = {
-    "01": ("Teatro sotto gli alberi", "Bambini e animali giocano tra alberi con le gambe, in un prato fiorito"),
-    "02": ("Prato fiorito", "Un prato fitto di fiori colorati dipinti ad acquerello"),
-    "03": ("Yan e l’Orso", "Un’orsa abbraccia una madre e il suo bambino vestiti con abiti del nord"),
-    "04": ("La maestra Lucia", "La maestra Lucia in bicicletta tra rami disegnati"),
-    "05": ("Casetta", "Una casetta fatta di carte a fiori"),
-    "06": ("Donnina ingarbugliata", "Una donna con un filo rosso ingarbugliato sulla testa"),
-    "07": ("Casa con personaggio", "Una figura con una colomba dentro una casa gialla"),
-    "08": ("Le grandi leggi dell’umanità", "Copertina del libro Le grandi leggi dell’umanità illustrata con un giardino"),
-    "09": ("Tulipani", "Tulipani rossi fitti con piccole case tra gli steli"),
-    "10": ("Donna ai piedi", "Una donna dai capelli rossi dorme sotto una colomba bianca"),
-    "11": ("Bambina e bambola", "Una madre abbraccia una bambina su uno sfondo turchese con carte a fiori"),
-    "12": ("Calendario illustrato “Prove di volo”", "Un uccello giallo vola sopra un campo di papaveri"),
-    "13": ("Sassi sul naso", "Una donna tiene in equilibrio una pila di sassi sul naso"),
-    "14": ("Testa fiorita", "Una donna con un garofano al posto dei capelli"),
-    "15": ("Ciondoli", "Ciondoli in ceramica dipinti con volti e foglie blu"),
-    "16": ("", "Un uccello dalle piume rosse e dalla coda a righe colorate"),
-    "17": ("", "Un uccello giallo fatto di due grandi foglie"),
-    "18": ("", "Un uccello verde ad acquerello in volo"),
-    "19": ("Sedia", "Una sedia di legno decorata con case e alberi"),
-    "20": ("Mappa parlante di Casina", "Mappa illustrata del paese di Casina tra colline verdi"),
-    "21": ("Arte canusina", "Una donna in camice legge un libro di arte canusina"),
-    "22": ("Coniglio", "Un coniglio e uno scoiattolo con un rametto di alchechengi"),
-    "23": ("Bambina nel prato", "Una bambina dorme nell’erba alta tra fiori gialli"),
-    "img-6334": ("", "Quattro fragole dipinte, due con un volto"),
-    "img-6431": ("", "Una teiera in ceramica con un uccellino sul coperchio"),
-    "img-6437": ("", "Una ragazza dai capelli al vento dentro una grande tazza blu"),
-}
-NOTE = {"01": "Tecnica mista: gouache e digitale", "03": "Tecnica mista: acrilico e digitale", "12": "Tecnica mista: gouache e digitale"}
-lst = json.loads((DATI / "galleria.json").read_text(encoding="utf-8"))
-lst.sort(key=lambda r: (r["name"][:2] if r["name"][:2].isdigit() else "99" + r["name"]))
+# l'elenco si modifica dall'editor (contenuti/collaborazioni.json)
 cells = []
-for r in lst:
-    k = r["name"][:2] if r["name"][:2].isdigit() else r["name"]
-    t, alt = TITLES[k]
-    n = r["name"]
-    cut = ' class="is-cutout"' if r["alpha"] else ""
+for v in collaborazioni():
+    i = immagine(v["immagine"])
+    alt = v["descrizione"] or v["titolo"] or "Illustrazione di Caterina Santambrogio"
+    cut = ' class="is-cutout"' if i["trasparente"] else ""
     cells.append(
-        f"""        <button class="gallery__item reveal" type="button" data-full="assets/img/galleria/{n}-1600.webp" data-title="{t}" data-note="{NOTE.get(k, '')}">
-          <img{cut} src="assets/img/galleria/{n}-720.webp" alt="{alt}" width="{r['w']}" height="{r['h']}" loading="lazy">
-        </button>"""
-    )
-# copertine delle opere su commissione (Teatro sotto gli alberi è già nella galleria)
-for o in OPERE:
-    if o["slug"] == "teatro-sotto-gli-alberi":
-        continue
-    i = immagine(o["copertina"])
-    cells.insert(0,
-        f"""        <button class="gallery__item reveal" type="button" data-full="{i['grande']}" data-title="{o['titolo']}" data-note="{o.get('tecnica', '')}">
-          <img src="{i['piccola']}" alt="{html.escape(o['copertina_alt'])}" width="{i['w']}" height="{i['h']}" loading="lazy">
+        f"""        <button class="gallery__item reveal" type="button" data-full="{i['grande']}" data-title="{v['titolo']}" data-note="{v['nota']}">
+          <img{cut} src="{i['piccola']}" alt="{alt}" width="{i['w']}" height="{i['h']}" loading="lazy">
         </button>"""
     )
 page(
@@ -556,6 +524,17 @@ page(
 )
 
 # ---------------- SHOP ----------------
+OGGETTI_SHOP = [
+    ("o-sedia", "19-sedia", "Una sedia di legno decorata con case e alberi"),
+    ("o-ciondoli", "15-ciondoli", "Ciondoli in ceramica dipinti con volti e foglie blu"),
+    ("o-teiera", "img-6431", "Una teiera in ceramica con un uccellino sul coperchio"),
+    ("o-fragole", "img-6334", "Quattro fragole dipinte, due con un volto"),
+]
+oggetti_shop = "\n".join(
+    f'          <figure class="{cls} reveal" style="--d:{(n + 1) * .08:.2f}s"><img src="{i["piccola"]}" alt="{alt}" width="{i["w"]}" height="{i["h"]}" loading="lazy"></figure>'
+    for n, (cls, nome, alt) in enumerate(OGGETTI_SHOP)
+    for i in [immagine(f"/contenuti/media/{nome}.webp")]
+)
 page(
     SHOP, "shop",
     "Shop · Baruch illustrare mondi",
@@ -569,10 +548,7 @@ page(
           <a class="cta" href="{CONTATTI}">Scrivimi un messaggio</a>
         </div>
         <div class="shop__objects">
-          <figure class="o-sedia reveal" style="--d:.08s"><img src="assets/img/galleria/19-sedia-720.webp" alt="Una sedia di legno decorata con case e alberi" width="720" height="1018" loading="lazy"></figure>
-          <figure class="o-ciondoli reveal" style="--d:.16s"><img src="assets/img/galleria/15-ciondoli-720.webp" alt="Ciondoli in ceramica dipinti con volti e foglie blu" width="720" height="660" loading="lazy"></figure>
-          <figure class="o-teiera reveal" style="--d:.24s"><img src="assets/img/galleria/img-6431-720.webp" alt="Una teiera in ceramica con un uccellino sul coperchio" width="720" height="821" loading="lazy"></figure>
-          <figure class="o-fragole reveal" style="--d:.3s"><img src="assets/img/galleria/img-6334-720.webp" alt="Quattro fragole dipinte, due con un volto" width="720" height="218" loading="lazy"></figure>
+{oggetti_shop}
         </div>
       </section>
     </div>""",

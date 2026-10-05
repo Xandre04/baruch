@@ -28,6 +28,7 @@ baruch/
 ├── contenuti/                     ← quello che Caterina scrive con l'editor
 │   ├── articoli/                  una pagina del Diario per file (JSON, testo in Markdown)
 │   ├── opere/                     un progetto su commissione per file
+│   ├── collaborazioni.json        le immagini della galleria Collaborazioni
 │   └── media/                     le foto caricate, a piena qualità
 │
 ├── sito/                          ← quello che va online (su Keliweb si carica solo questa cartella)
@@ -41,8 +42,7 @@ baruch/
 │   │   ├── img/
 │   │   │   ├── ui/                elementi dipinti a mano: pennellate, barra, quadretti, titoli, icone
 │   │   │   ├── chi/  diario/      illustrazioni delle pagine fisse
-│   │   │   ├── contenuti/         foto di articoli e opere, generate da contenuti/media
-│   │   │   └── galleria/          collaborazioni
+│   │   │   └── contenuti/         foto di articoli, opere e collaborazioni, generate da contenuti/media
 │   │   └── pdf/                   calendari e altri PDF
 │   ├── contatti/invia.php         invia i messaggi del modulo all'email di Caterina
 │   └── .htaccess                  vecchi indirizzi di illustraremondi.it → pagine nuove
@@ -51,8 +51,7 @@ baruch/
 │   ├── build.py                   genera tutte le pagine HTML in sito/
 │   ├── contenuti.py               legge contenuti/, interpreta il testo, prepara le foto
 │   ├── diario.py                  le cinque sezioni del Diario
-│   ├── controlla.py               verifica che link e immagini non siano rotti
-│   └── dati/                      misure delle immagini della galleria
+│   └── controlla.py               verifica che link e immagini non siano rotti
 │
 ├── .github/workflows/pubblica.yml ← genera, controlla e pubblica a ogni modifica
 └── GUIDA-CATERINA.md

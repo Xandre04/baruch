@@ -92,6 +92,15 @@ collections:
           Le citazioni (pulsante virgolette) appaiono sulla pennellata verde.
           Più foto una dopo l'altra diventano una griglia che si ingrandisce al clic.
           Quando inserisci una foto, scrivi anche la sua descrizione.
+      - name: galleria
+        label: Galleria in fondo alla pagina
+        widget: image
+        multiple: true
+        required: false
+        choose_url: false
+        hint: >-
+          Per tante foto insieme (per esempio una gita): selezionale tutte in una volta.
+          Compaiono in una griglia sotto il testo e si ingrandiscono al clic.
       - name: pubblicato
         label: Pubblicata
         widget: boolean
@@ -161,6 +170,16 @@ collections:
         widget: text
         required: false
         hint: Una frase che appare grande sulla pennellata verde. Facoltativa.
+      - name: carica_tavole
+        label: Carica più tavole insieme
+        widget: image
+        multiple: true
+        required: false
+        choose_url: false
+        hint: >-
+          Selezionale tutte in una volta e salva. Alla pubblicazione si aggiungono in fondo all'elenco
+          "Le tavole" qui sotto, dove puoi scrivere la descrizione di ciascuna. Riapri poi questa pagina
+          dell'editor per vederle.
       - name: tavole
         label: Le tavole
         label_singular: Tavola
@@ -190,3 +209,50 @@ collections:
         label: Pubblicato
         widget: boolean
         default: true
+
+  # ---------------------------------------------------------------- Collaborazioni
+  - name: pagine
+    label: Collaborazioni
+    description: La galleria della pagina Collaborazioni.
+    files:
+      - name: collaborazioni
+        label: Galleria delle collaborazioni
+        file: contenuti/collaborazioni.json
+        fields:
+          - name: carica
+            label: Carica più immagini insieme
+            widget: image
+            multiple: true
+            required: false
+            choose_url: false
+            hint: >-
+              Selezionale tutte in una volta e salva. Alla pubblicazione compaiono in cima alla galleria
+              e si spostano nell'elenco qui sotto, dove puoi dare un titolo, riordinarle o toglierle.
+              Riapri poi questa pagina dell'editor per vederle.
+          - name: immagini
+            label: Immagini della galleria
+            label_singular: Immagine
+            widget: list
+            required: false
+            summary: "{{fields.titolo}}"
+            hint: L'ordine dell'elenco è l'ordine della galleria. Trascina per spostare.
+            fields:
+              - name: immagine
+                label: Immagine
+                widget: image
+                choose_url: false
+              - name: titolo
+                label: Titolo
+                widget: string
+                required: false
+                hint: Compare quando l'immagine si ingrandisce. Facoltativo.
+              - name: nota
+                label: Tecnica o committente
+                widget: string
+                required: false
+                hint: "Per esempio Tecnica mista: gouache e digitale. Facoltativo."
+              - name: descrizione
+                label: Descrizione
+                widget: string
+                required: false
+                hint: Cosa si vede nell'immagine (serve a chi non vede le immagini e a Google).

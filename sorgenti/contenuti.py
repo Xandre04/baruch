@@ -65,9 +65,11 @@ def immagine(percorso):
     base = f"assets/img/contenuti/{stem}-{_impronte[stem]}"
     if stem not in _misure:
         with Image.open(SITO / f"{base}-720.webp") as im:
-            _misure[stem] = im.size
-    w, h = _misure[stem]
-    return {"piccola": f"{base}-720.webp", "grande": f"{base}-1400.webp", "w": w, "h": h}
+            # scontornata: ha davvero dei pixel trasparenti (es. un oggetto su sfondo vuoto)
+            trasparente = "A" in im.getbands() and im.getchannel("A").getextrema()[0] < 250
+            _misure[stem] = (*im.size, trasparente)
+    w, h, trasparente = _misure[stem]
+    return {"piccola": f"{base}-720.webp", "grande": f"{base}-1400.webp", "w": w, "h": h, "trasparente": trasparente}
 
 
 def pdf(percorso):
@@ -160,3 +162,44 @@ def articoli():
 
 def opere():
     return sorted(_leggi("opere"), key=lambda o: (o.get("ordine") or 999, o["titolo"]))
+
+
+def collaborazioni():
+    """Le immagini della galleria Collaborazioni, nell'ordine scelto nell'editor."""
+    dati = json.loads((CONTENUTI / "collaborazioni.json").read_text(encoding="utf-8"))
+    voci = []
+    for v in dati.get("immagini") or []:
+        if v.get("immagine"):
+            voci.append({k: html.escape(v.get(k) or "") for k in ("titolo", "nota", "descrizione")} | {"immagine": v["immagine"]})
+    return voci
+
+
+# ---------------- foto caricate in blocco ----------------
+def _scrivi(file, dati):
+    file.write_text(json.dumps(dati, ensure_ascii=False, indent=2) + "\n", encoding="utf-8", newline="\n")
+
+
+def accogli_caricamenti():
+    """Le foto caricate con "Carica più immagini insieme" entrano nel loro elenco, dove si possono
+    titolare, riordinare o togliere; il campo di caricamento torna vuoto. Restituisce i file modificati."""
+    modificati = []
+    file = CONTENUTI / "collaborazioni.json"
+    dati = json.loads(file.read_text(encoding="utf-8"))
+    nuove = dati.get("carica") or []
+    if nuove:
+        presenti = {v.get("immagine") for v in dati.get("immagini") or []}
+        voci = [{"immagine": p, "titolo": "", "nota": "", "descrizione": ""} for p in nuove if p not in presenti]
+        dati["immagini"] = voci + (dati.get("immagini") or [])   # le nuove in cima alla galleria
+        dati["carica"] = []
+        _scrivi(file, dati)
+        modificati.append(file)
+    for file in sorted((CONTENUTI / "opere").glob("*.json")):
+        dati = json.loads(file.read_text(encoding="utf-8"))
+        nuove = dati.get("carica_tavole") or []
+        if nuove:
+            presenti = {t.get("immagine") for t in dati.get("tavole") or []}
+            dati["tavole"] = (dati.get("tavole") or []) + [{"immagine": p, "alt": ""} for p in nuove if p not in presenti]
+            dati["carica_tavole"] = []
+            _scrivi(file, dati)
+            modificati.append(file)
+    return modificati

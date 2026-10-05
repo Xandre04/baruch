@@ -3,6 +3,7 @@
 # 1. genera le pagine e le foto da contenuti/ (sorgenti/build.py)
 # 2. controlla che link e immagini non siano rotti
 # 3. salva nel repository le pagine rigenerate, così sito/ è sempre uguale a ciò che è online
+#    (e gli elenchi in cui sono entrate le foto caricate in blocco)
 # 4. pubblica l'anteprima su GitHub Pages
 # 5. carica sito/ su Keliweb via FTP, solo quando i dati FTP sono stati inseriti nei segreti
 #    del repository (Settings > Secrets and variables > Actions):
@@ -52,7 +53,7 @@ jobs:
 
       - name: Salva le pagine rigenerate
         run: |
-          git add sito
+          git add sito contenuti
           if git diff --cached --quiet; then exit 0; fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
