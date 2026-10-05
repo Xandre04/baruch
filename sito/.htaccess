@@ -4,6 +4,7 @@ Options -Indexes
 
 # Vecchi indirizzi di illustraremondi.it
 RedirectMatch 301 ^/mondi-illustrati/?$ /diario/mondi-illustrati/index.html
+RedirectMatch 301 ^/privacy-cookie-policy/?$ /privacy/index.html
 RedirectMatch 301 ^/le-avventure-di-baruch/?$ /diario/le-avventure-di-baruch/index.html
 RedirectMatch 301 ^/come-fiori-selvatici/?$ /diario/come-fiori-selvatici/index.html
 RedirectMatch 301 ^/costruire-con-baruch/?$ /diario/costruire-con-baruch/index.html

@@ -18,6 +18,7 @@ SITO = SORGENTI.parent / "sito"    # cartella pubblicata
 # indirizzi delle pagine, sempre relativi alla radice del sito
 HOME, CHI, DIARIO = "index.html", "chi-e-baruch/index.html", "diario/index.html"
 COLLAB, SHOP, CONTATTI = "collaborazioni/index.html", "shop/index.html", "contatti/index.html"
+PRIVACY = "privacy/index.html"
 MONDI_SLUG = "mondi-illustrati"
 
 
@@ -27,6 +28,9 @@ def versione(file):
 
 
 CSS = f"assets/css/style.css?v={versione('assets/css/style.css')}"
+# caratteri e icone sono nel sito: i visitatori non contattano Google Fonts né altri servizi esterni
+FONTS_CSS = f"assets/css/fonts.css?v={versione('assets/css/fonts.css')}"
+ICONE_CSS = f"assets/css/icone.css?v={versione('assets/css/icone.css')}"
 JS = f"assets/js/main.js?v={versione('assets/js/main.js')}"
 
 
@@ -115,6 +119,7 @@ def footer(with_scrivimi=True):
       <p class="footer__line">
         <span>Caterina Santambrogio</span><i class="sep"> - </i><span>Via Chiesa di Rorai 3 Pordenone</span><i class="sep"> - </i><span>cell. <a href="tel:+393404742250">3404742250</a></span><i class="sep"> - </i><span>P.I. 01980800930</span>
       </p>
+      <p class="footer__legal"><a href="{PRIVACY}">Privacy e cookie</a></p>
     </div>
   </footer>"""
 
@@ -143,10 +148,9 @@ def page(file, key, title, desc, main, footer_scrivimi=True, extra="", preload="
   <meta property="og:description" content="{desc}">
   <meta property="og:image" content="assets/img/ui/hero-1100.webp">
   <link rel="icon" href="assets/img/ui/favicon.png">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400&family=Barlow+Semi+Condensed:wght@400;500&family=Kalam:wght@400&display=swap">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/bold/style.css">
+  <link rel="preload" href="assets/fonts/kalam-400-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="{FONTS_CSS}">
+  <link rel="stylesheet" href="{ICONE_CSS}">
   <link rel="stylesheet" href="{CSS}">{preload}
 </head>
 <body id="top">
@@ -573,6 +577,63 @@ page(
     </div>""",
 )
 
+# ---------------- PRIVACY E COOKIE ----------------
+# Bozza da far verificare a chi segue Caterina per la parte legale.
+AGGIORNATA = "6 ottobre 2026"
+page(
+    PRIVACY, "privacy",
+    "Privacy e cookie · Baruch illustrare mondi",
+    "Informativa sul trattamento dei dati personali e sui cookie del sito Baruch di Caterina Santambrogio.",
+    f"""    <div class="page">
+      <article class="legal">
+        <h1 class="hand-title hand-title--big">Privacy e cookie</h1>
+        <p class="legal__intro">In questa pagina trovi come vengono trattati i tuoi dati quando visiti il sito o mi scrivi, secondo il Regolamento europeo 2016/679 (GDPR) e la normativa italiana. In breve: il sito non usa cookie che ti seguono, non fa statistiche sulle visite e i tuoi dati servono solo a risponderti.</p>
+
+        <h2>Chi tratta i tuoi dati</h2>
+        <p>Titolare del trattamento è <strong>Caterina Santambrogio</strong>, Via Chiesa di Rorai 3, Pordenone, partita IVA 01980800930.<br>
+        Per qualsiasi domanda sui tuoi dati: <a href="mailto:illustraremondi@gmail.com">illustraremondi@gmail.com</a>, PEC <a href="mailto:caterinasa@pec.it">caterinasa@pec.it</a>.</p>
+
+        <h2>Quali dati</h2>
+        <h3>Quando visiti il sito</h3>
+        <p>Il server che ospita il sito registra automaticamente alcuni dati tecnici di ogni visita, come l’indirizzo IP, la data e l’ora, la pagina richiesta e il tipo di browser. Servono solo a far funzionare il sito e a proteggerlo da abusi; non vengono usati per identificarti.</p>
+        <h3>Quando mi scrivi</h3>
+        <p>Se usi il modulo della pagina <a href="{CONTATTI}">Contatti</a> o mi scrivi via email, ricevo il tuo nome, il tuo indirizzo email e quello che scrivi nel messaggio.</p>
+
+        <h2>Perché e su quale base</h2>
+        <ul>
+          <li><strong>Risponderti</strong> e, se lo chiedi, preparare un preventivo o una collaborazione: è necessario per dar seguito alla tua richiesta (art. 6.1.b GDPR).</li>
+          <li><strong>Far funzionare il sito e tenerlo sicuro</strong>: è un legittimo interesse (art. 6.1.f GDPR).</li>
+        </ul>
+        <p>Non uso i tuoi dati per pubblicità, newsletter o profilazione, e non li vendo né li cedo a nessuno.</p>
+
+        <h2>È obbligatorio darli?</h2>
+        <p>No. Ma senza nome e indirizzo email non posso risponderti.</p>
+
+        <h2>Per quanto tempo</h2>
+        <p>Conservo i messaggi per il tempo necessario a rispondere e, se nasce una collaborazione, per la sua durata e per gli obblighi fiscali e di legge che ne derivano. I dati tecnici delle visite sono conservati dal fornitore dell’hosting per un periodo limitato, per motivi di sicurezza.</p>
+
+        <h2>Chi altro li vede</h2>
+        <p>Solo i fornitori dei servizi che il sito usa, che li trattano per mio conto:</p>
+        <ul>
+          <li><strong>Keliweb</strong>, che ospita il sito e invia i messaggi del modulo contatti;</li>
+          <li><strong>Google</strong> (Gmail), che gestisce la casella email in cui arrivano i messaggi. Google può trattare dati anche negli Stati Uniti, sulla base dell’EU-U.S. Data Privacy Framework e delle clausole contrattuali standard approvate dalla Commissione europea.</li>
+        </ul>
+        <p>I caratteri e le icone del sito sono ospitati sul sito stesso: visitandolo non comunichi dati a servizi esterni come Google Fonts.</p>
+
+        <h2>Cookie</h2>
+        <p>Il sito <strong>non usa cookie</strong>: né di profilazione, né di statistica, né di terze parti. Per questo non ti viene chiesto alcun consenso all’ingresso.</p>
+        <p>Se in futuro venissero aggiunti strumenti che usano cookie (per esempio statistiche sulle visite o video incorporati), questa pagina verrà aggiornata e, quando serve, ti verrà chiesto il consenso prima di attivarli.</p>
+        <p>L’area riservata all’aggiornamento del sito (<code>/admin</code>), usata solo da chi gestisce il sito, salva nel browser i dati necessari ad accedere.</p>
+
+        <h2>I tuoi diritti</h2>
+        <p>In qualsiasi momento puoi chiedere di accedere ai tuoi dati, correggerli, cancellarli, limitarne l’uso, opporti al trattamento o riceverli in un formato leggibile (articoli 15–22 del GDPR). Basta scrivere a <a href="mailto:illustraremondi@gmail.com">illustraremondi@gmail.com</a>.</p>
+        <p>Se ritieni che i tuoi dati siano trattati in modo non corretto, puoi presentare reclamo al <a href="https://www.garanteprivacy.it" target="_blank" rel="noopener">Garante per la protezione dei dati personali</a>.</p>
+
+        <p class="legal__data">Ultimo aggiornamento: {AGGIORNATA}</p>
+      </article>
+    </div>""",
+)
+
 # ---------------- CONTATTI ----------------
 page(
     CONTATTI, "contatti",
@@ -601,7 +662,7 @@ page(
           </div>
           <p class="form__trap" aria-hidden="true"><label>Lascia vuoto <input name="sito" tabindex="-1" autocomplete="off"></label></p>
           <button class="cta" type="submit">Invia il messaggio</button>
-          <p class="form__note">Il messaggio arriva direttamente a Caterina.</p>
+          <p class="form__note">Il messaggio arriva direttamente a Caterina. Leggi come vengono trattati i tuoi dati nell’<a href="privacy/index.html">informativa sulla privacy</a>.</p>
           <p class="form__status" role="status"></p>
         </form>
         <div class="contact__info reveal" style="--d:.12s">
@@ -632,6 +693,7 @@ ART_BY = {a["slug"]: a for a in ART}
 OPERA_BY = {o["slug"]: o for o in OPERE}
 REDIRECT = {
     "mondi-illustrati": url_sezione(MONDI_SLUG),
+    "privacy-cookie-policy": PRIVACY,
     "le-avventure-di-baruch": url_sezione("le-avventure-di-baruch"),
     "come-fiori-selvatici": url_sezione("come-fiori-selvatici"),
     "costruire-con-baruch": url_sezione("costruire-con-baruch"),

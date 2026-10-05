@@ -609,3 +609,19 @@ button { font: inherit; color: inherit; }
   html { scroll-behavior: auto; }
   *, *::before, *::after { transition-duration: .01ms !important; animation-duration: .01ms !important; }
 }
+
+/* Privacy e cookie: testo lungo, leggibile */
+.legal { max-width: 720px; }
+.legal h2 { font-family: var(--hand); font-weight: 400; font-size: clamp(24px, 2.2vw, 30px); line-height: 1.25; margin: 1.8em 0 .4em; }
+.legal h3 { font-size: 1em; font-weight: 500; margin: 1.2em 0 .2em; }
+.legal p, .legal ul { margin: 0 0 1em; }
+.legal li { margin-bottom: .4em; }
+.legal a { text-decoration-color: #b8c7ad; text-underline-offset: 3px; }
+.legal a:hover { text-decoration-color: var(--terracotta); }
+.legal__intro { font-size: 1.1em; }
+.legal__data { margin-top: 2em; color: var(--ink-soft); font-size: .92em; }
+.form__note a { color: inherit; }
+.footer__grid { align-content: end; }
+.footer__legal { margin: 6px 0 0; text-align: center; font-size: 16px; }
+.footer__legal a { color: var(--ink-soft); text-shadow: 0 0 6px var(--paper), 0 0 2px var(--paper); }
+.footer__legal a:hover { color: var(--terracotta); }
