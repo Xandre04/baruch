@@ -170,29 +170,6 @@ def page(file, key, title, desc, main, footer_scrivimi=True, extra="", preload="
     print("scritto", file)
 
 
-# ---------------- HOME ----------------
-page(
-    HOME, "home",
-    "Baruch · illustrare mondi",
-    "Baruch è il progetto di Caterina Santambrogio, illustratrice: immagini, pattern e laboratori creativi ispirati alla natura.",
-    """    <section class="hero" aria-label="Baruch, illustrare mondi">
-      <img class="hero__art" src="assets/img/ui/hero.webp" srcset="assets/img/ui/hero-1100.webp 1100w, assets/img/ui/hero.webp 2200w" sizes="100vw"
-        alt="Un bambino dipinto sorride tra grandi foglie verdi e fiori, abbracciando una foglia" width="2200" height="1080" fetchpriority="high">
-      <h1 class="hero__title">
-        <img class="hero__bg" src="assets/img/ui/title-bg.webp" alt="" width="883" height="277">
-        <img class="hero__word" src="assets/img/ui/title.webp" alt="Baruch" width="627" height="187">
-        <img class="hero__sub" src="assets/img/ui/subtitle.webp" alt="illustrare mondi" width="812" height="181">
-      </h1>
-    </section>
-
-    <section class="home-notes">
-      """ + SCRIVIMI + """
-      <p class="progetto reveal" style="--d:.12s">Progetto di<br>Caterina Santambrogio<br>Illustratrice</p>
-    </section>""",
-    footer_scrivimi=False,
-    preload='\n  <link rel="preload" as="image" href="assets/img/ui/hero.webp" imagesrcset="assets/img/ui/hero-1100.webp 1100w, assets/img/ui/hero.webp 2200w" imagesizes="100vw">',
-)
-
 for f in accogli_caricamenti():
     print("foto caricate in blocco spostate nell'elenco:", f.name)
 prepara_immagini()
@@ -263,7 +240,7 @@ def entries(arts, heading_tag="h3"):
     out = []
     for i, a in enumerate(arts):
         s = SEZ[a["sezione"]]
-        out.append(f"""        <article class="entry reveal" style="--d:{(i % 2) * 0.1:.1f}s">
+        out.append(f"""        <article class="entry reveal" style="--d:{(i % 2) * 0.1:.1f}s" data-sezione="{a['sezione']}">
           <a class="entry__link" href="{url_articolo(a)}">
             <span class="entry__photo">{pic(a['copertina'], a['copertina_alt'], sizes="(max-width: 760px) 100vw, 560px")}</span>
             <span class="entry__meta"><time datetime="{a['data']}">{a['data_it']}</time> <span class="entry__sez">{s['titolo']}</span></span>
@@ -313,14 +290,32 @@ def sez_drawing(s, cls=""):
     return f'<img{c} src="assets/img/diario/{s["disegno"]}.webp" alt="{s["alt"]}" width="{s["w"]}" height="{s["h"]}">'
 
 
-# indice del diario: i cinque disegni sparsi portano alle sezioni
-ORDINE = ["i-mondi-disegnati-di-baruch", "come-fiori-selvatici", "le-avventure-di-baruch", "costruire-con-baruch", "le-cose-magiche-di-baruch"]
-items = "\n".join(
-    f"""        <a class="diary-item {SEZ[k]['classe']} reveal" style="--d:{i*0.08:.2f}s" href="{url_sezione(k)}">
-          {sez_drawing(SEZ[k])}
-          <span class="diary-item__label">{SEZ[k]['titolo']}</span>
-        </a>"""
-    for i, k in enumerate(ORDINE)
+# i cinque disegni delle sezioni, in griglia sotto la home:
+# a sinistra due righe da due, a destra il ramo di fiori alto quanto le due righe
+GRIGLIA = ["i-mondi-disegnati-di-baruch", "le-avventure-di-baruch", "come-fiori-selvatici",
+           "costruire-con-baruch", "le-cose-magiche-di-baruch"]
+
+
+def griglia_sezioni():
+    tiles = "\n".join(
+        f"""      <a class="diary-item tile tile--{k} reveal" style="--d:{i * 0.08:.2f}s" href="{url_sezione(k)}">
+        <span class="tile__art">{sez_drawing(SEZ[k])}</span>
+        <span class="diary-item__label">{SEZ[k]['titolo']}</span>
+      </a>"""
+        for i, k in enumerate(GRIGLIA)
+    )
+    return f"""
+    <nav class="home-sezioni" aria-label="Le sezioni del diario">
+{tiles}
+    </nav>
+"""
+
+
+# indice del diario: le pagine più recenti, con un filtro per sezione
+sezioni_con_pagine = [s for s in SEZIONI if any(a["sezione"] == s["slug"] for a in ART)]
+filtro = "\n".join(
+    [f'        <a class="chip" href="{DIARIO}" data-sez="tutte" aria-current="true">Tutte</a>']
+    + [f'        <a class="chip" href="{url_sezione(s["slug"])}" data-sez="{s["slug"]}">{s["titolo"]}</a>' for s in sezioni_con_pagine]
 )
 page(
     DIARIO, "diario",
@@ -328,16 +323,37 @@ page(
     "Il diario di Baruch: mondi disegnati, fiori selvatici, avventure, cose magiche e laboratori da costruire insieme.",
     f"""    <div class="page">
       <h1 class="page-title reveal"><img src="assets/img/ui/titolo-diario.webp" alt="Diario" width="371" height="201"></h1>
-      <nav class="diario" aria-label="Sezioni del diario">
-{items}
+      <nav class="filtro reveal" aria-label="Filtra per sezione" data-filtro>
+{filtro}
       </nav>
-      <section class="journal" aria-labelledby="ultime">
-        <h2 class="hand-title reveal" id="ultime">Le ultime pagine</h2>
-        <div class="entries">
+      <div class="entries" data-voci>
 {entries(ART)}
-        </div>
-      </section>
+      </div>
+      <p class="filtro__vuoto" hidden>Nessuna pagina in questa sezione, per ora.</p>
     </div>""",
+)
+
+# ---------------- HOME ----------------
+page(
+    HOME, "home",
+    "Baruch · illustrare mondi",
+    "Baruch è il progetto di Caterina Santambrogio, illustratrice: immagini, pattern e laboratori creativi ispirati alla natura.",
+    """    <section class="hero" aria-label="Baruch, illustrare mondi">
+      <img class="hero__art" src="assets/img/ui/hero.webp" srcset="assets/img/ui/hero-1100.webp 1100w, assets/img/ui/hero.webp 2200w" sizes="100vw"
+        alt="Un bambino dipinto sorride tra grandi foglie verdi e fiori, abbracciando una foglia" width="2200" height="1080" fetchpriority="high">
+      <h1 class="hero__title">
+        <img class="hero__bg" src="assets/img/ui/title-bg.webp" alt="" width="883" height="277">
+        <img class="hero__word" src="assets/img/ui/title.webp" alt="Baruch" width="627" height="187">
+        <img class="hero__sub" src="assets/img/ui/subtitle.webp" alt="illustrare mondi" width="812" height="181">
+      </h1>
+    </section>
+""" + griglia_sezioni() + """
+    <section class="home-notes">
+      """ + SCRIVIMI + """
+      <p class="progetto reveal" style="--d:.12s">Progetto di<br>Caterina Santambrogio<br>Illustratrice</p>
+    </section>""",
+    footer_scrivimi=False,
+    preload='\n  <link rel="preload" as="image" href="assets/img/ui/hero.webp" imagesrcset="assets/img/ui/hero-1100.webp 1100w, assets/img/ui/hero.webp 2200w" imagesizes="100vw">',
 )
 
 # pagine delle sezioni

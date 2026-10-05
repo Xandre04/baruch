@@ -49,6 +49,35 @@ if ("IntersectionObserver" in window) {
   reveals.forEach((el) => el.classList.add("is-in"));
 }
 
+/* ---------- Filtro del Diario per sezione ---------- */
+const filtro = document.querySelector("[data-filtro]");
+if (filtro) {
+  const lista = document.querySelector("[data-voci]");
+  const voci = [...lista.children];
+  const chips = [...filtro.querySelectorAll("[data-sez]")];
+  const vuoto = document.querySelector(".filtro__vuoto");
+  const applica = (sez) => {
+    if (!chips.some((c) => c.dataset.sez === sez)) sez = "tutte";
+    chips.forEach((c) => c.setAttribute("aria-current", String(c.dataset.sez === sez)));
+    let n = 0;
+    voci.forEach((v) => {
+      v.hidden = sez !== "tutte" && v.dataset.sezione !== sez;
+      v.classList.toggle("pari", !v.hidden && n++ % 2 === 1);
+      if (!v.hidden) v.classList.add("is-in");
+    });
+    lista.toggleAttribute("data-filtrato", sez !== "tutte");
+    vuoto.hidden = n > 0;
+  };
+  chips.forEach((c) =>
+    c.addEventListener("click", (e) => {
+      e.preventDefault();
+      applica(c.dataset.sez);
+      history.replaceState(null, "", c.dataset.sez === "tutte" ? location.pathname : `#${c.dataset.sez}`);
+    })
+  );
+  applica(decodeURIComponent(location.hash.slice(1)) || "tutte");
+}
+
 /* ---------- Lightbox (galleria e diario) ---------- */
 const box = document.getElementById("lightbox");
 if (box) {
