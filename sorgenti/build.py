@@ -167,7 +167,7 @@ def page(file, key, title, desc, main, footer_scrivimi=True, extra="", preload="
         html = re.sub(r'((?:href|src|data-full|action)=")' + local, r"\1" + up, html)
         html = re.sub(r'((?:srcset|imagesrcset)="|, )(?=assets/)', r"\1" + up, html)
     (SITO / file).parent.mkdir(parents=True, exist_ok=True)
-    (SITO / file).write_text(html, encoding="utf-8")
+    (SITO / file).write_text(html, encoding="utf-8", newline="\n")
     print("scritto", file)
 
 
@@ -663,5 +663,5 @@ Options -Indexes
 
 # Vecchi indirizzi di illustraremondi.it
 {righe}
-""", encoding="utf-8")
+""", encoding="utf-8", newline="\n")
 print("reindirizzamenti in .htaccess:", len(REDIRECT))
