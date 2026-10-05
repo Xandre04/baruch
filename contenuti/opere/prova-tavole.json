@@ -1,0 +1,15 @@
+{
+  "titolo": "Prova tavole",
+  "titolo_breve": "Prova tavole",
+  "categoria": "Illustrazioni",
+  "ordine": 99,
+  "copertina": "/contenuti/media/prova-blocco-2.webp",
+  "copertina_alt": "Prova",
+  "testo": "Prova.",
+  "carica_tavole": [
+    "/contenuti/media/prova-blocco-1.webp",
+    "/contenuti/media/prova-blocco-2.webp"
+  ],
+  "tavole": [],
+  "pubblicato": false
+}

@@ -1,5 +1,9 @@
 {
-  "carica": [],
+  "carica": [
+    "/contenuti/media/prova-blocco-1.webp",
+    "/contenuti/media/prova-blocco-2.webp",
+    "/contenuti/media/prova-blocco-3.webp"
+  ],
   "immagini": [
     {
       "immagine": "/contenuti/media/calendario.webp",

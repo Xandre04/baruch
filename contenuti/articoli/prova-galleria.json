@@ -1,0 +1,16 @@
+{
+  "titolo": "Prova galleria",
+  "data": "2026-10-05",
+  "sezione": "le-avventure-di-baruch",
+  "estratto": "Pagina temporanea per provare la galleria.",
+  "copertina": "/contenuti/media/prova-blocco-1.webp",
+  "copertina_alt": "Prova",
+  "testo": "Testo di prova.",
+  "galleria": [
+    "/contenuti/media/prova-blocco-1.webp",
+    "/contenuti/media/prova-blocco-2.webp",
+    "/contenuti/media/prova-blocco-3.webp",
+    "/contenuti/media/prova-blocco-4.webp"
+  ],
+  "pubblicato": true
+}
