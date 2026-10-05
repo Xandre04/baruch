@@ -4,7 +4,7 @@ Guida per Caterina. Per scrivere una pagina del Diario o aggiungere un progetto 
 
 ---
 
-## La prima volta (una sola volta, dal computer)
+## La prima volta (una sola volta, anche dal telefono)
 
 ### 1. Accetta l'invito al progetto
 
@@ -124,4 +124,4 @@ I progetti della sezione **I mondi disegnati di Baruch** (calendari, rassegne te
 
 - **La pagina non compare dopo qualche minuto**: ricarica il sito con **Ctrl+F5** (sul telefono, chiudi e riapri la pagina).
 - **L'editor non ti fa entrare**: la chiave potrebbe essere scaduta. Creane una nuova (punto 2) ed entra di nuovo.
-- **Per tutto il resto**: scrivi a chi gestisce il sito. Nessuna modifica fatta dall'editor può rompere il sito in modo definitivo: c'è sempre la versione precedente.
+- **Per tutto il resto**: scrivi a me. Nessuna modifica fatta dall'editor può rompere il sito in modo definitivo: c'è sempre la versione precedente.
