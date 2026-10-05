@@ -1,10 +1,24 @@
 {
-  "carica": [
-    "/contenuti/media/prova-blocco-1.webp",
-    "/contenuti/media/prova-blocco-2.webp",
-    "/contenuti/media/prova-blocco-3.webp"
-  ],
+  "carica": [],
   "immagini": [
+    {
+      "immagine": "/contenuti/media/prova-blocco-1.webp",
+      "titolo": "",
+      "nota": "",
+      "descrizione": ""
+    },
+    {
+      "immagine": "/contenuti/media/prova-blocco-2.webp",
+      "titolo": "",
+      "nota": "",
+      "descrizione": ""
+    },
+    {
+      "immagine": "/contenuti/media/prova-blocco-3.webp",
+      "titolo": "",
+      "nota": "",
+      "descrizione": ""
+    },
     {
       "immagine": "/contenuti/media/calendario.webp",
       "titolo": "Calendario “Vuoi guarire?”",

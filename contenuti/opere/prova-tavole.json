@@ -6,10 +6,16 @@
   "copertina": "/contenuti/media/prova-blocco-2.webp",
   "copertina_alt": "Prova",
   "testo": "Prova.",
-  "carica_tavole": [
-    "/contenuti/media/prova-blocco-1.webp",
-    "/contenuti/media/prova-blocco-2.webp"
+  "carica_tavole": [],
+  "tavole": [
+    {
+      "immagine": "/contenuti/media/prova-blocco-1.webp",
+      "alt": ""
+    },
+    {
+      "immagine": "/contenuti/media/prova-blocco-2.webp",
+      "alt": ""
+    }
   ],
-  "tavole": [],
   "pubblicato": false
 }
