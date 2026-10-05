@@ -79,9 +79,23 @@ Nel repository, **Settings → Secrets and variables → Actions → New reposit
 
 Dalla pubblicazione successiva il sito viene caricato anche su Keliweb. Quando il dominio punta a Keliweb, aggiornare `site_url` in `sito/admin/config.yml`.
 
-### Aggiungere Caterina all'editor
+### Accesso con email e password
 
-Nel repository, **Settings → Collaborators → Add people** con il suo nome utente GitHub. Il resto è nella [guida](GUIDA-CATERINA.md).
+Caterina entra nell'editor con email e password, senza account GitHub. La pagina `sito/admin/accesso.php` controlla i dati e passa all'editor una chiave GitHub custodita sul server. Funziona solo su Keliweb, perché richiede PHP.
+
+Da fare una volta:
+
+1. **Crea la chiave GitHub** su <https://github.com/settings/personal-access-tokens/new>, dal tuo account:
+   - *Token name*: `Editor Baruch`. *Expiration*: un anno (va rinnovata alla scadenza).
+   - *Repository access*: **Only select repositories** → `baruch`.
+   - *Permissions → Repository permissions → Contents*: **Read and write**.
+   - Premi **Generate token** e copia la chiave (inizia con `github_pat_`).
+2. **Completa il file privato** `privato/baruch-editor.php`: c'è sul tuo computer ma non nel repository. Incolla la chiave al posto di `INCOLLA-QUI-LA-CHIAVE-GITHUB`. Lì ci sono anche email e password.
+3. **Caricalo su Keliweb** con il File Manager di cPanel nella cartella principale dell'hosting, **accanto** a `public_html` e non dentro, così non è raggiungibile dal web.
+
+Per cambiare email o password basta modificare quel file sul server. Dopo 5 password sbagliate in 15 minuti l'accesso si blocca per quell'indirizzo IP.
+
+Sull'anteprima di GitHub Pages il PHP non gira: lì si entra con **Accedi con Token di Accesso**, incollando una chiave GitHub.
 
 ## Lavorare in locale
 
