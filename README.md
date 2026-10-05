@@ -75,6 +75,7 @@ Nel repository, **Settings → Secrets and variables → Actions → New reposit
 | `FTP_USERNAME` | utente FTP |
 | `FTP_PASSWORD` | password FTP |
 | `FTP_CARTELLA` | facoltativo: cartella del sito sul server (predefinita `public_html/`) |
+| `FTP_PROTOCOLLO` | facoltativo: `ftps` (predefinito, cifrato) oppure `ftp` se il server non accetta la connessione cifrata |
 
 Dalla pubblicazione successiva il sito viene caricato anche su Keliweb. Quando il dominio punta a Keliweb, aggiornare `site_url` in `sito/admin/config.yml`.
 
