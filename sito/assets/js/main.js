@@ -1,33 +1,14 @@
 /* Baruch · comportamenti del sito */
 
 /* ===== Da completare con i dati reali =====
-   Lasciare vuoto un valore finché non è disponibile: il link resta visibile ma non cliccabile,
-   e il modulo contatti apre WhatsApp al numero indicato nel piè di pagina. */
+   Finché l'email è vuota, il modulo contatti apre WhatsApp al numero indicato nel piè di pagina.
+   I link dei social sono in sorgenti/build.py (SOCIAL_LINK). */
 const CONFIG = {
   email: "",                 // es. "ciao@baruch.it": se presente, il modulo apre la mail
   whatsapp: "393404742250",  // numero in formato internazionale, senza + e spazi
-  social: {
-    instagram: "",
-    linkedin: "",
-    facebook: "",
-  },
 };
 
 document.documentElement.classList.add("js");
-
-/* ---------- Social ---------- */
-document.querySelectorAll("[data-social]").forEach((a) => {
-  const url = CONFIG.social[a.dataset.social];
-  if (url) {
-    a.href = url;
-    a.target = "_blank";
-    a.rel = "noopener";
-  } else {
-    a.removeAttribute("href");
-    a.setAttribute("aria-disabled", "true");
-    a.title = "Link in arrivo";
-  }
-});
 
 /* ---------- Menu mobile ---------- */
 const menu = document.getElementById("mobile-menu");

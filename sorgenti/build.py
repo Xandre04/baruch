@@ -40,11 +40,16 @@ NAV = [
     (CONTATTI, "contatti", "Contatti"),
 ]
 
-SOCIAL = """<ul class="social">
-        <li><a data-social="instagram" href="#" aria-label="Instagram"><i class="ph-bold ph-instagram-logo" aria-hidden="true"></i></a></li>
-        <li><a data-social="linkedin" href="#" aria-label="LinkedIn"><i class="ph-bold ph-linkedin-logo" aria-hidden="true"></i></a></li>
-        <li><a data-social="facebook" href="#" aria-label="Facebook"><i class="ph-bold ph-facebook-logo" aria-hidden="true"></i></a></li>
-      </ul>"""
+# icone disegnate a pastello; larghezza in proporzione al disegno originale
+SOCIAL_LINK = [
+    ("instagram", "Instagram", "https://www.instagram.com/baruch.it/", 186, 148),
+    ("linkedin", "LinkedIn", "https://www.linkedin.com/in/caterina-santambrogio-6793813b/", 125, 119),
+    ("facebook", "Facebook", "https://www.facebook.com/caterina.santambrogio.12", 125, 163),
+]
+SOCIAL = '<ul class="social">\n' + "\n".join(
+    f'        <li><a href="{u}" target="_blank" rel="noopener" aria-label="{t}"><img src="assets/img/ui/social-{k}.webp" alt="" width="{w}" height="{h}" style="--w:{w}"></a></li>'
+    for k, t, u, w, h in SOCIAL_LINK
+) + "\n      </ul>"
 
 
 def cur(key, page):

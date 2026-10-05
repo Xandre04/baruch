@@ -97,13 +97,12 @@ button { font: inherit; color: inherit; }
 
 .social { display: flex; align-items: center; gap: clamp(10px, 1.4vw, 22px); margin: 0; padding: 0; list-style: none; }
 .social a {
-  display: grid; place-items: center; width: 44px; height: 44px;
-  color: var(--leaf); font-size: 34px; text-decoration: none;
-  transition: transform .35s var(--ease), color .2s;
+  display: grid; place-items: center; min-width: 44px; min-height: 44px;
+  transition: transform .35s var(--ease);
 }
-.social a:hover { color: var(--ink); transform: rotate(-8deg) scale(1.08); }
-.social a[aria-disabled="true"] { cursor: default; }
-.social a[aria-disabled="true"]:hover { transform: none; color: var(--leaf); }
+/* le icone a pastello mantengono le proporzioni del disegno originale */
+.social img { width: calc(var(--w) * .27px); height: auto; }
+.social a:hover, .social a:focus-visible { transform: rotate(-8deg) scale(1.08); }
 
 .nav-home-mobile, .menu-toggle { display: none; }
 
