@@ -3,6 +3,7 @@
 Intestazione, menu e piè di pagina sono definiti una sola volta qui sotto.
 Dopo una modifica, dalla cartella principale del progetto:  python sorgenti/build.py
 """
+import hashlib
 import json
 import re
 from pathlib import Path
@@ -17,6 +18,15 @@ SITO = SORGENTI.parent / "sito"    # cartella pubblicata
 HOME, CHI, DIARIO = "index.html", "chi-e-baruch/index.html", "diario/index.html"
 COLLAB, SHOP, CONTATTI = "collaborazioni/index.html", "shop/index.html", "contatti/index.html"
 MONDI_SLUG = "i-mondi-disegnati-di-baruch"
+
+
+def versione(file):
+    """Impronta del file: cambia quando il file cambia, così i browser non usano la copia vecchia."""
+    return hashlib.md5((SITO / file).read_bytes()).hexdigest()[:8]
+
+
+CSS = f"assets/css/style.css?v={versione('assets/css/style.css')}"
+JS = f"assets/js/main.js?v={versione('assets/js/main.js')}"
 
 
 def url_sezione(slug):
@@ -136,7 +146,7 @@ def page(file, key, title, desc, main, footer_scrivimi=True, extra="", preload="
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400&family=Barlow+Semi+Condensed:wght@400;500&family=Kalam:wght@400&display=swap">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/bold/style.css">
-  <link rel="stylesheet" href="assets/css/style.css">{preload}
+  <link rel="stylesheet" href="{CSS}">{preload}
 </head>
 <body id="top">
   {header(key)}
@@ -144,7 +154,7 @@ def page(file, key, title, desc, main, footer_scrivimi=True, extra="", preload="
 {main}
   </main>
   {footer(footer_scrivimi)}{extra}
-  <script src="assets/js/main.js" defer></script>
+  <script src="{JS}" defer></script>
 </body>
 </html>
 """

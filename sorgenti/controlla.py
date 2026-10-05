@@ -19,7 +19,7 @@ for f in pagine:
     for r in refs:
         if ESTERNO.match(r):
             continue
-        target = (f.parent / r.split("#")[0]).resolve()
+        target = (f.parent / r.split("#")[0].split("?")[0]).resolve()
         if not target.exists():
             rotti += 1
             print(f"{f.relative_to(SITO)} -> {r}")
