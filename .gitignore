@@ -6,6 +6,3 @@ __pycache__/
 *.pyc
 .DS_Store
 Thumbs.db
-
-# Dati di accesso all'editor: vanno solo sul server, mai nel repository
-privato/

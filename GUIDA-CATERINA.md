@@ -4,16 +4,37 @@ Guida per Caterina. Per scrivere una pagina del Diario o aggiungere un progetto 
 
 ---
 
-## Entrare nell'editor
+## La prima volta (una sola volta, dal computer)
 
-1. Apri l'editor: è l'indirizzo del sito seguito da **/admin/** (per esempio `https://illustraremondi.it/admin/`).
-2. Premi **Accedi con GitHub** (in inglese: *Sign In with GitHub*).
-   Non serve un account GitHub: si apre la pagina di accesso di Baruch.
-3. Scrivi **email** e **password** e premi **Entra**.
+### 1. Accetta l'invito al progetto
+
+Riceverai un'email da GitHub con l'invito al progetto **baruch**. Apri il link, entra con il tuo account GitHub e premi **Accept invitation**.
+
+### 2. Crea la tua chiave di accesso
+
+È una specie di password che permette all'editor di salvare le tue pagine.
+
+1. Entra su GitHub e apri <https://github.com/settings/tokens/new>.
+2. In **Note** scrivi `Editor Baruch`.
+3. In **Expiration** scegli **No expiration** (non scade). Se preferisci, una durata di un anno: alla scadenza ne crei una nuova allo stesso modo.
+4. Nell'elenco **Select scopes** metti la spunta solo su **repo**.
+5. In fondo premi **Generate token**.
+6. Copia il codice che compare (inizia con `ghp_`) e conservalo in un posto sicuro, per esempio nel gestore delle password. GitHub non te lo mostrerà più.
+
+> Non mandare mai questa chiave a nessuno, nemmeno via email o WhatsApp: chi ce l'ha può modificare il sito.
+
+### 3. Entra nell'editor
+
+1. Apri l'editor: **https://xandre04.github.io/baruch/admin/**
+   (quando il sito sarà sul dominio definitivo, sarà l'indirizzo del sito seguito da `/admin/`)
+2. Premi **Accedi con Token di Accesso** (in inglese: *Sign In Using Access Token*).
+3. Incolla la chiave e conferma.
 
 L'editor resta collegato su quel browser: le volte successive si apre direttamente.
 
-> **Dal telefono**: una volta entrata dal computer, nel menu dell'editor trovi **Accedi con il Dispositivo Mobile**. Inquadra il codice QR con il telefono ed entri anche lì, senza riscrivere nulla.
+> Non usare il pulsante **Accedi con GitHub**: per ora non è attivo.
+
+> **Dal telefono**: una volta entrata dal computer, nel menu dell'editor trovi **Accedi con il Dispositivo Mobile**. Inquadra il codice QR con il telefono ed entri anche lì, senza incollare di nuovo la chiave.
 
 ---
 
@@ -80,5 +101,5 @@ I progetti della sezione **I mondi disegnati di Baruch** (calendari, rassegne te
 ## Se qualcosa non va
 
 - **La pagina non compare dopo qualche minuto**: ricarica il sito con **Ctrl+F5** (sul telefono, chiudi e riapri la pagina).
-- **"Troppi tentativi sbagliati"**: per sicurezza, dopo 5 password sbagliate l'accesso si blocca per un quarto d'ora.
+- **L'editor non ti fa entrare**: la chiave potrebbe essere scaduta. Creane una nuova (punto 2) ed entra di nuovo.
 - **Per tutto il resto**: scrivi a chi gestisce il sito. Nessuna modifica fatta dall'editor può rompere il sito in modo definitivo: c'è sempre la versione precedente.

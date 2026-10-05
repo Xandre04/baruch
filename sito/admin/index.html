@@ -9,19 +9,6 @@
 </head>
 <body>
   <!-- Sveltia CMS: legge la configurazione da config.yml in questa cartella -->
-  <script>window.CMS_MANUAL_INIT = true;</script>
   <script src="https://unpkg.com/@sveltia/cms/dist/sveltia-cms.js"></script>
-  <script>
-    // "Sign In with GitHub" apre la pagina di accesso con email e password (accesso.php)
-    // sullo stesso sito, qualunque sia il dominio. Serve PHP: funziona su Keliweb.
-    CMS.init({
-      config: {
-        backend: {
-          base_url: location.origin,
-          auth_endpoint: location.pathname.replace(/^\//, "").replace(/[^/]*$/, "") + "accesso.php",
-        },
-      },
-    });
-  </script>
 </body>
 </html>
