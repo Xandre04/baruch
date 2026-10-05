@@ -1,0 +1,11 @@
+{
+  "titolo": "Pagina di prova",
+  "sottotitolo": "Verifica della pubblicazione automatica",
+  "data": "2026-10-05",
+  "sezione": "come-fiori-selvatici",
+  "estratto": "Pagina temporanea per verificare che l'editor pubblichi da solo.",
+  "copertina": "/contenuti/media/prova-prato-fiorito.webp",
+  "copertina_alt": "Un prato fitto di fiori colorati",
+  "testo": "Questa è una **prova** con un [link](https://example.com/a_b_c).\n\n> Una citazione sulla pennellata.\n\n![Il prato fiorito](/contenuti/media/prova-prato-fiorito.webp)\n\n- primo punto\n- secondo punto",
+  "pubblicato": true
+}
