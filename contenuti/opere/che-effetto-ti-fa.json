@@ -5,11 +5,12 @@
   "categoria": "Illustrazioni",
   "committente": "Con l’associazione Bereshit",
   "tecnica": "Tecnica mista: acrilico e pastello su carta",
-  "ordine": 2,
+  "ordine": 1,
   "copertina": "/contenuti/media/ritratto-07.webp",
   "copertina_alt": "Ritratti di volti sorridenti tra fiori, foglie e ritagli",
   "testo": "Questo calendario illustrato, realizzato in collaborazione con l’associazione Bereshit, nasce come un piccolo viaggio illustrato tra le sfumature che ci attraversano ogni giorno.\n\nAttraverso i disegni ho voluto dare forma e colore alla nostra “preziosa instabilità”: uno sguardo, un volto, la paura o la leggerezza diventano tracce visive per accorgerci di ciò che proviamo e ritrovare un’eco di noi stessi mese dopo mese.",
   "citazione": "",
+  "carica_tavole": [],
   "tavole": [
     {
       "immagine": "/contenuti/media/ritratto-03.webp",
@@ -36,7 +37,7 @@
       "alt": "Una ragazza e un uomo con il naso rosso da clown, con la scritta che stupore"
     }
   ],
-  "pdf": "",
+  "pdf": "/assets/pdf/calendario-che-effetto-ti-fa.pdf",
   "pdf_etichetta": "",
   "pubblicato": true
 }
