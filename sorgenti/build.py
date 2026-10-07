@@ -50,8 +50,6 @@ NAV = [
     (HOME, "home", "Home"),
     (CHI, "chi", "Chi è Baruch"),
     (DIARIO, "diario", "Diario"),
-    (COLLAB, "collaborazioni", "Collaborazioni"),
-    (SHOP, "shop", "Shop"),
     (CONTATTI, "contatti", "Contatti"),
 ]
 
@@ -177,13 +175,24 @@ def page(file, key, title, desc, main, footer_scrivimi=True, extra="", preload="
 for f in accogli_caricamenti():
     print("foto caricate in blocco spostate nell'elenco:", f.name)
 prepara_immagini()
+CATERINA_RITRATTO = immagine("/contenuti/media/caterina-santambrogio-02.webp")
 CATERINA_BAMBINA = immagine("/contenuti/media/caterina-santambrogio-01.webp")
+CATERINA_LAVORO = immagine("/contenuti/media/caterina-santambrogio-03.webp")
+
+
+def foto(i, alt, cls="", lazy=True):
+    c = f' class="{cls}"' if cls else ""
+    lz = ' loading="lazy"' if lazy else ""
+    return (f'<img{c} src="{i["piccola"]}" srcset="{i["piccola"]} 720w, {i["grande"]} 1400w" sizes="(max-width: 760px) 90vw, 480px" '
+            f'alt="{alt}" width="{i["w"]}" height="{i["h"]}"{lz}>')
+
 
 # ---------------- CHI È BARUCH ----------------
+# testo e foto come su illustraremondi.it, nella versione breve scelta da Caterina
 page(
     CHI, "chi",
     "Chi è Baruch · Baruch illustrare mondi",
-    "Baruch è un personaggio e un progetto: un mondo di natura e meraviglia disegnato da Caterina Santambrogio.",
+    "Baruch è un invito a guardare il mondo con occhi nuovi: il progetto artistico di Caterina Santambrogio, illustratrice.",
     f"""    <div class="page">
       <section class="about">
         <figure class="about__art reveal">
@@ -191,33 +200,32 @@ page(
         </figure>
         <div class="about__text reveal" style="--d:.1s">
           <h1 class="page-title"><img src="assets/img/ui/titolo-chi.webp" alt="Chi è Baruch" width="453" height="182"></h1>
-          <p>Baruch è un personaggio ma anche un progetto che racchiude in sé il desiderio di creare attraverso il disegno un mondo di natura e meraviglia. Un universo visivo pensato per ispirare la curiosità e la creatività nei bambini, con un interesse trasversale che coinvolge anche gli adulti.</p>
-          <p>L’immaginazione è una risorsa preziosa e Baruch offre l’opportunità di connettersi con sensibilità ai valori della natura, della bellezza e dell’apprendimento esperienziale.</p>
-          <p>Il progetto si articola in diverse proposte, dall’offerta di immagini originali e pattern esclusivi perfetti per decorare oggetti di uso quotidiano, alla creazione di contenuti illustrati che stimolano la fantasia e la consapevolezza del mondo che ci circonda. Propone inoltre diversi laboratori creativi per sostenere e stimolare l’osservazione e la manualità.</p>
-          <p>È un progetto aperto, un contenitore di scoperte dove il disegno incontra la materia, la natura si fa trama e le mani danno forma a storie che ancora non esistono. Ma è anche il desiderio di collaborazioni costruttive, per mescolare esperienze e competenze differenti.</p>
+          <h2 class="about__sub">Progetto artistico Baruch</h2>
+          <p>Baruch è un invito a guardare il mondo con occhi nuovi. Nasce da un desiderio di cura e di pace, come un piccolo custode che accompagna tra il visibile e l’immaginario.</p>
+          <p>È un progetto aperto, un contenitore di scoperte dove il disegno incontra la materia, la natura si fa trama e le mani danno forma a storie che ancora non esistono.</p>
+          <p>Baruch è il mio modo di benedire la curiosità e di trasformare ogni processo creativo in un sentiero da percorrere. Ma è anche il desiderio di collaborazioni costruttive, per mescolare esperienze e competenze differenti.</p>
         </div>
       </section>
 
-      <blockquote class="art-quote art-quote--wide reveal"><p>Baruch nasce da un desiderio di cura e di pace, come un piccolo custode che accompagna tra il visibile e l’immaginario. È il mio modo di benedire la curiosità.</p></blockquote>
-
       <section class="cate" aria-labelledby="cate-title">
-        <div class="cate__text reveal">
-          <h2 id="cate-title">Dietro gli occhi di Baruch ci sono i miei.</h2>
+        <div class="cate__photos">
+          <figure class="cate__photo reveal">{foto(CATERINA_RITRATTO, "Ritratto in bianco e nero di Caterina Santambrogio con un piccolo Baruch disegnato sulla testa")}</figure>
+          <figure class="cate__child reveal" style="--d:.15s">{foto(CATERINA_BAMBINA, "Caterina da bambina, con un piccolo Baruch disegnato tra i capelli")}</figure>
+        </div>
+        <div class="cate__text reveal" style="--d:.1s">
+          <h2 id="cate-title">Caterina Santambrogio</h2>
+          <p class="cate__motto">Dietro gli occhi di Baruch ci sono i miei.</p>
           <p>Mi chiamo Caterina e sono un’illustratrice che non ha mai smesso di esplorare la materia.</p>
           <p>Il mio percorso inizia dalla passione per il disegno, che mi ha guidata attraverso gli studi artistici alla scoperta di una verità essenziale: un’immagine non è mai solo colore su carta, ma la narrazione profonda di un pensiero o di un’esperienza. È un modo per abitare la vita.</p>
-          <p>La mia ricerca si muove tra il rigore del disegno dettagliato e la freschezza dell’improvvisazione; spazia dall’immagine naturalistica a quella fiabesca, dalla bidimensionalità della carta alla forma tattile dell’argilla. Quando non disegno, conduco laboratori dove invito gli altri a cercare la propria scintilla creativa, perché credo che questo contribuisca a farci sentire persone accese.</p>
-          <h3>Il percorso</h3>
-          <p>Caterina Santambrogio, illustratrice, decoratrice e atelierista. Nata nel 1972, ha conseguito il diploma presso l’Istituto d’Arte con indirizzo grafica e fotografia. Ha frequentato l’Accademia di Belle Arti di Venezia e diversi corsi di illustrazione presso la Scuola Internazionale di Grafica e la Scuola di Illustrazione di Sarmede.</p>
-          <p>Lavora freelance come illustratrice e propone laboratori creativi per piccoli e grandi.</p>
         </div>
-        <div class="cate__photos">
-          <figure class="cate__photo reveal" style="--d:.12s">
-            <img src="assets/img/chi/caterina.webp" alt="Ritratto in bianco e nero di Caterina Santambrogio con un piccolo Baruch disegnato sulla testa" width="524" height="665" loading="lazy">
-          </figure>
-          <figure class="cate__child reveal" style="--d:.24s">
-            <img src="{CATERINA_BAMBINA['piccola']}" alt="Caterina da bambina, con un piccolo Baruch disegnato tra i capelli" width="720" height="720" loading="lazy">
-          </figure>
+      </section>
+
+      <section class="cate cate--lavoro">
+        <div class="cate__text reveal">
+          <p>La mia ricerca si muove tra il rigore del disegno dettagliato e la freschezza dell’improvvisazione; spazia dall’immagine naturalistica a quella fiabesca, dalla bidimensionalità della carta alla forma tattile dell’argilla.</p>
+          <p>Quando non disegno, conduco laboratori dove invito gli altri a cercare la propria scintilla creativa, perché credo che questo contribuisca a farci sentire persone accese.</p>
         </div>
+        <figure class="cate__work reveal" style="--d:.12s">{foto(CATERINA_LAVORO, "Caterina al tavolo di lavoro, china su un disegno tra libri e colori")}</figure>
       </section>
     </div>""",
 )
@@ -305,7 +313,7 @@ GRIGLIA = ["mondi-illustrati", "le-avventure-di-baruch", "come-fiori-selvatici",
 
 def griglia_sezioni():
     tiles = "\n".join(
-        f"""      <a class="diary-item tile tile--{k} reveal" style="--d:{i * 0.08:.2f}s" href="{url_sezione(k)}">
+        f"""      <a class="diary-item tile tile--{k} reveal" style="--d:{i * 0.15:.2f}s" href="{url_sezione(k)}">
         <span class="tile__art">{sez_drawing(SEZ[k])}</span>
         <span class="diary-item__label">{SEZ[k]['titolo']}</span>
       </a>"""
@@ -355,11 +363,7 @@ page(
       </h1>
     </section>
 """ + griglia_sezioni() + """
-    <section class="home-notes">
-      """ + SCRIVIMI + """
-      <p class="progetto reveal" style="--d:.12s">Progetto di<br>Caterina Santambrogio<br>Illustratrice</p>
-    </section>""",
-    footer_scrivimi=False,
+""",
     preload='\n  <link rel="preload" as="image" href="assets/img/ui/hero.webp" imagesrcset="assets/img/ui/hero-1100.webp 1100w, assets/img/ui/hero.webp 2200w" imagesizes="100vw">',
 )
 

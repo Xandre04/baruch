@@ -59,8 +59,8 @@ button { font: inherit; color: inherit; }
 }
 /* la striscia di macchie dipinte, con i nomi scritti a mano sopra, nelle stesse coordinate dell'originale */
 .strip {
-  position: relative; flex: 1 1 auto; max-width: 900px;
-  aspect-ratio: 2721 / 231;
+  position: relative; flex: 1 1 auto; max-width: 578px;
+  aspect-ratio: 1746 / 231;
   background: url(../img/ui/nav-strip.webp) center / 100% 100% no-repeat;
   margin: 0; padding: 0; list-style: none;
 }
@@ -81,19 +81,15 @@ button { font: inherit; color: inherit; }
   background: var(--terracotta); border-radius: 3px; opacity: .75;
   transform: rotate(-1deg);
 }
-/* posizioni ricavate dal file originale (canvas 2721 x 231) */
-.strip .n-home           { left: 0;      width: 13.41%; }
+/* posizioni ricavate dal file originale: striscia ricomposta con Home, Chi è Baruch, Diario e Contatti (1746 x 231) */
+.strip .n-home           { left: 0;      width: 20.90%; }
 .strip .n-home img       { left: 15.34%; width: 79.45%; top: 27.27%; }
-.strip .n-chi            { left: 13.41%; width: 18.41%; }
+.strip .n-chi            { left: 20.90%; width: 28.69%; }
 .strip .n-chi img        { left: 3.99%;  width: 92.61%; top: 23.81%; }
-.strip .n-diario         { left: 31.83%; width: 12.02%; }
-.strip .n-diario img     { left: 5.2%;   width: 87.46%; top: 32.9%; }
-.strip .n-collaborazioni { left: 43.84%; width: 24.84%; }
-.strip .n-collaborazioni img { left: 3.55%; width: 93.05%; top: 29.44%; }
-.strip .n-shop           { left: 68.69%; width: 11.61%; }
-.strip .n-shop img       { left: 7.28%;  width: 82.91%; top: 26.84%; }
-.strip .n-contatti       { left: 80.3%;  width: 19.7%; }
-.strip .n-contatti img   { left: 5.78%;  width: 83.4%;  top: 29%; }
+.strip .n-diario         { left: 49.60%; width: 17.87%; }
+.strip .n-diario img     { left: 5.45%;  width: 91.67%; top: 32.9%; }
+.strip .n-contatti       { left: 67.47%; width: 32.53%; }
+.strip .n-contatti img   { left: 11.09%; width: 78.7%;  top: 29%; }
 
 .social { display: flex; align-items: center; gap: clamp(10px, 1.4vw, 22px); margin: 0; padding: 0; list-style: none; }
 .social a {
@@ -169,27 +165,6 @@ button { font: inherit; color: inherit; }
 @keyframes brush { from { clip-path: inset(0 100% 0 0); } to { clip-path: inset(0 0 0 0); } }
 @keyframes rise { from { opacity: 0; transform: translateY(14px) rotate(-2deg); } to { opacity: 1; transform: none; } }
 
-/* ---------- Blocchi della home ---------- */
-.home-notes {
-  max-width: var(--max); margin: 0 auto;
-  padding: clamp(28px, 4vw, 56px) var(--gutter) 0;
-  display: grid; grid-template-columns: 1fr 1.1fr; align-items: center; gap: 32px;
-}
-.home-notes .scrivimi { justify-self: center; margin-left: -6%; }
-.progetto {
-  justify-self: center; text-align: center; margin: 0;
-  width: min(100%, 560px); aspect-ratio: 1100 / 413;
-  display: grid; place-items: center;
-  background: url(../img/ui/pennellata-verde.webp) center / 100% 100% no-repeat;
-  font-family: var(--hand); font-size: clamp(19px, 1.7vw, 26px); line-height: 1.45; color: var(--ink);
-  padding: 0 12%;
-}
-@media (max-width: 760px) {
-  .home-notes { grid-template-columns: 1fr; gap: 8px; }
-  .home-notes .scrivimi { margin-left: 0; }
-  .progetto { order: -1; }
-}
-
 /* ---------- "Scrivimi un messaggio": pianta, pennellata, Baruch con la lettera ---------- */
 .scrivimi {
   position: relative; display: block; width: min(92vw, 440px); aspect-ratio: 440 / 430;
@@ -225,11 +200,17 @@ button { font: inherit; color: inherit; }
   margin: 0 0 12px; font-weight: 500; font-size: 1em; letter-spacing: .06em; text-transform: uppercase;
 }
 .about__text p { margin: 0 0 .9em; max-width: 64ch; color: var(--ink); }
+.about__sub { margin: 0 0 14px; font-family: var(--hand); font-weight: 400; font-size: clamp(24px, 2.2vw, 30px); line-height: 1.2; }
+/* Caterina: le due foto a sinistra e il testo a destra; poi il testo a sinistra e la foto al lavoro a destra */
 .cate {
-  display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 4fr);
-  gap: clamp(28px, 5vw, 80px); align-items: center;
-  margin-top: clamp(56px, 8vw, 120px);
+  display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
+  gap: clamp(36px, 6vw, 96px); align-items: center;
+  margin-top: clamp(64px, 9vw, 130px);
 }
+.cate--lavoro { grid-template-columns: minmax(0, 6fr) minmax(0, 5fr); margin-top: clamp(56px, 8vw, 110px); }
+.cate__motto { font-family: var(--hand); font-size: clamp(21px, 1.8vw, 25px); line-height: 1.35; color: var(--ink) !important; }
+.cate__work { margin: 0; }
+.cate__work img { width: 100%; box-shadow: 0 22px 44px -28px rgba(52, 67, 47, .5); }
 .cate__text h2 { margin: 0 0 10px; font-family: var(--hand); font-weight: 400; font-size: clamp(26px, 2.4vw, 34px); color: var(--terracotta); line-height: 1.2; }
 .cate__text p { margin: 0 0 .8em; color: var(--salmon); max-width: 62ch; }
 .cate__photo { margin: 0; justify-self: center; width: min(100%, 320px); }
@@ -457,15 +438,16 @@ button { font: inherit; color: inherit; }
 /* Chi è Baruch: due fotografie di Caterina, oggi e da bambina */
 .cate__text h2 { font-size: clamp(24px, 2.2vw, 32px); }
 .cate__text h3 { margin: 1.4em 0 .3em; font-weight: 500; letter-spacing: .06em; text-transform: uppercase; font-size: .9em; color: var(--salmon); }
-.cate__photos { position: relative; justify-self: center; width: min(100%, 340px); }
+.cate__photos { position: relative; justify-self: start; width: min(78%, 380px); margin-bottom: 12%; }
 .cate__photos .cate__photo { width: 100%; }
 .cate__child {
-  position: absolute; width: 46%; right: -14%; bottom: -12%; margin: 0;
+  position: absolute; width: 64%; right: -36%; bottom: -16%; margin: 0;
   border: 8px solid #fff; box-shadow: 0 14px 28px -16px rgba(52, 67, 47, .5); transform: rotate(5deg);
 }
 @media (max-width: 760px) {
-  .cate__photos { order: -1; width: min(72%, 280px); margin-bottom: 40px; }
-  .cate__child { right: -18%; }
+  .cate__photos { width: min(72%, 280px); margin-bottom: 18%; }
+  .cate--lavoro .cate__work { order: -1; }
+  .cate__child { right: -30%; }
 }
 
 /* Collaborazioni: galleria a colonne come nelle bozze */
@@ -625,3 +607,22 @@ button { font: inherit; color: inherit; }
 .footer__legal { margin: 6px 0 0; text-align: center; font-size: 16px; }
 .footer__legal a { color: var(--ink-soft); text-shadow: 0 0 6px var(--paper), 0 0 2px var(--paper); }
 .footer__legal a:hover { color: var(--terracotta); }
+
+/* Home: le cinque sezioni salgono una dopo l'altra quando arrivano nello schermo,
+   poi si spostano appena verso l'alto a velocità diverse mentre si scorre (profondità) */
+@media (prefers-reduced-motion: no-preference) {
+  .js .home-sezioni .reveal {
+    transform: translateY(90px);
+    transition: opacity 1.1s var(--ease), transform 1.4s var(--ease);
+    transition-delay: var(--d, 0s);
+  }
+  .js .home-sezioni .reveal.is-in { transform: none; }
+  @supports (animation-timeline: view()) {
+    .home-sezioni .tile__art { animation: sale-piano linear both; animation-timeline: view(); }
+    .home-sezioni .tile:nth-child(2n) .tile__art { animation-name: sale-veloce; }
+    .home-sezioni .tile--come-fiori-selvatici .tile__art { animation-name: sale-lento; }
+  }
+}
+@keyframes sale-piano  { from { translate: 0 30px; } to { translate: 0 -30px; } }
+@keyframes sale-veloce { from { translate: 0 60px; } to { translate: 0 -60px; } }
+@keyframes sale-lento  { from { translate: 0 15px; } to { translate: 0 -15px; } }
