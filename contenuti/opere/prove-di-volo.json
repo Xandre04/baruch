@@ -5,11 +5,12 @@
   "categoria": "Illustrazioni",
   "committente": "Con l’associazione Bereshit",
   "tecnica": "Tecnica mista: gouache e digitale",
-  "ordine": 1,
+  "ordine": 2,
   "copertina": "/contenuti/media/06-prove-di-volo.webp",
   "copertina_alt": "Un campo di papaveri rossi sotto un grande cielo arancione",
   "testo": "Il calendario illustrato “Prove di volo” nasce dal bisogno profondo di ritrovare una spinta interiore e dare nuovo colore alle relazioni, agli incontri e all’ambiente che ci circonda.\n\nIn queste illustrazioni, realizzate in collaborazione con l’associazione Bereshit, non ci sono persone, volti o mani. Ci sono solo voli. Uccelli leggeri che decorano il cielo, respirano il tramonto, riflettono la notte e sollevano fiori.",
   "citazione": "Un invito poetico a piantare lo sguardo dritto nel cuore della natura, per ripartire dalla bellezza della creazione.",
+  "carica_tavole": [],
   "tavole": [
     {
       "immagine": "/contenuti/media/01-prove-di-volo.webp",
