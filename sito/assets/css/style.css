@@ -31,7 +31,7 @@ body {
   font-family: var(--text);
   font-size: clamp(17px, 1.05vw + 12px, 19px);
   line-height: 1.6;
-  overflow-x: hidden;
+  overflow-x: clip; /* clip e non hidden: "hidden" impedirebbe all'immagine della home di restare ferma */
 }
 img { display: block; max-width: 100%; height: auto; }
 a { color: inherit; }
@@ -608,21 +608,14 @@ button { font: inherit; color: inherit; }
 .footer__legal a { color: var(--ink-soft); text-shadow: 0 0 6px var(--paper), 0 0 2px var(--paper); }
 .footer__legal a:hover { color: var(--terracotta); }
 
-/* Home: le cinque sezioni salgono una dopo l'altra quando arrivano nello schermo,
-   poi si spostano appena verso l'alto a velocità diverse mentre si scorre (profondità) */
+/* Home, effetto sipario: l'immagine principale resta ferma sotto la barra
+   e la pagina, scorrendo, le sale sopra e la copre */
 @media (prefers-reduced-motion: no-preference) {
-  .js .home-sezioni .reveal {
-    transform: translateY(90px);
-    transition: opacity 1.1s var(--ease), transform 1.4s var(--ease);
-    transition-delay: var(--d, 0s);
+  .pagina-home .hero { position: sticky; top: var(--nav-h, 0px); z-index: 0; }
+  .pagina-home .copertura {
+    position: relative; z-index: 1; background: var(--paper);
+    padding-bottom: clamp(48px, 8vw, 120px);
+    box-shadow: 0 -18px 36px -18px rgba(52, 67, 47, .45);
   }
-  .js .home-sezioni .reveal.is-in { transform: none; }
-  @supports (animation-timeline: view()) {
-    .home-sezioni .tile__art { animation: sale-piano linear both; animation-timeline: view(); }
-    .home-sezioni .tile:nth-child(2n) .tile__art { animation-name: sale-veloce; }
-    .home-sezioni .tile--come-fiori-selvatici .tile__art { animation-name: sale-lento; }
-  }
+  .pagina-home .footer { position: relative; z-index: 1; background-color: var(--paper); margin-top: 0; }
 }
-@keyframes sale-piano  { from { translate: 0 30px; } to { translate: 0 -30px; } }
-@keyframes sale-veloce { from { translate: 0 60px; } to { translate: 0 -60px; } }
-@keyframes sale-lento  { from { translate: 0 15px; } to { translate: 0 -15px; } }

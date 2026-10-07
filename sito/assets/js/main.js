@@ -9,6 +9,14 @@ const CONFIG = {
 
 document.documentElement.classList.add("js");
 
+/* ---------- Altezza della barra del menu (l'immagine della home si ferma sotto di essa) ---------- */
+const barra = document.querySelector(".site-nav");
+if (barra && "ResizeObserver" in window) {
+  new ResizeObserver(() =>
+    document.documentElement.style.setProperty("--nav-h", `${barra.offsetHeight}px`)
+  ).observe(barra);
+}
+
 /* ---------- Menu mobile ---------- */
 const menu = document.getElementById("mobile-menu");
 const openBtn = document.querySelector("[data-menu-open]");

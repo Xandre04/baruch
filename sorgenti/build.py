@@ -151,7 +151,7 @@ def page(file, key, title, desc, main, footer_scrivimi=True, extra="", preload="
   <link rel="stylesheet" href="{ICONE_CSS}">
   <link rel="stylesheet" href="{CSS}">{preload}
 </head>
-<body id="top">
+<body id="top" class="pagina-{key}">
   {header(key)}
   <main id="contenuto">
 {main}
@@ -313,16 +313,19 @@ GRIGLIA = ["mondi-illustrati", "le-avventure-di-baruch", "come-fiori-selvatici",
 
 def griglia_sezioni():
     tiles = "\n".join(
-        f"""      <a class="diary-item tile tile--{k} reveal" style="--d:{i * 0.15:.2f}s" href="{url_sezione(k)}">
+        f"""      <a class="diary-item tile tile--{k} reveal" style="--d:{i * 0.08:.2f}s" href="{url_sezione(k)}">
         <span class="tile__art">{sez_drawing(SEZ[k])}</span>
         <span class="diary-item__label">{SEZ[k]['titolo']}</span>
       </a>"""
         for i, k in enumerate(GRIGLIA)
     )
+    # "copertura": il foglio che, scorrendo, sale sopra l'immagine principale ferma
     return f"""
-    <nav class="home-sezioni" aria-label="Le sezioni del diario">
+    <div class="copertura">
+      <nav class="home-sezioni" aria-label="Le sezioni del diario">
 {tiles}
-    </nav>
+      </nav>
+    </div>
 """
 
 
