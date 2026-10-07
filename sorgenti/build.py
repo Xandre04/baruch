@@ -365,6 +365,7 @@ page(
         <img class="hero__sub" src="assets/img/ui/subtitle.webp" alt="illustrare mondi" width="812" height="181">
       </h1>
     </section>
+    <div class="hero-spazio" aria-hidden="true"></div>
 """ + griglia_sezioni() + """
 """,
     preload='\n  <link rel="preload" as="image" href="assets/img/ui/hero.webp" imagesrcset="assets/img/ui/hero-1100.webp 1100w, assets/img/ui/hero.webp 2200w" imagesizes="100vw">',
