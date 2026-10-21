@@ -49,28 +49,31 @@ L'editor resta collegato su quel browser: le volte successive si apre direttamen
    - **Riassunto**: una o due frasi che compaiono nell'elenco delle pagine
    - **Foto di copertina**: meglio orizzontale. Premi il campo e carica la foto dal computer o dal telefono.
    - **Descrizione della copertina**: cosa si vede nella foto, in poche parole
-   - **Testo**: scrivi come in un normale programma di scrittura
+   - **Contenuto della pagina**: la pagina si compone a **blocchi** (vedi sotto)
 4. Premi **Salva**.
 
 Dopo circa due minuti la pagina è online: nella sua sezione e tra "Le ultime pagine".
 
-### Nel testo
+### Comporre la pagina a blocchi
 
-| Vuoi… | Come |
-|---|---|
-| un titoletto | pulsante **H2** |
-| una frase grande sulla pennellata verde | pulsante delle **virgolette** (citazione) |
-| grassetto o corsivo | pulsanti **B** e *I* |
-| un link | pulsante della catena |
-| un elenco puntato | pulsante dell'elenco |
-| inserire foto | pulsante **+** e poi **Immagine**: carica la foto e scrivi la sua descrizione |
-| una griglia di foto | inserisci più foto una dopo l'altra, senza testo in mezzo |
+In **Contenuto della pagina** premi **Aggiungi** e scegli il tipo di blocco. Aggiungine quanti vuoi, nell'ordine che vuoi: per spostarne uno, trascinalo; per toglierlo, usa il suo menu.
 
-Le foto possono essere grandi come escono dalla fotocamera o dallo scanner: il sito le rimpicciolisce da solo.
+| Blocco | A cosa serve | Cosa puoi scegliere |
+|---|---|---|
+| **Testo** | i paragrafi | grassetto, corsivo, link, titoletti, elenchi |
+| **Titoletto** | un titolo tra una parte e l'altra | scritto a mano oppure in maiuscoletto |
+| **Foto** | una foto da sola | larghezza (stretta, come il testo, larga, tutta la pagina), posizione (sinistra, centro, destra), effetto (appoggiata storta, polaroid con bordo bianco), didascalia |
+| **Foto accanto al testo** | foto e testo affiancati | foto a sinistra o a destra, piccola, a metà o grande |
+| **Foto in fila** | da 2 a 4 foto affiancate | come sono oppure tutte quadrate, larghezza |
+| **Citazione** | una frase su una pennellata | pennellata verde, pesca o crema, normale o grande |
+| **Galleria** | tante foto insieme (una gita, un laboratorio) | 2, 3 o 4 foto per riga |
+| **Spazio** | un po' di respiro tra i blocchi | vuoto, con una pennellata o con un piccolo Baruch |
 
-### Tante foto insieme
+Per la **Galleria**: premi il campo e seleziona tutte le foto in una volta (sul computer tieni premuto **Ctrl** mentre le clicchi, sul telefono selezionale dalla galleria).
 
-Per una gita o un laboratorio con molte foto, usa il campo **Galleria in fondo alla pagina**: premi il campo, seleziona tutte le foto in una volta (sul computer tieni premuto **Ctrl** mentre le clicchi, sul telefono selezionale dalla galleria) e salva. Compaiono in una griglia sotto il testo.
+Ogni foto ha la sua **descrizione**: scrivi in poche parole cosa si vede (serve a chi non vede le immagini e a Google). Le foto possono essere grandi come escono dalla fotocamera o dallo scanner: il sito le rimpicciolisce da solo. Tutte si ingrandiscono al clic.
+
+Su telefono i blocchi si mettono uno sotto l'altro, nello stesso ordine.
 
 ### Bozze
 

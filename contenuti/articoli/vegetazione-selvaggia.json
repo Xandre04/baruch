@@ -6,6 +6,56 @@
   "estratto": "La pittura espressiva di masse verdi e boschi attraverso un segno istintivo.",
   "copertina": "/contenuti/media/vegetazione-selvaggia-06.webp",
   "copertina_alt": "Un volto sorridente spunta tra grandi foglie verdi dipinte",
-  "testo": "![Un bosco fitto dipinto con pennellate verdi e nervose](/contenuti/media/vegetazione-selvaggia-01.webp)\n\n> Invenzioni disegnate e sperimentazioni del giorno: la pittura espressiva di masse verdi e boschi attraverso un segno istintivo.\n\nOggi la mia ricerca si sposta verso una gestualità più nervosa, quasi agitata. Non cerco la precisione botanica, ma l’energia del bosco: dipingo di getto grandi masse verdi che si sovrappongono, usando il colore come se fosse un respiro affannato tra gli alberi.\n\nIn mezzo a questa vegetazione intricata appare una figura. È un corpo disegnato con segni densi, graffiati, quasi fosse un taccuino vivente. Sembra smarrita, impegnata a cercare la strada di casa tra i rami e le ombre.\n\nIn questa sperimentazione artistica, il tratto non descrive solo un luogo, ma uno stato d’animo: quel momento in cui il paesaggio interiore e quello reale si fondono nel tentativo di ritrovarsi.\n\n![Alberi dipinti lungo un sentiero chiaro](/contenuti/media/vegetazione-selvaggia-02.webp)\n\n![Una figura nascosta tra i tronchi di un bosco scuro](/contenuti/media/vegetazione-selvaggia-03.webp)\n\n![Chiome di alberi dipinte a macchie di verde](/contenuti/media/vegetazione-selvaggia-04.webp)\n\n![Un bosco verde con un sentiero in primo piano](/contenuti/media/vegetazione-selvaggia-05.webp)",
+  "blocchi": [
+    {
+      "tipo": "foto",
+      "immagine": "/contenuti/media/vegetazione-selvaggia-01.webp",
+      "descrizione": "Un bosco fitto dipinto con pennellate verdi e nervose",
+      "larghezza": "larga",
+      "posizione": "centro",
+      "effetto": "nessuno",
+      "didascalia": ""
+    },
+    {
+      "tipo": "citazione",
+      "testo": "Invenzioni disegnate e sperimentazioni del giorno: la pittura espressiva di masse verdi e boschi attraverso un segno istintivo.",
+      "colore": "verde",
+      "dimensione": "normale"
+    },
+    {
+      "tipo": "testo",
+      "testo": "Oggi la mia ricerca si sposta verso una gestualità più nervosa, quasi agitata. Non cerco la precisione botanica, ma l’energia del bosco: dipingo di getto grandi masse verdi che si sovrappongono, usando il colore come se fosse un respiro affannato tra gli alberi.\n\nIn mezzo a questa vegetazione intricata appare una figura. È un corpo disegnato con segni densi, graffiati, quasi fosse un taccuino vivente. Sembra smarrita, impegnata a cercare la strada di casa tra i rami e le ombre.\n\nIn questa sperimentazione artistica, il tratto non descrive solo un luogo, ma uno stato d’animo: quel momento in cui il paesaggio interiore e quello reale si fondono nel tentativo di ritrovarsi."
+    },
+    {
+      "tipo": "foto_fila",
+      "foto": [
+        {
+          "immagine": "/contenuti/media/vegetazione-selvaggia-02.webp",
+          "descrizione": "Alberi dipinti lungo un sentiero chiaro"
+        },
+        {
+          "immagine": "/contenuti/media/vegetazione-selvaggia-03.webp",
+          "descrizione": "Una figura nascosta tra i tronchi di un bosco scuro"
+        }
+      ],
+      "formato": "originale",
+      "larghezza": "larga"
+    },
+    {
+      "tipo": "foto_fila",
+      "foto": [
+        {
+          "immagine": "/contenuti/media/vegetazione-selvaggia-04.webp",
+          "descrizione": "Chiome di alberi dipinte a macchie di verde"
+        },
+        {
+          "immagine": "/contenuti/media/vegetazione-selvaggia-05.webp",
+          "descrizione": "Un bosco verde con un sentiero in primo piano"
+        }
+      ],
+      "formato": "originale",
+      "larghezza": "larga"
+    }
+  ],
   "pubblicato": true
 }

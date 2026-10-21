@@ -81,26 +81,215 @@ collections:
         label: Descrizione della copertina
         widget: string
         hint: Cosa si vede nella foto, in poche parole (serve a chi non vede le immagini e a Google).
-      - name: testo
-        label: Testo
-        widget: markdown
-        modes: [rich_text]
-        buttons: [bold, italic, link, heading-two, quote, bulleted-list, numbered-list]
-        editor_components: [image]
-        linked_images: false
+      - name: blocchi
+        label: Contenuto della pagina
+        label_singular: blocco
+        widget: list
+        typeKey: tipo
+        collapsed: auto
+        allow_reorder: true
         hint: >-
-          Le citazioni (pulsante virgolette) appaiono sulla pennellata verde.
-          Più foto una dopo l'altra diventano una griglia che si ingrandisce al clic.
-          Quando inserisci una foto, scrivi anche la sua descrizione.
-      - name: galleria
-        label: Galleria in fondo alla pagina
-        widget: image
-        multiple: true
-        required: false
-        choose_url: false
-        hint: >-
-          Per tante foto insieme (per esempio una gita): selezionale tutte in una volta.
-          Compaiono in una griglia sotto il testo e si ingrandiscono al clic.
+          Componi la pagina con i blocchi: premi Aggiungi e scegli il tipo.
+          Trascinali per cambiarne l'ordine.
+        types:
+          - name: testo
+            label: Testo
+            summary: "Testo: {{testo | truncate(60)}}"
+            fields:
+              - name: testo
+                label: Testo
+                widget: markdown
+                modes: [rich_text]
+                buttons: [bold, italic, link, heading-two, bulleted-list, numbered-list]
+                editor_components: []
+
+          - name: titoletto
+            label: Titoletto
+            summary: "Titoletto: {{testo}}"
+            fields:
+              - name: testo
+                label: Titoletto
+                widget: string
+              - name: stile
+                label: Stile
+                widget: select
+                default: mano
+                options:
+                  - { label: "Scritto a mano", value: mano }
+                  - { label: "Maiuscoletto", value: maiuscoletto }
+
+          - name: foto
+            label: Foto
+            summary: "Foto: {{descrizione}}"
+            fields:
+              - name: immagine
+                label: Foto
+                widget: image
+                choose_url: false
+              - name: descrizione
+                label: Descrizione
+                widget: string
+                hint: Cosa si vede nella foto (serve a chi non vede le immagini e a Google).
+              - name: larghezza
+                label: Larghezza
+                widget: select
+                default: larga
+                options:
+                  - { label: "Stretta", value: stretta }
+                  - { label: "Come il testo", value: normale }
+                  - { label: "Larga", value: larga }
+                  - { label: "Tutta la pagina", value: piena }
+              - name: posizione
+                label: Posizione
+                widget: select
+                default: centro
+                hint: Conta per le foto strette o come il testo.
+                options:
+                  - { label: "Al centro", value: centro }
+                  - { label: "A sinistra", value: sinistra }
+                  - { label: "A destra", value: destra }
+              - name: effetto
+                label: Effetto
+                widget: select
+                default: nessuno
+                options:
+                  - { label: "Nessuno", value: nessuno }
+                  - { label: "Appoggiata, storta a sinistra", value: appoggiata-sinistra }
+                  - { label: "Appoggiata, storta a destra", value: appoggiata-destra }
+                  - { label: "Polaroid (bordo bianco)", value: polaroid }
+              - name: didascalia
+                label: Didascalia
+                widget: string
+                required: false
+                hint: Una riga sotto la foto, scritta a mano. Facoltativa.
+
+          - name: foto_testo
+            label: Foto accanto al testo
+            summary: "Foto e testo: {{descrizione}}"
+            fields:
+              - name: immagine
+                label: Foto
+                widget: image
+                choose_url: false
+              - name: descrizione
+                label: Descrizione della foto
+                widget: string
+              - name: testo
+                label: Testo
+                widget: markdown
+                modes: [rich_text]
+                buttons: [bold, italic, link, heading-two, bulleted-list]
+                editor_components: []
+              - name: lato
+                label: La foto sta
+                widget: select
+                default: sinistra
+                options:
+                  - { label: "A sinistra del testo", value: sinistra }
+                  - { label: "A destra del testo", value: destra }
+              - name: proporzione
+                label: Grandezza della foto
+                widget: select
+                default: meta
+                options:
+                  - { label: "Piccola", value: piccola }
+                  - { label: "Metà e metà", value: meta }
+                  - { label: "Grande", value: grande }
+
+          - name: foto_fila
+            label: Foto in fila
+            summary: "Foto in fila"
+            fields:
+              - name: foto
+                label: Foto
+                label_singular: foto
+                widget: list
+                min: 2
+                max: 4
+                summary: "{{fields.descrizione}}"
+                fields:
+                  - name: immagine
+                    label: Foto
+                    widget: image
+                    choose_url: false
+                  - name: descrizione
+                    label: Descrizione
+                    widget: string
+              - name: formato
+                label: Formato
+                widget: select
+                default: originale
+                options:
+                  - { label: "Come sono", value: originale }
+                  - { label: "Tutte quadrate", value: quadrato }
+              - name: larghezza
+                label: Larghezza
+                widget: select
+                default: larga
+                options:
+                  - { label: "Come il testo", value: normale }
+                  - { label: "Larga", value: larga }
+                  - { label: "Tutta la pagina", value: piena }
+
+          - name: citazione
+            label: Citazione
+            summary: "Citazione: {{testo | truncate(60)}}"
+            fields:
+              - name: testo
+                label: Frase
+                widget: text
+              - name: colore
+                label: Pennellata
+                widget: select
+                default: verde
+                options:
+                  - { label: "Verde", value: verde }
+                  - { label: "Pesca", value: pesca }
+                  - { label: "Crema", value: crema }
+              - name: dimensione
+                label: Grandezza
+                widget: select
+                default: normale
+                options:
+                  - { label: "Normale", value: normale }
+                  - { label: "Grande", value: grande }
+
+          - name: galleria
+            label: Galleria
+            summary: "Galleria"
+            fields:
+              - name: immagini
+                label: Foto
+                widget: image
+                multiple: true
+                choose_url: false
+                hint: Selezionale tutte in una volta. Si ingrandiscono al clic.
+              - name: colonne
+                label: Foto per riga
+                widget: select
+                default: "3"
+                options: ["2", "3", "4"]
+
+          - name: spazio
+            label: Spazio
+            summary: "Spazio {{altezza}}"
+            fields:
+              - name: altezza
+                label: Altezza
+                widget: select
+                default: medio
+                options:
+                  - { label: "Piccolo", value: piccolo }
+                  - { label: "Medio", value: medio }
+                  - { label: "Grande", value: grande }
+              - name: decorazione
+                label: Decorazione
+                widget: select
+                default: nessuna
+                options:
+                  - { label: "Nessuna", value: nessuna }
+                  - { label: "Una pennellata", value: pennellata }
+                  - { label: "Un piccolo Baruch", value: baruch }
       - name: pubblicato
         label: Pubblicata
         widget: boolean

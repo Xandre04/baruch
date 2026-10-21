@@ -497,6 +497,86 @@ def galleria_articolo(a):
     return '\n        <div class="art-figs art-figs--galleria reveal">\n' + "\n".join(figs) + "\n        </div>"
 
 
+def corpo_articolo(a):
+    """La pagina come Caterina l'ha composta a blocchi; per gli articoli vecchi, testo e galleria."""
+    if a.get("blocchi"):
+        return "\n".join(blocco(b, html.unescape(a["titolo"])) for b in a["blocchi"])
+    return testo(a.get("testo")) + galleria_articolo(a)
+
+
+# larghezza delle foto: come le dimensioni di 'sizes', così il browser scarica la versione giusta
+MISURA = {"stretta": "460px", "normale": "720px", "larga": "860px", "piena": "100vw"}
+
+
+def scelta(b, campo, possibili, predefinita):
+    """Valore di un'opzione del blocco, solo tra quelli previsti (un valore strano non rompe la pagina)."""
+    v = b.get(campo) or predefinita
+    return v if v in possibili else predefinita
+
+
+def foto_cliccabile(src, alt, sizes, didascalia=""):
+    i = immagine(src)
+    return (f'<button class="art-fig" type="button" data-full="{i["grande"]}" data-title="{html.escape(didascalia)}">'
+            f'{pic(src, alt or "", sizes=sizes)}</button>')
+
+
+def blocco(b, titolo=""):
+    tipo = b.get("tipo")
+    if tipo == "testo":
+        return f'        <div class="blk blk-testo">\n{testo(b.get("testo"))}\n        </div>'
+    if tipo == "titoletto":
+        stile = scelta(b, "stile", ("mano", "maiuscoletto"), "mano")
+        return f'        <h2 class="blk blk-titoletto stile-{stile}">{in_linea(b.get("testo") or "")}</h2>'
+    if tipo == "foto" and b.get("immagine"):
+        larg = scelta(b, "larghezza", MISURA, "larga")
+        pos = scelta(b, "posizione", ("sinistra", "centro", "destra"), "centro")
+        eff = scelta(b, "effetto", ("nessuno", "appoggiata-sinistra", "appoggiata-destra", "polaroid"), "nessuno")
+        dida = b.get("didascalia") or ""
+        cap = f"<figcaption>{in_linea(dida)}</figcaption>" if dida else ""
+        img = foto_cliccabile(b["immagine"], b.get("descrizione"), f"(max-width: 760px) 100vw, {MISURA[larg]}", dida)
+        return f'        <figure class="blk blk-foto w-{larg} a-{pos} e-{eff} reveal">{img}{cap}</figure>'
+    if tipo == "foto_testo" and b.get("immagine"):
+        lato = scelta(b, "lato", ("sinistra", "destra"), "sinistra")
+        prop = scelta(b, "proporzione", ("piccola", "meta", "grande"), "meta")
+        img = foto_cliccabile(b["immagine"], b.get("descrizione"), "(max-width: 760px) 100vw, 480px")
+        return (f'        <div class="blk blk-fototesto w-larga lato-{lato} prop-{prop} reveal">\n'
+                f'          <figure>{img}</figure>\n'
+                f'          <div class="blk-fototesto__testo">\n{testo(b.get("testo"))}\n          </div>\n'
+                f'        </div>')
+    if tipo == "foto_fila":
+        foto = [f for f in (b.get("foto") or []) if f.get("immagine")]
+        if not foto:
+            return ""
+        larg = scelta(b, "larghezza", MISURA, "larga")
+        fmt = scelta(b, "formato", ("originale", "quadrato"), "originale")
+        n = min(len(foto), 4)
+        figs = "".join(foto_cliccabile(f["immagine"], f.get("descrizione"), f"(max-width: 760px) 50vw, calc({MISURA[larg]} / {n})") for f in foto)
+        return f'        <div class="blk blk-fila w-{larg} fmt-{fmt} reveal" style="--cols:{n}">{figs}</div>'
+    if tipo == "citazione":
+        colore = scelta(b, "colore", ("verde", "pesca", "crema"), "verde")
+        dim = scelta(b, "dimensione", ("normale", "grande"), "normale")
+        return f'        <blockquote class="blk art-quote q-{colore} q-{dim} reveal"><p>{in_linea(b.get("testo") or "")}</p></blockquote>'
+    if tipo == "galleria":
+        foto = [f for f in (b.get("immagini") or []) if f]
+        if not foto:
+            return ""
+        cols = scelta(b, "colonne", ("2", "3", "4"), "3")
+        figs = "\n".join(
+            "          " + foto_cliccabile(f, f"{titolo or 'Foto'}, foto {n}", f"calc(100vw / {cols})") for n, f in enumerate(foto, 1)
+        )
+        return f'        <div class="blk art-figs art-figs--galleria reveal" style="--cols:{cols}">\n{figs}\n        </div>'
+    if tipo == "spazio":
+        alt_ = scelta(b, "altezza", ("piccolo", "medio", "grande"), "medio")
+        dec = scelta(b, "decorazione", ("nessuna", "pennellata", "baruch"), "nessuna")
+        dentro = {
+            "nessuna": "",
+            "pennellata": '<img src="assets/img/ui/pennellata-verde.webp" alt="" width="1100" height="413" loading="lazy">',
+            "baruch": '<img src="assets/img/ui/baruch-lettera.webp" alt="" width="360" height="507" loading="lazy">',
+        }[dec]
+        return f'        <div class="blk blk-spazio s-{alt_} d-{dec}" aria-hidden="true">{dentro}</div>'
+    return ""
+
+
 # pagine degli articoli
 for a in ART:
     s = SEZ[a["sezione"]]
@@ -516,7 +596,7 @@ for a in ART:
       </header>
       <figure class="article__cover reveal">{pic(a['copertina'], a['copertina_alt'], lazy=False, sizes="(max-width: 1040px) 100vw, 1000px")}</figure>
       <div class="article__body">
-{testo(a['testo'])}{galleria_articolo(a)}
+{corpo_articolo(a)}
         <p class="article__sign">Caterina</p>
       </div>
     </article>
