@@ -1,0 +1,38 @@
+{
+  "titolo": "PERCHÈ COSTRUISCO UN GATTO",
+  "sottotitolo": "lavoretto artistico artigianale",
+  "data": "2026-10-22",
+  "sezione": "le-cose-magiche-di-baruch",
+  "estratto": "Costruzione di un oggetto artistico come complemento d'arredo",
+  "copertina": "/contenuti/media/IMG_0161.webp",
+  "copertina_alt": "Una foto che rappresenta il basso di una persona di profilo, con valigia a forma di gatto.",
+  "blocchi": [
+    {
+      "tipo": "foto",
+      "immagine": "/contenuti/media/IMG_0163.webp",
+      "descrizione": "Sagoma di legno a forma di gatto decorato con maniglia.",
+      "larghezza": "larga",
+      "posizione": "sinistra",
+      "effetto": "nessuno",
+      "didascalia": ""
+    },
+    {
+      "tipo": "foto_testo",
+      "testo": "In casa abita un gatto che si lascia invitare volentieri tra le pagine dei libri per bambini. A me, però, piace immaginarlo anche di legno: per questo lo sagomo, lo faccio ritagliare, lo incido e gli do colore.\n\nNasce come oggetto per arredare un angolo di casa, ma nell'illustrazione si trasforma subito nella valigia di un mondo parallelo. Perché oggi, in fondo, avevo proprio voglia di mettermi in cammino e lasciar vagare i pensieri.",
+      "immagine": "/contenuti/media/IMG_0168.webp",
+      "descrizione": "Foto del gatto di casa",
+      "lato": "sinistra",
+      "proporzione": "meta"
+    },
+    {
+      "tipo": "foto",
+      "immagine": "/contenuti/media/IMG_0169.webp",
+      "descrizione": "Bozzetto di due gattini",
+      "larghezza": "larga",
+      "posizione": "destra",
+      "effetto": "nessuno",
+      "didascalia": ""
+    }
+  ],
+  "pubblicato": true
+}
