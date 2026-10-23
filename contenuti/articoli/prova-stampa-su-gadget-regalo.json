@@ -1,0 +1,37 @@
+{
+  "titolo": "PROVA STAMPA SU GADGET REGALO",
+  "sottotitolo": "Tazze personalizzate",
+  "data": "2026-10-23",
+  "sezione": "le-cose-magiche-di-baruch",
+  "estratto": "stampa a numero limitatissimo di illustrazioni su tazze",
+  "copertina": "/contenuti/media/IMG_0183.webp",
+  "copertina_alt": "Immagine fotografica di coppia di tazze con illustrazione fronte e retro",
+  "blocchi": [
+    {
+      "tipo": "foto_fila",
+      "larghezza": "larga",
+      "foto": [
+        {
+          "immagine": "/contenuti/media/IMG_0182.webp",
+          "descrizione": "Tazza decorata  fronte e retro, tema: LA TENEREZZA ILLUMINA"
+        },
+        {
+          "immagine": "/contenuti/media/IMG_0181.webp",
+          "descrizione": "Tazza decorata fronte e retro, tema: CUSTODIRE LA MERAVIGLIA"
+        },
+        {
+          "immagine": "/contenuti/media/IMG_0180.webp",
+          "descrizione": "Tazza decorata fronte e retro, tema: LA SEMPLICITÀ DELLE PICCOLE COSE"
+        }
+      ],
+      "formato": "originale"
+    },
+    {
+      "tipo": "citazione",
+      "testo": "Idea, regalo, proposta, esperimento…la sorpresa di vedere le proprie illustrazioni su  oggetti di uso quotidiano.",
+      "colore": "crema",
+      "dimensione": "normale"
+    }
+  ],
+  "pubblicato": true
+}
