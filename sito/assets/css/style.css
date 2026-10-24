@@ -339,10 +339,13 @@ button { font: inherit; color: inherit; }
 }
 
 /* opere su commissione e oggetti */
-.works { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: clamp(28px, 4vw, 56px) clamp(20px, 3vw, 44px); }
-.work { margin: 0; grid-column: span 2; }
-.work:nth-child(1), .work:nth-child(2) { grid-column: span 3; }
-.work:nth-child(2) { margin-top: 60px; }
+/* a mattoncini: righe sottili da 8px, ogni progetto ne occupa quante gliene servono (calcolo in main.js),
+   così i progetti si incastrano negli spazi liberi qualunque sia la forma, nell'ordine dell'elenco */
+.works { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 48px clamp(20px, 3vw, 44px); align-items: start; }
+.js .works { grid-auto-rows: 8px; row-gap: 0; }
+.work { margin: 0; }
+@media (max-width: 900px) { .works { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 560px) { .works { grid-template-columns: 1fr; } }
 .work { display: block; text-decoration: none; color: var(--ink); }
 .work__img { display: block; overflow: hidden; box-shadow: 0 14px 30px -18px rgba(52, 67, 47, .45); }
 .work__img img { width: 100%; transition: transform .9s var(--ease); }
@@ -384,8 +387,6 @@ button { font: inherit; color: inherit; }
   .plates { columns: 2; }
 }
 @media (max-width: 760px) {
-  .works { grid-template-columns: 1fr; }
-  .work, .work:nth-child(1), .work:nth-child(2) { grid-column: auto; margin-top: 0; }
 }
 .objects { margin-top: clamp(40px, 6vw, 80px); }
 .objects .hand-title {

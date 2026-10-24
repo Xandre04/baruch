@@ -57,6 +57,18 @@ if ("IntersectionObserver" in window) {
   reveals.forEach((el) => el.classList.add("is-in"));
 }
 
+/* ---------- Mondi illustrati a mattoncini: ogni progetto occupa le righe da 8px che gli servono ---------- */
+const mattoni = document.querySelector(".works");
+if (mattoni && "ResizeObserver" in window) {
+  const RIGA = 8, SPAZIO = 48; // come grid-auto-rows e lo spazio tra i progetti nel CSS
+  const misura = new ResizeObserver((voci) =>
+    voci.forEach(({ target }) => {
+      target.style.gridRowEnd = `span ${Math.ceil((target.getBoundingClientRect().height + SPAZIO) / RIGA)}`;
+    })
+  );
+  [...mattoni.children].forEach((el) => misura.observe(el));
+}
+
 /* ---------- Filtro del Diario per sezione ---------- */
 const filtro = document.querySelector("[data-filtro]");
 if (filtro) {
