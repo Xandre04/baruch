@@ -280,11 +280,13 @@ button { font: inherit; color: inherit; }
 .journal--more { padding-top: 0; }
 
 /* due colonne sfalsate, come fotografie appoggiate sul foglio */
+/* a mattoncini come Mondi illustrati: ogni pagina occupa le righe da 8px che le servono (main.js) */
 .entries {
-  display: grid; grid-template-columns: repeat(2, minmax(0, 1fr));
-  column-gap: clamp(28px, 6vw, 96px); row-gap: clamp(48px, 6vw, 80px);
+  --spazio: 64px;
+  display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); align-items: start;
+  column-gap: clamp(28px, 6vw, 96px); row-gap: var(--spazio);
 }
-.entries > :nth-child(even) { margin-top: clamp(40px, 7vw, 110px); }
+.js .entries { grid-auto-rows: 8px; row-gap: 0; }
 .entry__link { display: block; text-decoration: none; color: var(--ink); }
 .entry__photo {
   display: block; overflow: hidden; background: #eef0e8;
@@ -310,12 +312,8 @@ button { font: inherit; color: inherit; }
   transition: border-color .25s, gap .35s var(--ease);
 }
 .entry__link:hover .entry__more { border-color: var(--terracotta); gap: 12px; }
-.entries[data-filtrato] > * { margin-top: 0; }
-.entries[data-filtrato] > .pari { margin-top: clamp(40px, 7vw, 110px); }
 @media (max-width: 760px) {
   .entries { grid-template-columns: 1fr; }
-  .entries[data-filtrato] > .pari { margin-top: 0; }
-  .entries > :nth-child(even) { margin-top: 0; }
 }
 
 /* testata delle sezioni: il disegno accanto al titolo scritto a mano */
@@ -341,7 +339,7 @@ button { font: inherit; color: inherit; }
 /* opere su commissione e oggetti */
 /* a mattoncini: righe sottili da 8px, ogni progetto ne occupa quante gliene servono (calcolo in main.js),
    così i progetti si incastrano negli spazi liberi qualunque sia la forma, nell'ordine dell'elenco */
-.works { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 48px clamp(20px, 3vw, 44px); align-items: start; }
+.works { --spazio: 48px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--spazio) clamp(20px, 3vw, 44px); align-items: start; }
 .js .works { grid-auto-rows: 8px; row-gap: 0; }
 .work { margin: 0; }
 @media (max-width: 900px) { .works { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
