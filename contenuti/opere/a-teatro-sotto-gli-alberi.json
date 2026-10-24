@@ -1,6 +1,6 @@
 {
   "titolo": "Teatro sotto gli alberi - inverno",
-  "titolo_breve": "A teatro sotto gli alberi",
+  "titolo_breve": "Teatro sotto gli alberi",
   "sottotitolo": "un progetto di teatro, casa e natura",
   "categoria": "Rassegne teatrali",
   "committente": "Molino Rosenkranz",
@@ -14,19 +14,19 @@
   "tavole": [
     {
       "immagine": "/contenuti/media/SITO_DEFINITIVO.webp",
-      "alt": ""
+      "alt": "Illustrazione completa, in un formato stretto e lungo orizzontalmente con casa, alberi, bambini e animali che giocano."
     },
     {
       "immagine": "/contenuti/media/Opera_senza_titolo 1.webp",
-      "alt": ""
+      "alt": "Porzione ingrandita dell'illustrazione principale."
     },
     {
       "immagine": "/contenuti/media/Opera_senza_titolo 2.webp",
-      "alt": ""
+      "alt": "Porzione ingrandita del''illustrazione principale."
     },
     {
       "immagine": "/contenuti/media/Opera_senza_titolo.webp",
-      "alt": ""
+      "alt": "Porzione ingrandita dell'illustrazione principale."
     }
   ],
   "pdf": "",
