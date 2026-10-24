@@ -293,7 +293,7 @@ button { font: inherit; color: inherit; }
 }
 .entries > :nth-child(3n+2) .entry__photo { transform: rotate(.9deg); }
 .entries > :nth-child(3n) .entry__photo { transform: rotate(-.3deg); }
-.entry__photo img { width: 100%; aspect-ratio: 3 / 2; object-fit: cover; transition: transform .9s var(--ease); }
+.entry__photo img { width: 100%; max-height: 640px; object-fit: cover; transition: transform .9s var(--ease); } /* ogni copertina con la sua forma; le molto lunghe si fermano a 640px */
 .entry__link:hover .entry__photo, .entry__link:focus-visible .entry__photo { transform: rotate(0) translateY(-4px); }
 .entry__link:hover .entry__photo img { transform: scale(1.03); }
 .entry__meta {
@@ -408,7 +408,7 @@ button { font: inherit; color: inherit; }
 .article__head .hand-title { margin-bottom: 10px; }
 .article__sub { margin: 0; font-size: 1.12em; color: var(--ink-soft); }
 .article__cover { margin: 0 0 clamp(36px, 5vw, 64px); }
-.article__cover img { width: 100%; box-shadow: 0 22px 44px -28px rgba(52, 67, 47, .5); }
+.article__cover img { width: auto; max-width: 100%; max-height: 80vh; margin-inline: auto; box-shadow: 0 22px 44px -28px rgba(52, 67, 47, .5); } /* una verticale si restringe e resta tutta nello schermo */
 .article__body { max-width: 720px; margin: 0 auto; }
 .article__body > p { margin: 0 0 1.1em; }
 .article__body > p:first-child::first-letter {
