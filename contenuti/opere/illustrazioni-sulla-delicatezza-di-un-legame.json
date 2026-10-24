@@ -13,28 +13,28 @@
   "carica_tavole": [],
   "tavole": [
     {
-      "immagine": "/contenuti/media/10-OTTOBRE-1.webp",
-      "alt": ""
-    },
-    {
-      "immagine": "/contenuti/media/11-NOVEMBRE.webp",
-      "alt": ""
-    },
-    {
-      "immagine": "/contenuti/media/12-DICEMBRE-1.webp",
-      "alt": ""
-    },
-    {
       "immagine": "/contenuti/media/7-LUGLIO.webp",
-      "alt": ""
+      "alt": "Mamma con bambino che si cullano sull'amaca in giardino in una tiepida serata, con le lucette che creano un'atmosfera magica."
     },
     {
       "immagine": "/contenuti/media/8-AGOSTO-1.webp",
-      "alt": ""
+      "alt": "Mamma con bambino che navigano in mare aperto su una piccola barchetta a vela."
+    },
+    {
+      "immagine": "/contenuti/media/10-OTTOBRE-1.webp",
+      "alt": "Mamma che allatta il suo bambino in mezzo ad una ricca vegetazione."
     },
     {
       "immagine": "/contenuti/media/9-SETTEMBRE-1.webp",
-      "alt": ""
+      "alt": "Mamma e bambini che giocano con la loro immaginazione, trasformando un mantello blu in un piccolo mare con i pesci."
+    },
+    {
+      "immagine": "/contenuti/media/11-NOVEMBRE.webp",
+      "alt": "Paesaggio di un fiabesco bosco abitato da animali e da una casetta sullo sfondo."
+    },
+    {
+      "immagine": "/contenuti/media/12-DICEMBRE-1.webp",
+      "alt": "Mamma Maria che accoglie sotto il suo grande mantello, tutti coloro che lo desiderano."
     }
   ],
   "pdf": "",
