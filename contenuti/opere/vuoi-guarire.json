@@ -1,15 +1,18 @@
 {
   "titolo": "Calendario “Vuoi guarire?”",
+  "colore_titolo": "",
   "titolo_breve": "Vuoi guarire?",
   "sottotitolo": "Dodici mesi per raccontare il ritorno alla vita",
   "categoria": "Illustrazioni",
   "committente": "Con l’associazione Bereshit",
   "tecnica": "Tecnica mista: gouache e digitale",
-  "ordine": 8,
+  "ordine": 9,
   "copertina": "/contenuti/media/calendario.webp",
   "copertina_alt": "Una donna dai capelli rossi suona un liuto",
   "testo": "In questa collaborazione con l’associazione Bereshit, le parole del Vangelo incontrano il segno grafico per esplorare il concetto di guarigione.\n\nLe tavole giocano su una palette essenziale in cui il rosso e il blu si cercano, unite a una composizione serrata che stringe l’inquadratura sui dettagli essenziali.",
+  "colore_testo": "",
   "citazione": "Eliminando il superfluo, ogni mese diventa uno spazio calmo dove riflettere sul senso del testo.",
+  "colore_citazione": "",
   "carica_tavole": [],
   "tavole": [
     {
