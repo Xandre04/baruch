@@ -3,7 +3,7 @@
   "sottotitolo": "Tazze personalizzate",
   "data": "2026-10-23",
   "sezione": "le-cose-magiche-di-baruch",
-  "estratto": "stampa a numero limitatissimo di illustrazioni su tazze",
+  "estratto": "Sampa a numero limitatissimo di illustrazioni su tazze",
   "copertina": "/contenuti/media/tazze LA TENEREZZA ILLUMINA.webp",
   "copertina_alt": "Immagine fotografica di tazza con illustrazione fronte e retro",
   "blocchi": [
@@ -27,6 +27,15 @@
         }
       ],
       "formato": "originale"
+    },
+    {
+      "tipo": "foto",
+      "immagine": "/contenuti/media/IMG_0183-1.webp",
+      "descrizione": "Foto di una coppia di tazze con illustrazione fronte retro.",
+      "larghezza": "stretta",
+      "posizione": "centro",
+      "effetto": "nessuno",
+      "didascalia": ""
     }
   ],
   "pubblicato": true
