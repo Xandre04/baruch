@@ -520,13 +520,19 @@ def foto_cliccabile(src, alt, sizes, didascalia=""):
             f'{pic(src, alt or "", sizes=sizes)}</button>')
 
 
+def tinta(v):
+    """Colore scelto nell'editor come attributo style; solo codici esadecimali, così niente altro finisce nella pagina."""
+    return f' style="color:{v}"' if re.fullmatch(r"#[0-9a-fA-F]{3,8}", v or "") else ""
+
+
 def blocco(b, titolo=""):
     tipo = b.get("tipo")
+    c = tinta(b.get("colore_testo"))
     if tipo == "testo":
-        return f'        <div class="blk blk-testo">\n{testo(b.get("testo"))}\n        </div>'
+        return f'        <div class="blk blk-testo"{c}>\n{testo(b.get("testo"))}\n        </div>'
     if tipo == "titoletto":
         stile = scelta(b, "stile", ("mano", "maiuscoletto"), "mano")
-        return f'        <h2 class="blk blk-titoletto stile-{stile}">{in_linea(b.get("testo") or "")}</h2>'
+        return f'        <h2 class="blk blk-titoletto stile-{stile}"{c}>{in_linea(b.get("testo") or "")}</h2>'
     if tipo == "foto" and b.get("immagine"):
         larg = scelta(b, "larghezza", MISURA, "larga")
         pos = scelta(b, "posizione", ("sinistra", "centro", "destra"), "centro")
@@ -541,7 +547,7 @@ def blocco(b, titolo=""):
         img = foto_cliccabile(b["immagine"], b.get("descrizione"), "(max-width: 760px) 100vw, 480px")
         return (f'        <div class="blk blk-fototesto w-larga lato-{lato} prop-{prop} reveal">\n'
                 f'          <figure>{img}</figure>\n'
-                f'          <div class="blk-fototesto__testo">\n{testo(b.get("testo"))}\n          </div>\n'
+                f'          <div class="blk-fototesto__testo"{c}>\n{testo(b.get("testo"))}\n          </div>\n'
                 f'        </div>')
     if tipo == "foto_fila":
         foto = [f for f in (b.get("foto") or []) if f.get("immagine")]
@@ -555,7 +561,7 @@ def blocco(b, titolo=""):
     if tipo == "citazione":
         colore = scelta(b, "colore", ("verde", "pesca", "crema"), "verde")
         dim = scelta(b, "dimensione", ("normale", "grande"), "normale")
-        return f'        <blockquote class="blk art-quote q-{colore} q-{dim} reveal"><p>{in_linea(b.get("testo") or "")}</p></blockquote>'
+        return f'        <blockquote class="blk art-quote q-{colore} q-{dim} reveal"><p{c}>{in_linea(b.get("testo") or "")}</p></blockquote>'
     if tipo == "galleria":
         foto = [f for f in (b.get("immagini") or []) if f]
         if not foto:
@@ -592,7 +598,7 @@ for a in ART:
       <a class="back reveal" href="{url_sezione(s['slug'])}">{sez_drawing(s, "back__art")} {s['titolo']}</a>
       <header class="article__head reveal">
         <p class="article__date"><time datetime="{a['data']}">{a['data_it']}</time></p>
-        <h1 class="hand-title hand-title--big">{a['titolo']}</h1>{sub}
+        <h1 class="hand-title hand-title--big"{tinta(a.get('colore_titolo'))}>{a['titolo']}</h1>{sub}
       </header>
       <figure class="article__cover reveal">{pic(a['copertina'], a['copertina_alt'], lazy=False, sizes="(max-width: 1040px) 100vw, 1000px")}</figure>
       <div class="article__body">

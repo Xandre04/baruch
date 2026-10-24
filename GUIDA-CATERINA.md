@@ -75,6 +75,10 @@ Ogni foto ha la sua **descrizione**: scrivi in poche parole cosa si vede (serve 
 
 Su telefono i blocchi si mettono uno sotto l'altro, nello stesso ordine.
 
+### Colori
+
+I blocchi **Testo**, **Titoletto**, **Foto accanto al testo** e **Citazione** hanno il campo **Colore del testo**, e l'articolo ha **Colore del titolo**: scegli il colore dal selettore oppure scrivi il suo codice (per esempio `#C9623F`, il terracotta del titolo BARUCH). Lasciali vuoti per il verde scuro di sempre. Scegli colori ben leggibili sul fondo chiaro.
+
 ### Bozze
 
 Se togli la spunta **Pubblicata** e salvi, la pagina resta nell'editor ma non compare sul sito. Quando è pronta, rimetti la spunta e salva.
