@@ -10,15 +10,33 @@
   "copertina_alt": "Raffigura il mese di giugno, dove mamma e bambino sulla soglia di una tenda improvvisata con il mantello, osservano gli insetti con la luce di una pila.",
   "testo": "Nasce dalla collaborazione con l’Associazione Bereshit il calendario _Il mantello della fiducia_: un percorso illustrato che esplora la delicatezza del legame, che una mamma, Maria tesse con il suo bambino. La forza della presenza costruisce una relazione.\n\nMese dopo mese, i disegni raccontano come la fiducia non sia un punto d’arrivo, ma una conquista di ogni giorno.",
   "citazione": "",
-  "carica_tavole": [
-    "/contenuti/media/10-OTTOBRE-1.webp",
-    "/contenuti/media/11-NOVEMBRE.webp",
-    "/contenuti/media/12-DICEMBRE-1.webp",
-    "/contenuti/media/7-LUGLIO.webp",
-    "/contenuti/media/8-AGOSTO-1.webp",
-    "/contenuti/media/9-SETTEMBRE-1.webp"
+  "carica_tavole": [],
+  "tavole": [
+    {
+      "immagine": "/contenuti/media/10-OTTOBRE-1.webp",
+      "alt": ""
+    },
+    {
+      "immagine": "/contenuti/media/11-NOVEMBRE.webp",
+      "alt": ""
+    },
+    {
+      "immagine": "/contenuti/media/12-DICEMBRE-1.webp",
+      "alt": ""
+    },
+    {
+      "immagine": "/contenuti/media/7-LUGLIO.webp",
+      "alt": ""
+    },
+    {
+      "immagine": "/contenuti/media/8-AGOSTO-1.webp",
+      "alt": ""
+    },
+    {
+      "immagine": "/contenuti/media/9-SETTEMBRE-1.webp",
+      "alt": ""
+    }
   ],
-  "tavole": [],
   "pdf": "",
   "pdf_etichetta": "Sfoglia il calendario",
   "pubblicato": true
