@@ -1,0 +1,23 @@
+{
+  "titolo": "A TEATRO SOTTO GLI ALBERI",
+  "titolo_breve": "A teatro sotto gli alberi",
+  "sottotitolo": "un progetto di teatro, casa e natura",
+  "categoria": "Rassegne teatrali",
+  "committente": "Molino Rosenkranz",
+  "tecnica": "Mista: gouache e digitale",
+  "ordine": 1,
+  "copertina": "/contenuti/media/TEATRO SOTTO GLI ALBERI INVERNO.webp",
+  "copertina_alt": "Porzione di una illustrazione che raffigura in modo fiabesco e fantasioso bambini e animali in un ambiente che mescola l'interno di una casa con la natura esterna.",
+  "testo": "Illustrazione per la rassegna di teatro ragazzi – Associazione Molino Rosenkranz\nUn viaggio visivo nel mondo dell'infanzia, della natura e della meraviglia. Per la rassegna teatrale dedicata ai più piccoli organizzata da Molino Rosenkranz, ho realizzato un panorama illustrato che intreccia personaggi fiabeschi, elementi della natura e atmosfere accoglienti.",
+  "citazione": "«In ascolto del vento, tra fiori leggeri e passi di danza: il teatro è una casa aperta alla meraviglia.»",
+  "carica_tavole": [
+    "/contenuti/media/SITO_DEFINITIVO.webp",
+    "/contenuti/media/Opera_senza_titolo 1.webp",
+    "/contenuti/media/Opera_senza_titolo 2.webp",
+    "/contenuti/media/Opera_senza_titolo.webp"
+  ],
+  "tavole": [],
+  "pdf": "",
+  "pdf_etichetta": "Sfoglia il calendario",
+  "pubblicato": true
+}
