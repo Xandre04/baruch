@@ -1,0 +1,46 @@
+{
+  "titolo": "Calendario  \"Abitare poeticamente\"",
+  "colore_titolo": "",
+  "titolo_breve": "\"Abitare poeticamente\"",
+  "sottotitolo": "\"Piccoli rifugi tra i fiori\"",
+  "categoria": "Illustrazioni",
+  "committente": "Committente: Associazione Bereshit",
+  "tecnica": "Tecnica mista, ecoline, pastelli acquerellatili, digitale",
+  "ordine": 7,
+  "copertina": "/contenuti/media/Opera_senza_titolo-1.webp",
+  "copertina_alt": "Una casetta stilizzata, abitata da una bambine che ne riempie lo spazio immersa nella natura.",
+  "testo": "_Abitare Poeticamente_ è un invito a cercare il proprio spazio nel mondo, imparando a ritrovare un senso di casa e di riparo anche nella meraviglia della natura selvatica. Un percorso illustrato dedicato a chi sa scorgere la poesia che si nasconde nei dettagli.",
+  "colore_testo": "",
+  "citazione": "Un tributo alla delicatezza, al riparo e alla magia di sentirsi a casa in mezzo alla natura.",
+  "colore_citazione": "",
+  "carica_tavole": [],
+  "tavole": [
+    {
+      "immagine": "/contenuti/media/3-MARZO.webp",
+      "alt": "Intreccio di fiori rosa intenso, da cui si scorge una piccola casetta."
+    },
+    {
+      "immagine": "/contenuti/media/6-GIUGNO-1.webp",
+      "alt": "Una moltitudine di margherite gialle che abbracciano una piccola casetta."
+    },
+    {
+      "immagine": "/contenuti/media/9-SETTEMBRE-2.webp",
+      "alt": "Una distesa di pansé gialli, blu, viola riempiono ogni spazio del foglio e nascondono tra i petali una piccola casetta."
+    },
+    {
+      "immagine": "/contenuti/media/2-FEBBRAIO.webp",
+      "alt": "Fiori nella notte che paiono palloncini pronti a volare, illuminati dalla lieve luce di una abitazione."
+    },
+    {
+      "immagine": "/contenuti/media/11-NOVEMBRE 1.webp",
+      "alt": "Una casa fiabesca, appoggia delicata sulle foglie delle ninfee che rivestono l'illustrazione."
+    },
+    {
+      "immagine": "/contenuti/media/7-LUGLIO-1.webp",
+      "alt": "Prato fiorito di mille colori intensi, con una piccola fila di casette."
+    }
+  ],
+  "pdf": "",
+  "pdf_etichetta": "Sfoglia il calendario",
+  "pubblicato": true
+}
