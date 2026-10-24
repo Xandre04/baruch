@@ -344,6 +344,12 @@ collections:
         label: Titolo
         widget: string
         hint: Per esempio Calendario “Prove di volo”.
+      - name: colore_titolo
+        label: Colore del titolo
+        widget: color
+        allowInput: true
+        required: false
+        hint: Lascia vuoto per il verde scuro di sempre.
       - name: titolo_breve
         label: Titolo breve
         widget: string
@@ -384,11 +390,23 @@ collections:
         modes: [rich_text]
         buttons: [bold, italic, link]
         minimal: true
+      - name: colore_testo
+        label: Colore del testo
+        widget: color
+        allowInput: true
+        required: false
+        hint: Lascia vuoto per il verde scuro di sempre.
       - name: citazione
         label: Frase sulla pennellata
         widget: text
         required: false
         hint: Una frase che appare grande sulla pennellata verde. Facoltativa.
+      - name: colore_citazione
+        label: Colore della frase sulla pennellata
+        widget: color
+        allowInput: true
+        required: false
+        hint: Lascia vuoto per il verde scuro di sempre.
       - name: carica_tavole
         label: Carica più tavole insieme
         widget: image

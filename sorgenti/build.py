@@ -243,6 +243,11 @@ for cartella in sorted((SITO / "diario").glob("*/"), reverse=True):
         cartella.rmdir()
 
 
+def tinta(v):
+    """Colore scelto nell'editor come attributo style; solo codici esadecimali, così niente altro finisce nella pagina."""
+    return f' style="color:{v}"' if re.fullmatch(r"#[0-9a-fA-F]{3,8}", v or "") else ""
+
+
 def pic(percorso, alt, lazy=True, sizes="(max-width: 760px) 100vw, 720px"):
     i = immagine(percorso)
     lz = ' loading="lazy"' if lazy else ""
@@ -432,7 +437,7 @@ for s in SEZIONI:
 MONDI = SEZ[MONDI_SLUG]
 for i, o in enumerate(OPERE):
     breve = o.get("titolo_breve") or o["titolo"]
-    quote = f'\n        <blockquote class="art-quote reveal"><p>{in_linea(o["citazione"])}</p></blockquote>' if o.get("citazione") else ""
+    quote = f'\n        <blockquote class="art-quote reveal"><p{tinta(o.get("colore_citazione"))}>{in_linea(o["citazione"])}</p></blockquote>' if o.get("citazione") else ""
     pdf_html = ""
     if o.get("pdf"):
         url, peso = pdf(o["pdf"])
@@ -464,7 +469,7 @@ for i, o in enumerate(OPERE):
       <a class="back reveal" href="{url_sezione(MONDI_SLUG)}">{sez_drawing(MONDI, "back__art")} {MONDI['titolo']}</a>
       <header class="article__head reveal">
         <p class="article__date">{o.get('categoria', '')}</p>
-        <h1 class="hand-title hand-title--big">{o['titolo']}</h1>{sub}
+        <h1 class="hand-title hand-title--big"{tinta(o.get('colore_titolo'))}>{o['titolo']}</h1>{sub}
       </header>
       <div class="opera__intro">
         <figure class="opera__cover reveal">
@@ -474,7 +479,9 @@ for i, o in enumerate(OPERE):
           <dl class="opera__facts">
 {facts}
           </dl>
-{testo(o.get('testo'))}{pdf_html}
+<div{tinta(o.get('colore_testo'))}>
+{testo(o.get('testo'))}
+        </div>{pdf_html}
         </div>
       </div>{quote}{tavole_html}
       <nav class="opera__nav reveal" aria-label="Altri progetti">
@@ -518,11 +525,6 @@ def foto_cliccabile(src, alt, sizes, didascalia=""):
     i = immagine(src)
     return (f'<button class="art-fig" type="button" data-full="{i["grande"]}" data-title="{html.escape(didascalia)}">'
             f'{pic(src, alt or "", sizes=sizes)}</button>')
-
-
-def tinta(v):
-    """Colore scelto nell'editor come attributo style; solo codici esadecimali, così niente altro finisce nella pagina."""
-    return f' style="color:{v}"' if re.fullmatch(r"#[0-9a-fA-F]{3,8}", v or "") else ""
 
 
 def blocco(b, titolo=""):

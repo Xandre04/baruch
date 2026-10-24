@@ -107,6 +107,7 @@ I progetti della sezione **Mondi illustrati** (calendari, rassegne teatrali, sto
    - per caricarle tutte insieme usa **Carica più tavole insieme**: selezionale in una volta e salva. Dopo la pubblicazione, riaprendo il progetto, le trovi nell'elenco **Le tavole**, dove puoi scrivere la descrizione di ciascuna;
    - per aggiungerne una sola, in **Le tavole** premi **Aggiungi**.
 5. Se c'è un PDF da sfogliare (per esempio il calendario completo), caricalo in **PDF da sfogliare**.
+   Anche qui puoi scegliere i colori: **Colore del titolo**, **Colore del testo** e **Colore della frase sulla pennellata** (vuoti = verde scuro).
 6. Premi **Salva**.
 
 ---
