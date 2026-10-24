@@ -8,6 +8,7 @@ import hashlib
 import html
 import json
 import re
+import unicodedata
 from pathlib import Path
 
 from PIL import Image
@@ -24,6 +25,14 @@ MESI = ["gennaio", "febbraio", "marzo", "aprile", "maggio", "giugno", "luglio",
 
 
 # ---------------- immagini ----------------
+def nome_sito(stem):
+    """Nome della foto per il sito, senza spazi né accenti: 'Opera senza titolo 1' -> 'opera-senza-titolo-1'.
+    Uno spazio spezzerebbe l'elenco delle versioni (srcset) e la foto non si caricherebbe."""
+    ascii_ = unicodedata.normalize("NFKD", stem).encode("ascii", "ignore").decode()
+    return re.sub(r"[^a-z0-9]+", "-", ascii_.lower()).strip("-") or "foto"
+
+
+
 _impronte = {}   # nome della foto -> impronta del suo contenuto
 _misure = {}
 
@@ -35,26 +44,29 @@ def prepara_immagini():
     (niente modifiche inutili nel repository), se cambia il nome cambia e i browser la riscaricano.
     """
     USCITA.mkdir(parents=True, exist_ok=True)
-    attese = set()
+    attese = {}   # nome della versione -> foto originale
     for src in sorted(MEDIA.iterdir()):
         if src.suffix.lower() not in (".jpg", ".jpeg", ".png", ".webp", ".gif", ".tif", ".tiff"):
             continue
         impronta = hashlib.md5(src.read_bytes()).hexdigest()[:8]
         _impronte[src.stem] = impronta
         for w in MISURE:
-            out = USCITA / f"{src.stem}-{impronta}-{w}.webp"
-            attese.add(out.name)
-            if out.exists():
-                continue
-            with Image.open(src) as im:
-                im = im.convert("RGBA" if "A" in im.getbands() else "RGB")
-                if im.width > w:
-                    im = im.resize((w, round(im.height * w / im.width)), Image.LANCZOS)
-                im.save(out, "WEBP", quality=82, method=6)
-            print("immagine", out.name)
+            attese[f"{nome_sito(src.stem)}-{impronta}-{w}.webp"] = (src, w)
+    # prima si tolgono le versioni non più usate, confrontando i nomi esatti:
+    # su Windows "6-GIUGNO.webp" e "6-giugno.webp" sarebbero lo stesso file
     for out in USCITA.glob("*.webp"):
         if out.name not in attese:
             out.unlink()
+    presenti = {p.name for p in USCITA.iterdir()}
+    for nome, (src, w) in attese.items():
+        if nome in presenti:
+            continue
+        with Image.open(src) as im:
+            im = im.convert("RGBA" if "A" in im.getbands() else "RGB")
+            if im.width > w:
+                im = im.resize((w, round(im.height * w / im.width)), Image.LANCZOS)
+            im.save(USCITA / nome, "WEBP", quality=82, method=6)
+        print("immagine", nome)
 
 
 def immagine(percorso):
@@ -62,7 +74,7 @@ def immagine(percorso):
     stem = Path(percorso).stem
     if stem not in _impronte:
         raise FileNotFoundError(f"Foto non trovata in contenuti/media: {percorso}")
-    base = f"assets/img/contenuti/{stem}-{_impronte[stem]}"
+    base = f"assets/img/contenuti/{nome_sito(stem)}-{_impronte[stem]}"
     if stem not in _misure:
         with Image.open(SITO / f"{base}-720.webp") as im:
             # scontornata: ha davvero dei pixel trasparenti (es. un oggetto su sfondo vuoto)
@@ -203,3 +215,11 @@ def accogli_caricamenti():
             _scrivi(file, dati)
             modificati.append(file)
     return modificati
+
+
+if __name__ == "__main__":
+    # controllo: python sorgenti/contenuti.py
+    assert nome_sito("Opera_senza_titolo 1") == "opera-senza-titolo-1"
+    assert nome_sito("Copertina IL MANTELLO DELLA FIDUCIA") == "copertina-il-mantello-della-fiducia"
+    assert nome_sito("Perché è così") == "perche-e-cosi"
+    print("ok")
