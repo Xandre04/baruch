@@ -52,6 +52,12 @@ collections:
       - name: titolo
         label: Titolo
         widget: string
+      - name: colore_titolo
+        label: Colore del titolo
+        widget: color
+        allowInput: true
+        required: false
+        hint: Lascia vuoto per il verde scuro di sempre.
       - name: sottotitolo
         label: Sottotitolo
         widget: string
@@ -102,6 +108,12 @@ collections:
                 modes: [rich_text]
                 buttons: [bold, italic, link, heading-two, bulleted-list, numbered-list]
                 editor_components: []
+              - name: colore_testo
+                label: Colore del testo
+                widget: color
+                allowInput: true
+                required: false
+                hint: Lascia vuoto per il verde scuro di sempre.
 
           - name: titoletto
             label: Titoletto
@@ -117,6 +129,12 @@ collections:
                 options:
                   - { label: "Scritto a mano", value: mano }
                   - { label: "Maiuscoletto", value: maiuscoletto }
+              - name: colore_testo
+                label: Colore del testo
+                widget: color
+                allowInput: true
+                required: false
+                hint: Lascia vuoto per il verde scuro di sempre.
 
           - name: foto
             label: Foto
@@ -195,6 +213,12 @@ collections:
                   - { label: "Piccola", value: piccola }
                   - { label: "Metà e metà", value: meta }
                   - { label: "Grande", value: grande }
+              - name: colore_testo
+                label: Colore del testo
+                widget: color
+                allowInput: true
+                required: false
+                hint: Lascia vuoto per il verde scuro di sempre.
 
           - name: foto_fila
             label: Foto in fila
@@ -253,6 +277,12 @@ collections:
                 options:
                   - { label: "Normale", value: normale }
                   - { label: "Grande", value: grande }
+              - name: colore_testo
+                label: Colore del testo
+                widget: color
+                allowInput: true
+                required: false
+                hint: Lascia vuoto per il verde scuro di sempre.
 
           - name: galleria
             label: Galleria
