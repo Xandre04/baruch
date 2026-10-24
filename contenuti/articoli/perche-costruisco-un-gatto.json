@@ -1,5 +1,6 @@
 {
   "titolo": "PERCHÈ COSTRUISCO UN GATTO?",
+  "colore_titolo": "#a75c55",
   "sottotitolo": "lavoretto artistico artigianale",
   "data": "2026-10-22",
   "sezione": "le-cose-magiche-di-baruch",
@@ -19,6 +20,7 @@
     {
       "tipo": "foto_testo",
       "testo": "In casa abita un gatto che si lascia invitare volentieri tra le pagine dei libri per bambini. A me, però, piace immaginarlo anche di legno: per questo lo sagomo, lo faccio ritagliare, lo incido e gli do colore.\n\nNasce come oggetto per arredare un angolo di casa, ma nell'illustrazione si trasforma subito nella valigia di un mondo parallelo. Perché oggi, in fondo, avevo proprio voglia di mettermi in cammino e lasciar vagare i pensieri.",
+      "colore_testo": "",
       "immagine": "/contenuti/media/IMG_0168.webp",
       "descrizione": "Foto del gatto di casa",
       "lato": "sinistra",
