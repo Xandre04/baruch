@@ -115,7 +115,7 @@ def footer(with_scrivimi=True):
     <div class="footer__grid">
       <a class="to-top" href="#top" aria-label="Torna su"><img src="assets/img/ui/bottone-freccia.webp" alt="" width="254" height="550" loading="lazy"></a>
       <p class="footer__line">
-        <span>Caterina Santambrogio</span><i class="sep"> - </i><span>Via Chiesa di Rorai 3 Pordenone</span><i class="sep"> - </i><span>cell. <a href="tel:+393404742250">3404742250</a></span><i class="sep"> - </i><span>P.I. 01980800930</span>
+        <span>Caterina Santambrogio</span><i class="sep"> - </i><span>Pordenone</span><i class="sep"> - </i><span>P.I. 01980800930</span>
       </p>
       <p class="footer__legal"><a href="{PRIVACY}">Privacy e cookie</a></p>
     </div>
@@ -678,7 +678,7 @@ page(
         <p class="legal__intro">In questa pagina trovi come vengono trattati i tuoi dati quando visiti il sito o mi scrivi, secondo il Regolamento europeo 2016/679 (GDPR) e la normativa italiana. In breve: il sito non usa cookie che ti seguono, non fa statistiche sulle visite e i tuoi dati servono solo a risponderti.</p>
 
         <h2>Chi tratta i tuoi dati</h2>
-        <p>Titolare del trattamento è <strong>Caterina Santambrogio</strong>, Via Chiesa di Rorai 3, Pordenone, partita IVA 01980800930.<br>
+        <p>Titolare del trattamento è <strong>Caterina Santambrogio</strong>, Pordenone, partita IVA 01980800930.<br>
         Per qualsiasi domanda sui tuoi dati: <a href="mailto:illustraremondi@gmail.com">illustraremondi@gmail.com</a>, PEC <a href="mailto:caterinasa@pec.it">caterinasa@pec.it</a>.</p>
 
         <h2>Quali dati</h2>
@@ -756,9 +756,7 @@ page(
         <div class="contact__info reveal" style="--d:.12s">
           <address>
             Caterina Santambrogio<br>
-            Via Chiesa di Rorai 3<br>
             Pordenone<br>
-            cell. <a href="tel:+393404742250">340 474 2250</a><br>
             P.I. 01980800930<br>
             <a href="mailto:illustraremondi@gmail.com">illustraremondi@gmail.com</a><br>
             PEC <a href="mailto:caterinasa@pec.it">caterinasa@pec.it</a>
