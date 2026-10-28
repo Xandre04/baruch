@@ -66,6 +66,7 @@ In **Contenuto della pagina** premi **Aggiungi** e scegli il tipo di blocco. Agg
 | **Foto accanto al testo** | foto e testo affiancati | foto a sinistra o a destra, piccola, a metà o grande |
 | **Foto in fila** | da 2 a 4 foto affiancate | come sono oppure tutte quadrate, larghezza |
 | **Citazione** | una frase su una pennellata | pennellata verde, pesca o crema, normale o grande |
+| **Video** | un video (per esempio dal telefono), file MP4 possibilmente sotto i 50 MB | larghezza, una riga di descrizione, un'immagine di anteprima facoltativa |
 | **Galleria** | tante foto insieme (una gita, un laboratorio) | 2, 3 o 4 foto per riga |
 | **Spazio** | un po' di respiro tra i blocchi | vuoto, con una pennellata o con un piccolo Baruch |
 

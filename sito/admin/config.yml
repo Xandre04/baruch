@@ -284,6 +284,37 @@ collections:
                 required: false
                 hint: Lascia vuoto per il verde scuro di sempre.
 
+          - name: video
+            label: Video
+            summary: "Video: {{descrizione}}"
+            fields:
+              - name: video
+                label: Video
+                widget: file
+                accept: video/*
+                media_folder: /sito/assets/video
+                public_folder: /assets/video
+                hint: File MP4, possibilmente sotto i 50 MB (i video del telefono vanno bene).
+              - name: descrizione
+                label: Descrizione
+                widget: string
+                required: false
+                hint: Una riga sotto il video, scritta a mano. Facoltativa.
+              - name: larghezza
+                label: Larghezza
+                widget: select
+                default: larga
+                options:
+                  - { label: "Come il testo", value: normale }
+                  - { label: "Larga", value: larga }
+                  - { label: "Tutta la pagina", value: piena }
+              - name: copertina
+                label: Immagine di anteprima
+                widget: image
+                required: false
+                choose_url: false
+                hint: Quella che si vede prima di premere play. Facoltativa.
+
           - name: galleria
             label: Galleria
             summary: "Galleria"

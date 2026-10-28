@@ -7,6 +7,7 @@ import hashlib
 import html
 import re
 from pathlib import Path
+from urllib.parse import quote as url_quote
 
 from contenuti import (IMG_MD, accogli_caricamenti, articoli, blocchi, collaborazioni, immagine, in_linea,
                        opere, pdf, prepara_immagini)
@@ -564,6 +565,16 @@ def blocco(b, titolo=""):
         colore = scelta(b, "colore", ("verde", "pesca", "crema"), "verde")
         dim = scelta(b, "dimensione", ("normale", "grande"), "normale")
         return f'        <blockquote class="blk art-quote q-{colore} q-{dim} reveal"><p{c}>{in_linea(b.get("testo") or "")}</p></blockquote>'
+    if tipo == "video" and b.get("video"):
+        larg = scelta(b, "larghezza", ("normale", "larga", "piena"), "larga")
+        src = b["video"].lstrip("/")             # "/assets/video/x.mp4", caricato dall'editor in sito/assets/video
+        if not (SITO / src).exists():
+            raise FileNotFoundError(f"Video non trovato: {b['video']}")
+        poster = f' poster="{immagine(b["copertina"])["grande"]}"' if b.get("copertina") else ""
+        desc = b.get("descrizione") or ""
+        cap = f"<figcaption>{in_linea(desc)}</figcaption>" if desc else ""
+        return (f'        <figure class="blk blk-video w-{larg} reveal"><video src="{url_quote(src)}{"" if poster else "#t=0.1"}" controls preload="metadata" '
+                f'playsinline{poster} aria-label="{html.escape(desc or titolo)}"></video>{cap}</figure>')
     if tipo == "galleria":
         foto = [f for f in (b.get("immagini") or []) if f]
         if not foto:

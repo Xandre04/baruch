@@ -5,6 +5,7 @@ Uso, dalla cartella principale del progetto:  python sorgenti/controlla.py
 import re
 import sys
 from pathlib import Path
+from urllib.parse import unquote
 
 SITO = Path(__file__).parent.parent / "sito"
 ESTERNO = re.compile(r"^(?:[a-z][a-z0-9+.-]*:|#|//)")
@@ -19,7 +20,7 @@ for f in pagine:
     for r in refs:
         if ESTERNO.match(r):
             continue
-        target = (f.parent / r.split("#")[0].split("?")[0]).resolve()
+        target = (f.parent / unquote(r.split("#")[0].split("?")[0])).resolve()
         if not target.exists():
             rotti += 1
             print(f"{f.relative_to(SITO)} -> {r}")
