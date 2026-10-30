@@ -1,0 +1,65 @@
+{
+  "titolo": "LABORATORIO UTLE FIUME VENETO",
+  "colore_titolo": "#263e0f",
+  "sottotitolo": "ALLA SCOPERTA DELL'ARTISTA GIOVANNA GARZONI",
+  "data": "2026-10-27",
+  "sezione": "costruire-con-baruch",
+  "estratto": "Un racconto d'arte e manualità con l’UTLE di Fiume Veneto, alla scoperta delle miniature botaniche di Giovanna Garzoni tra matita, fondo al caffè e velature trasparenti.",
+  "copertina": "/contenuti/media/1.webp",
+  "copertina_alt": "Immagini fotografiche dell'attività svolta.",
+  "blocchi": [
+    {
+      "tipo": "foto_testo",
+      "testo": "### L'emancipazione a fior di pennello: chi era Giovanna Garzoni\n\nIn un Seicento in cui l'arte era quasi esclusivamente un dominio maschile, Giovanna Garzoni è riuscita a tracciare una strada del tutto personale e indipendente. Donna libera, viaggiatrice curiosa e artista raffinatissima, la Garzoni rifiutò le convenzioni dell'epoca e il matrimonio per dedicarsi interamente alla sua passione. Conquistò le corti più prestigiose d'Europa — dai Medici a Firenze ai circoli d'avanguardia a Roma e Venezia — grazie a una tecnica inconfondibile e alla capacità di trasformare piccoli frutti, insetti e nature morte in autentici capolavori di poesia e rigore scientifico. La sua storia ci insegna che l'emancipazione passa anche dalla libertà di scegliere dove posare il proprio sguardo.",
+      "colore_testo": "",
+      "immagine": "/contenuti/media/2.webp",
+      "descrizione": "Immagini delle opere dell'artista Giovanna Garzoni.",
+      "lato": "sinistra",
+      "proporzione": "meta"
+    },
+    {
+      "tipo": "foto_testo",
+      "testo": "#### 1. Particolari d'autore e sfumature al caffè\n\nLa prima fase del lavoro è nata dall'osservazione da vicino dei dettagli più intimi delle nature morte di Giovanna: il guscio di una mandorla, la buccia rugosa di un fico, la forma di un piccolo insetto. Dopo aver tracciato i particolari utilizzando esclusivamente le matite grafite — lavorando con pazienza su chiaroscuri e volumi —, abbiamo introdotto un elemento inatteso e domestico: **il caffè**. Utilizzato per stendere fondini caldi, velature acquose o piccoli ritocchi d'ombra, il caffè ha donato alle carte una patina d'altri tempi e un profumo di familiarità.",
+      "colore_testo": "",
+      "immagine": "/contenuti/media/3.webp",
+      "descrizione": "Alcune foto dei lavori in corso.",
+      "lato": "destra",
+      "proporzione": "meta"
+    },
+    {
+      "tipo": "foto",
+      "immagine": "/contenuti/media/4.webp",
+      "descrizione": "Particolari dei disegni a matita e caffè, realizzati dalle allieve.",
+      "larghezza": "larga",
+      "posizione": "centro",
+      "effetto": "nessuno",
+      "didascalia": ""
+    },
+    {
+      "tipo": "foto",
+      "immagine": "/contenuti/media/5.webp",
+      "descrizione": "Immagini di alcuni disegni realizzati a matita e caffè, dalle allieve.",
+      "larghezza": "larga",
+      "posizione": "centro",
+      "effetto": "nessuno",
+      "didascalia": ""
+    },
+    {
+      "tipo": "foto_testo",
+      "testo": "#### 2. Il segreto della pennellata trasparente\n\nNel secondo incontro ci siamo addentrate nel cuore della tecnica della Garzoni: il suo celebre tratteggio a miniature. L'obiettivo è stato quello di provare a simulare la sua **pennellata piccolissima, sovrapposta e trasparente**, capace di restituire la consistenza quasi tattile delle superfici naturali. Le partecipanti si sono messe in gioco con pennelli e campiture leggere, scoprendo che la lentezza del segno non è solo un esercizio di precisione, ma una vera e propria forma di meditazione e cura.",
+      "colore_testo": "",
+      "immagine": "/contenuti/media/6.webp",
+      "descrizione": "Particolari, dei  disegni realizzati, a colori, dalle allieve.",
+      "lato": "sinistra",
+      "proporzione": "grande"
+    },
+    {
+      "tipo": "citazione",
+      "testo": "\"Creare insieme non significa solo imitare i grandi maestri, ma imparare a guardare le cose semplici con una meraviglia tutta nuova.\"",
+      "colore_testo": "",
+      "colore": "verde",
+      "dimensione": "normale"
+    }
+  ],
+  "pubblicato": true
+}
