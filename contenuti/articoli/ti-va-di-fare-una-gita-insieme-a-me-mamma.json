@@ -1,0 +1,62 @@
+{
+  "titolo": "TI VA DI FARE UNA GITA INSIEME A ME MAMMA?",
+  "colore_titolo": "#38571a",
+  "sottotitolo": "Gita al col San Giorgio",
+  "data": "2026-11-07",
+  "sezione": "le-avventure-di-baruch",
+  "estratto": "Gita al col San Giorgio nei pressi di Aviano",
+  "copertina": "/contenuti/media/IMG_0314.webp",
+  "copertina_alt": "Disegno a gouache, personaggio con cane",
+  "blocchi": [
+    {
+      "tipo": "foto_testo",
+      "testo": "Ti porto in un luogo che mi hai fatto conoscere tu, quando ero bambina. Lo ricordo ancora benissimo, per la quantità immensa di volte che ci hai portato: al Col San Giorgio, proprio sopra Aviano.\n\nRicordo i due sentieri per salire alla chiesetta — uno dalla pendenza dolce, l'altro più ripido —, la prima vipera avvistata nel bosco, il campo fiorito accanto al parcheggio e il profumo intenso dei ciclamini. E poi il muschio raccolto per il presepe, che a me sembrava a sacchi interi (forse solo perché avevo ancora la misura piccola di una bambina).\n\nRicordo i panini preparati a casa per poter rimanere fuori il più a lungo possibile, i bastoni trovati lungo il cammino, le foglie, il pungitopo e gli amici che si univano a noi.\n\nSo quanto hai amato questo posto: così vicino, così semplice da raggiungere, eppure capace di regalare uno scorcio di natura aperta, un respiro ampio, e quell'aria buona che dava forza e coraggio per tutti i giorni a venire.\n\nOggi ci sono tornata a castagne con Paolo.",
+      "colore_testo": "",
+      "immagine": "/contenuti/media/IMG_0317.webp",
+      "descrizione": "Disegni di piccoli elementi della natura, castagna, pungitopo, foglie di quercia, foglia di ciclamino.",
+      "lato": "sinistra",
+      "proporzione": "meta"
+    },
+    {
+      "tipo": "foto",
+      "immagine": "/contenuti/media/IMG_0316.webp",
+      "descrizione": "Disegno a gouache di uno scorcio del bosco",
+      "larghezza": "larga",
+      "posizione": "centro",
+      "effetto": "nessuno",
+      "didascalia": "Scorcio del sentiero nel bosco"
+    },
+    {
+      "tipo": "citazione",
+      "testo": "“E ho capito quante cose, in fondo, possiamo ancora fare insieme”",
+      "colore_testo": "",
+      "colore": "verde",
+      "dimensione": "normale"
+    },
+    {
+      "tipo": "foto",
+      "immagine": "/contenuti/media/IMG_0315.webp",
+      "descrizione": "Disegno a gouache, particolare di felce",
+      "larghezza": "larga",
+      "posizione": "centro",
+      "effetto": "nessuno",
+      "didascalia": ""
+    },
+    {
+      "tipo": "foto_fila",
+      "larghezza": "larga",
+      "foto": [
+        {
+          "immagine": "/contenuti/media/IMG_0313.webp",
+          "descrizione": "Bozzetto a gouache, frammento di natura"
+        },
+        {
+          "immagine": "/contenuti/media/IMG_0312.webp",
+          "descrizione": "Bozzetto a gouache, fili di fiori rosa che sembrano perle"
+        }
+      ],
+      "formato": "originale"
+    }
+  ],
+  "pubblicato": true
+}
