@@ -66,7 +66,7 @@ In **Contenuto della pagina** premi **Aggiungi** e scegli il tipo di blocco. Agg
 | **Foto accanto al testo** | foto e testo affiancati | foto a sinistra o a destra, piccola, a metà o grande |
 | **Foto in fila** | da 2 a 4 foto affiancate | come sono oppure tutte quadrate, larghezza |
 | **Citazione** | una frase su una pennellata | pennellata verde, pesca o crema, normale o grande |
-| **Video** | un video (per esempio dal telefono), file MP4 possibilmente sotto i 50 MB | larghezza, una riga di descrizione, un'immagine di anteprima facoltativa |
+| **Video** | un video in formato MP4, fino a circa 10 MB (vedi "File pesanti") | larghezza, una riga di descrizione, un'immagine di anteprima facoltativa |
 | **Galleria** | tante foto insieme (una gita, un laboratorio) | 2, 3 o 4 foto per riga |
 | **Spazio** | un po' di respiro tra i blocchi | vuoto, con una pennellata o con un piccolo Baruch |
 
@@ -126,6 +126,17 @@ I progetti della sezione **Mondi illustrati** (calendari, rassegne teatrali, sto
    Poi premi **Salva**.
 
 > Dopo aver caricato immagini in blocco, aspetta la pubblicazione e **ricarica l'editor** prima di fare altre modifiche alla galleria o al progetto, così lavori sulla versione aggiornata.
+
+---
+
+## File pesanti (PDF e video)
+
+Dall'editor passano file fino a **circa 10 MB**, a volte meno se la connessione è lenta. Le foto non hanno questo problema, perché l'editor le rimpicciolisce prima di salvarle. Se un PDF o un video è più pesante, al salvataggio compare l'errore **"Load failed"**.
+
+In quel caso:
+
+1. **Prova a ridurlo**: per i PDF va bene un servizio come "Comprimi PDF" di iLovePDF, per i video l'esportazione a qualità più bassa.
+2. **Oppure mandalo a me**: lo carico io, va bene qualunque peso ragionevole.
 
 ---
 

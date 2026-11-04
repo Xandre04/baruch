@@ -294,7 +294,7 @@ collections:
                 accept: video/*
                 media_folder: /sito/assets/video
                 public_folder: /assets/video
-                hint: File MP4, possibilmente sotto i 50 MB (i video del telefono vanno bene).
+                hint: "File MP4. Da qui passano file fino a circa 10 MB: per quelli più pesanti vedi \"File pesanti\" nella guida."
               - name: descrizione
                 label: Descrizione
                 widget: string
@@ -467,7 +467,7 @@ collections:
         required: false
         media_folder: /sito/assets/pdf
         public_folder: /assets/pdf
-        hint: Per esempio il calendario completo. Facoltativo.
+        hint: "Per esempio il calendario completo. Facoltativo. Da qui passano file fino a circa 10 MB: per quelli più pesanti vedi \"File pesanti\" nella guida."
       - name: pdf_etichetta
         label: Testo del pulsante del PDF
         widget: string
