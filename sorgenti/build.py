@@ -9,8 +9,8 @@ import re
 from pathlib import Path
 from urllib.parse import quote as url_quote
 
-from contenuti import (IMG_MD, accogli_caricamenti, articoli, blocchi, collaborazioni, immagine, in_linea,
-                       opere, pdf, prepara_immagini)
+from contenuti import (IMG_MD, accogli_caricamenti, annunci, articoli, blocchi, collaborazioni, immagine, in_linea,
+                       link_sicuro, opere, pdf, prepara_immagini)
 from diario import SEZIONI
 
 SORGENTI = Path(__file__).parent
@@ -317,6 +317,40 @@ GRIGLIA = ["mondi-illustrati", "le-avventure-di-baruch", "come-fiori-selvatici",
            "costruire-con-baruch", "le-cose-magiche-di-baruch"]
 
 
+def fascia_adesso():
+    """Gli annunci in evidenza. Quelli scaduti e oltre il terzo li nasconde main.js, che conosce la data di chi visita."""
+    # ponytail: senza JavaScript un annuncio scaduto resta visibile finché non si toglie; filtro in build se mai servisse
+    voci = []
+    for a in annunci():
+        fino = a.get("fino_al") or ""
+        fino = fino[:10] if re.fullmatch(r"\d{4}-\d{2}-\d{2}.*", fino) else ""
+        foto = f'<span class="adesso__foto">{pic(a["foto"], a.get("foto_alt") or "", sizes="180px")}</span>' if a.get("foto") else ""
+        quando = f'<p class="adesso__quando">{in_linea(a["quando"])}</p>' if a.get("quando") else ""
+        testo_ = f'<p class="adesso__testo">{in_linea(a["testo"])}</p>' if a.get("testo") else ""
+        url = link_sicuro(a.get("link"))
+        link = (f'<a class="entry__more" href="{url}">{html.escape(a.get("link_testo") or "Scopri di più")} '
+                '<i class="ph-bold ph-arrow-right" aria-hidden="true"></i></a>') if url else ""
+        voci.append(f"""        <article class="adesso__voce" data-fino="{fino}">
+          {foto}
+          <div>
+            {quando}
+            <h3 class="adesso__titolo">{in_linea(a["titolo"])}</h3>
+            {testo_}
+            {link}
+          </div>
+        </article>""")
+    if not voci:
+        return ""
+    corpo = "\n".join(voci)
+    return f"""      <section class="adesso reveal" aria-labelledby="adesso-titolo">
+        <h2 class="hand-title adesso__intestazione" id="adesso-titolo">Adesso</h2>
+        <div class="adesso__voci">
+{corpo}
+        </div>
+      </section>
+"""
+
+
 def griglia_sezioni():
     tiles = "\n".join(
         f"""      <a class="diary-item tile tile--{k} reveal" style="--d:{i * 0.08:.2f}s" href="{url_sezione(k)}">
@@ -328,7 +362,7 @@ def griglia_sezioni():
     # "copertura": il foglio che, scorrendo, sale sopra l'immagine principale ferma
     return f"""
     <div class="copertura">
-      <nav class="home-sezioni" aria-label="Le sezioni del diario">
+{fascia_adesso()}      <nav class="home-sezioni" aria-label="Le sezioni del diario">
 {tiles}
       </nav>
     </div>

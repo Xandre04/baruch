@@ -186,6 +186,21 @@ def collaborazioni():
     return voci
 
 
+def annunci():
+    """Gli annunci della fascia "Adesso" in home, nell'ordine scelto nell'editor."""
+    file = CONTENUTI / "adesso.json"
+    dati = json.loads(file.read_text(encoding="utf-8")) if file.exists() else {}
+    return [a for a in dati.get("annunci") or [] if a.get("titolo")]
+
+
+def link_sicuro(v):
+    """Solo indirizzi web o email; 'www.x.it' diventa 'https://www.x.it'. Altro testo non diventa un link."""
+    v = (v or "").strip()
+    if v.startswith("www."):
+        v = "https://" + v
+    return html.escape(v) if re.match(r"(https?://|mailto:)\S+$", v) else ""
+
+
 # ---------------- foto caricate in blocco ----------------
 def _scrivi(file, dati):
     file.write_text(json.dumps(dati, ensure_ascii=False, indent=2) + "\n", encoding="utf-8", newline="\n")
@@ -220,6 +235,9 @@ def accogli_caricamenti():
 if __name__ == "__main__":
     # controllo: python sorgenti/contenuti.py
     assert nome_sito("Opera_senza_titolo 1") == "opera-senza-titolo-1"
+    assert link_sicuro("www.baruch.it") == "https://www.baruch.it"
+    assert link_sicuro("https://a.it/b?c=1&d=2") == "https://a.it/b?c=1&amp;d=2"
+    assert link_sicuro("javascript:alert(1)") == "" and link_sicuro("scrivimi") == "" and link_sicuro("") == ""
     assert nome_sito("Copertina IL MANTELLO DELLA FIDUCIA") == "copertina-il-mantello-della-fiducia"
     assert nome_sito("Perché è così") == "perche-e-cosi"
     print("ok")

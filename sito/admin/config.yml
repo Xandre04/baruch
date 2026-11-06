@@ -35,6 +35,63 @@ slug:
   clean_accents: true
 
 collections:
+  # ---------------------------------------------------------------- Adesso
+  - name: adesso
+    label: Adesso
+    description: Gli annunci in evidenza nella home, per esempio un laboratorio in arrivo o cosa stai facendo in questo momento.
+    files:
+      - name: annunci
+        label: Annunci in evidenza
+        file: contenuti/adesso.json
+        fields:
+          - name: annunci
+            label: Annunci
+            label_singular: annuncio
+            widget: list
+            required: false
+            summary: "{{fields.titolo}}"
+            hint: Nella home se ne vedono al massimo tre, nell'ordine di questo elenco. Senza annunci, la fascia non compare.
+            fields:
+              - name: titolo
+                label: Titolo
+                widget: string
+                hint: Per esempio Laboratorio di stop motion.
+              - name: quando
+                label: Quando
+                widget: string
+                required: false
+                hint: Scritto come preferisci, per esempio Sabato 14 novembre, ore 15. Facoltativo.
+              - name: testo
+                label: Testo breve
+                widget: text
+                required: false
+                hint: Una o due righe. Facoltativo.
+              - name: foto
+                label: Foto o disegno
+                widget: image
+                required: false
+                choose_url: false
+              - name: foto_alt
+                label: Descrizione della foto
+                widget: string
+                required: false
+              - name: link
+                label: Link
+                widget: string
+                required: false
+                hint: L'indirizzo a cui porta l'annuncio, per esempio quello di un articolo copiato dal browser (https://...). Facoltativo.
+              - name: link_testo
+                label: Testo del link
+                widget: string
+                required: false
+                hint: Per esempio Scrivimi per iscriverti. Se lo lasci vuoto, Scopri di più.
+              - name: fino_al
+                label: Visibile fino al
+                widget: datetime
+                type: date
+                required: false
+                hint: Dopo questo giorno l'annuncio sparisce da solo dal sito. Lascialo vuoto per quelli senza scadenza.
+
   # ---------------------------------------------------------------- Diario
   - name: articoli
     label: Diario

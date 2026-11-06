@@ -69,6 +69,19 @@ if ("ResizeObserver" in window) {
   document.querySelectorAll(".works > *, .entries > *").forEach((el) => misura.observe(el));
 }
 
+/* ---------- Fascia "Adesso": via gli annunci scaduti, al massimo tre; senza annunci sparisce ---------- */
+const adesso = document.querySelector(".adesso");
+if (adesso) {
+  const oggi = new Date().toLocaleDateString("sv"); // AAAA-MM-GG nell'ora di chi visita
+  let visibili = 0;
+  adesso.querySelectorAll("[data-fino]").forEach((a) => {
+    const scaduto = a.dataset.fino && a.dataset.fino < oggi;
+    a.hidden = scaduto || visibili >= 3;
+    if (!a.hidden) visibili++;
+  });
+  adesso.hidden = visibili === 0;
+}
+
 /* ---------- Filtro del Diario per sezione ---------- */
 const filtro = document.querySelector("[data-filtro]");
 if (filtro) {

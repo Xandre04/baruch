@@ -129,6 +129,19 @@ I progetti della sezione **Mondi illustrati** (calendari, rassegne teatrali, sto
 
 ---
 
+## Annunci: la fascia "Adesso" in home
+
+Per un laboratorio in arrivo, un evento o quello che stai facendo in questo momento:
+
+1. A sinistra scegli **Adesso** e apri **Annunci in evidenza**.
+2. Premi **Aggiungi** e scrivi il **titolo**. Il resto è facoltativo: **quando**, **testo breve**, **foto**, **link**.
+3. In **Visibile fino al** scegli l'ultimo giorno: dopo quella data l'annuncio sparisce da solo dal sito. Per un annuncio senza scadenza, lascialo vuoto e toglilo quando vuoi.
+4. Premi **Salva**.
+
+Nella home si vedono al massimo tre annunci, nell'ordine dell'elenco: trascinali per cambiarlo. Senza annunci, la fascia non compare.
+
+---
+
 ## File pesanti (PDF e video)
 
 Dall'editor passano file fino a **circa 10 MB**, a volte meno se la connessione è lenta. Le foto non hanno questo problema, perché l'editor le rimpicciolisce prima di salvarle. Se un PDF o un video è più pesante, al salvataggio compare l'errore **"Load failed"**.
