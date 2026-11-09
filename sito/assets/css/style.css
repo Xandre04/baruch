@@ -723,3 +723,17 @@ button { font: inherit; color: inherit; }
 .adesso .entry__more { color: var(--ink); text-decoration: none; margin-top: 0; }
 .adesso .entry__more:hover { border-color: var(--terracotta); gap: 12px; }
 .adesso + .home-sezioni { padding-top: clamp(40px, 5vw, 72px); }
+
+/* ---------- Telefono e tocco ---------- */
+/* niente riquadro grigio al tocco: il riscontro lo danno già gli effetti dei disegni */
+a, button, summary, label { -webkit-tap-highlight-color: transparent; }
+/* "Vai al contenuto" e le ancore non finiscono sotto la barra del menu */
+html { scroll-padding-top: calc(var(--nav-h, 0px) + 12px); }
+/* con il menu o una foto ingrandita aperti, la pagina sotto resta ferma */
+.mobile-menu, .lightbox { overscroll-behavior: contain; }
+body:has(.lightbox[open]) { overflow: hidden; }
+/* link piccoli dentro il testo: area da toccare più alta, senza cambiare l'aspetto */
+@media (pointer: coarse) {
+  .footer__legal a, .contact__info a, .legal a, .form__note a { padding-block: 10px; }
+  .back { min-height: 48px; }
+}

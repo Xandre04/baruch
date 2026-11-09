@@ -36,6 +36,10 @@ if (menu) {
   document.addEventListener("keydown", (e) => {
     if (e.key === "Escape" && menu.classList.contains("is-open")) setMenu(false);
   });
+  // tornando indietro con il browser o girando il tablet in orizzontale il menu non deve restare aperto
+  const chiudi = () => menu.classList.contains("is-open") && setMenu(false);
+  addEventListener("pageshow", (e) => e.persisted && chiudi());
+  matchMedia("(min-width: 881px)").addEventListener("change", (e) => e.matches && chiudi());
 }
 
 /* ---------- Comparsa allo scorrimento ---------- */
