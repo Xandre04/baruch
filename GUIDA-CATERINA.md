@@ -129,16 +129,30 @@ I progetti della sezione **Mondi illustrati** (calendari, rassegne teatrali, sto
 
 ---
 
-## Annunci: la fascia "Adesso" in home
+## Lavori in corso: laboratori e lavori sul tavolo
 
-Per un laboratorio in arrivo, un evento o quello che stai facendo in questo momento:
+Per un laboratorio in arrivo, un evento o quello che stai disegnando in questo momento:
 
-1. A sinistra scegli **Adesso** e apri **Annunci in evidenza**.
-2. Premi **Aggiungi** e scrivi il **titolo**. Il resto è facoltativo: **quando**, **testo breve**, **foto**, **link**.
-3. In **Visibile fino al** scegli l'ultimo giorno: dopo quella data l'annuncio sparisce da solo dal sito. Per un annuncio senza scadenza, lascialo vuoto e toglilo quando vuoi.
-4. Premi **Salva**.
+1. A sinistra scegli **Lavori in corso** e apri **Annunci in evidenza**.
+2. Premi **Aggiungi** e scrivi il **titolo**. Il resto è facoltativo: **quando**, **testo breve**, **tutte le informazioni**, **foto**, **altre foto**, **link**.
+3. Nel **testo breve** metti l'essenziale (date, orari, luogo): si legge in home, accanto alla foto. In **Tutte le informazioni** scrivi i dettagli: che cosa si fa, per che età, quanto costa, come iscriversi. Le **altre foto** vanno in galleria.
+   Se compili i dettagli o le altre foto, cliccando il riquadro si apre una pagina tutta sua, come un articolo del diario.
+4. In **Visibile fino al** scegli l'ultimo giorno: dopo quella data l'annuncio sparisce da solo dal sito. Per un annuncio senza scadenza, lascialo vuoto e toglilo quando vuoi.
+5. Premi **Salva**.
 
-Nella home si vedono al massimo tre annunci, nell'ordine dell'elenco: trascinali per cambiarlo. Senza annunci, la fascia non compare.
+Ogni annuncio è un riquadro sulla carta a quadretti, in cima alla home: la foto e, accanto, le informazioni essenziali. Se ne vedono al massimo tre, nell'ordine dell'elenco: trascinali per cambiarlo. Senza annunci, la fascia non compare.
+
+### Il link per Instagram
+
+Nei post di Instagram i link non si possono cliccare. Metti questo indirizzo nella **bio** del profilo (Modifica profilo → Link):
+
+**https://illustraremondi.it/#lavori-in-corso**
+
+Porta dritto ai lavori in corso della home, e non cambia mai. Nel testo del post scrivi "Info e iscrizioni: link in bio". Nelle **storie** puoi aggiungere lo stesso indirizzo con l'adesivo **Link**.
+
+## Didascalie delle foto (misure, materiale…)
+
+I blocchi **Foto**, **Foto accanto al testo** e ogni foto di **Foto in fila** hanno il campo **Didascalia**: una riga sotto la foto, per esempio `Gatto in legno e cartapesta, 30 x 18 cm`. Compare anche quando la foto si ingrandisce.
 
 ---
 

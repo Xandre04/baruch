@@ -10,7 +10,7 @@ from pathlib import Path
 from urllib.parse import quote as url_quote
 
 from contenuti import (IMG_MD, accogli_caricamenti, annunci, articoli, blocchi, collaborazioni, immagine, in_linea,
-                       link_sicuro, opere, pdf, prepara_immagini)
+                       link_sicuro, nome_sito, opere, pdf, prepara_immagini)
 from diario import SEZIONI
 
 SORGENTI = Path(__file__).parent
@@ -317,35 +317,59 @@ GRIGLIA = ["mondi-illustrati", "le-avventure-di-baruch", "come-fiori-selvatici",
            "costruire-con-baruch", "le-cose-magiche-di-baruch"]
 
 
-def fascia_adesso():
-    """Gli annunci in evidenza. Quelli scaduti e oltre il terzo li nasconde main.js, che conosce la data di chi visita."""
-    # ponytail: senza JavaScript un annuncio scaduto resta visibile finché non si toglie; filtro in build se mai servisse
-    voci = []
-    for a in annunci():
-        fino = a.get("fino_al") or ""
-        fino = fino[:10] if re.fullmatch(r"\d{4}-\d{2}-\d{2}.*", fino) else ""
-        foto = f'<span class="adesso__foto">{pic(a["foto"], a.get("foto_alt") or "", sizes="180px")}</span>' if a.get("foto") else ""
-        quando = f'<p class="adesso__quando">{in_linea(a["quando"])}</p>' if a.get("quando") else ""
-        testo_ = f'<p class="adesso__testo">{in_linea(a["testo"])}</p>' if a.get("testo") else ""
-        url = link_sicuro(a.get("link"))
-        link = (f'<a class="entry__more" href="{url}">{html.escape(a.get("link_testo") or "Scopri di più")} '
-                '<i class="ph-bold ph-arrow-right" aria-hidden="true"></i></a>') if url else ""
-        voci.append(f"""        <article class="adesso__voce" data-fino="{fino}">
+def url_lavoro(a):
+    """La pagina dell'annuncio, solo se c'è qualcosa in più da leggere o da guardare."""
+    return f"lavori-in-corso/{nome_sito(a['titolo'])}.html" if a.get("dettagli") or a.get("immagini") else ""
+
+
+def link_iscrizione(a):
+    url = link_sicuro(a.get("link"))
+    return (f'<a class="entry__more" href="{url}">{html.escape(a.get("link_testo") or "Scopri di più")} '
+            '<i class="ph-bold ph-arrow-right" aria-hidden="true"></i></a>') if url else ""
+
+
+def lavoro(a):
+    """Un riquadro: la foto e, accanto, le informazioni essenziali; foto e titolo aprono la pagina con tutti i dettagli."""
+    fino = a.get("fino_al") or ""
+    fino = fino[:10] if re.fullmatch(r"\d{4}-\d{2}-\d{2}.*", fino) else ""
+    pagina = url_lavoro(a)
+    foto, titolo = "", in_linea(a["titolo"])
+    if a.get("foto"):
+        img = pic(a["foto"], a.get("foto_alt") or "", sizes="(max-width: 760px) 100vw, 420px")
+        foto = (f'<a class="lavoro__foto" href="{pagina}" tabindex="-1" aria-hidden="true">{img}</a>' if pagina else
+                f'<button class="art-fig lavoro__foto" type="button" data-full="{immagine(a["foto"])["grande"]}" '
+                f'data-title="{html.escape(a["titolo"])}">{img}</button>')
+    if pagina:
+        titolo = f'<a href="{pagina}">{titolo}</a>'
+    quando = f'<p class="lavoro__quando">{in_linea(a["quando"])}</p>' if a.get("quando") else ""
+    breve = f'<p class="lavoro__breve">{in_linea(a["testo"])}</p>' if a.get("testo") else ""
+    leggi = (f'<a class="entry__more" href="{pagina}">Tutti i dettagli <i class="ph-bold ph-arrow-right" aria-hidden="true"></i></a>'
+             if pagina else "")
+    return f"""        <article class="lavoro reveal{'' if foto else ' lavoro--solo-testo'}" data-fino="{fino}">
           {foto}
-          <div>
+          <div class="lavoro__testo">
             {quando}
-            <h3 class="adesso__titolo">{in_linea(a["titolo"])}</h3>
-            {testo_}
-            {link}
+            <h3 class="lavoro__titolo">{titolo}</h3>
+            {breve}
+            <p class="lavoro__link">{leggi}{link_iscrizione(a)}</p>
           </div>
-        </article>""")
+        </article>"""
+
+
+def fascia_adesso():
+    """Lavori in corso, il primo foglio che sale sopra l'immagine della home: riquadri su carta a quadretti.
+    Quelli scaduti e oltre il terzo li nasconde main.js, che conosce la data di chi visita.
+    L'ancora #lavori-in-corso è il link da mettere nella bio di Instagram."""
+    # ponytail: senza JavaScript un annuncio scaduto resta visibile finché non si toglie; filtro in build se mai servisse
+    voci = "\n".join(lavoro(a) for a in annunci())
     if not voci:
         return ""
-    corpo = "\n".join(voci)
-    return f"""      <section class="adesso reveal" aria-labelledby="adesso-titolo">
-        <h2 class="hand-title adesso__intestazione" id="adesso-titolo">Adesso</h2>
-        <div class="adesso__voci">
-{corpo}
+    return f"""      <section class="lavori" id="lavori-in-corso" aria-labelledby="lavori-titolo" data-annunci="3">
+        <h2 class="lavori__intestazione reveal" id="lavori-titolo">
+          <img class="lavori__disegno" src="assets/img/ui/lavori-in-corso.webp" alt="" width="360" height="560"> Lavori in corso
+        </h2>
+        <div class="lavori__voci">
+{voci}
         </div>
       </section>
 """
@@ -408,6 +432,7 @@ page(
     <div class="hero-spazio" aria-hidden="true"></div>
 """ + griglia_sezioni() + """
 """,
+    extra="\n  " + LIGHTBOX.format(single=""),
     preload='\n  <link rel="preload" as="image" href="assets/img/ui/hero.webp" imagesrcset="assets/img/ui/hero-1100.webp 1100w, assets/img/ui/hero.webp 2200w" imagesizes="100vw">',
 )
 
@@ -581,9 +606,11 @@ def blocco(b, titolo=""):
     if tipo == "foto_testo" and b.get("immagine"):
         lato = scelta(b, "lato", ("sinistra", "destra"), "sinistra")
         prop = scelta(b, "proporzione", ("piccola", "meta", "grande"), "meta")
-        img = foto_cliccabile(b["immagine"], b.get("descrizione"), "(max-width: 760px) 100vw, 480px")
+        dida = b.get("didascalia") or ""
+        img = foto_cliccabile(b["immagine"], b.get("descrizione"), "(max-width: 760px) 100vw, 480px", dida)
+        cap = f"<figcaption>{in_linea(dida)}</figcaption>" if dida else ""
         return (f'        <div class="blk blk-fototesto w-larga lato-{lato} prop-{prop} reveal">\n'
-                f'          <figure>{img}</figure>\n'
+                f'          <figure>{img}{cap}</figure>\n'
                 f'          <div class="blk-fototesto__testo"{c}>\n{testo(b.get("testo"))}\n          </div>\n'
                 f'        </div>')
     if tipo == "foto_fila":
@@ -593,7 +620,10 @@ def blocco(b, titolo=""):
         larg = scelta(b, "larghezza", MISURA, "larga")
         fmt = scelta(b, "formato", ("originale", "quadrato"), "originale")
         n = min(len(foto), 4)
-        figs = "".join(foto_cliccabile(f["immagine"], f.get("descrizione"), f"(max-width: 760px) 50vw, calc({MISURA[larg]} / {n})") for f in foto)
+        figs = "".join(
+            f'<figure>{foto_cliccabile(f["immagine"], f.get("descrizione"), f"(max-width: 760px) 50vw, calc({MISURA[larg]} / {n})", f.get("didascalia") or "")}'
+            + (f'<figcaption>{in_linea(f["didascalia"])}</figcaption>' if f.get("didascalia") else "") + "</figure>"
+            for f in foto)
         return f'        <div class="blk blk-fila w-{larg} fmt-{fmt} reveal" style="--cols:{n}">{figs}</div>'
     if tipo == "citazione":
         colore = scelta(b, "colore", ("verde", "pesca", "crema"), "verde")
@@ -659,6 +689,39 @@ for a in ART:
 {entries(altri)}
       </div>
     </section>""",
+        extra="\n  " + LIGHTBOX.format(single=""),
+    )
+
+# pagine dei lavori in corso: tutti i dettagli e le foto, come un articolo del diario
+for vecchia in (SITO / "lavori-in-corso").glob("*.html"):   # un annuncio tolto o rinominato non lascia pagine orfane
+    vecchia.unlink()
+for a in annunci():
+    if not url_lavoro(a):
+        continue
+    quando = f'\n        <p class="article__date">{in_linea(a["quando"])}</p>' if a.get("quando") else ""
+    sub = f'\n        <p class="article__sub">{in_linea(a["testo"])}</p>' if a.get("testo") else ""
+    cover = (f'\n      <figure class="article__cover reveal">{pic(a["foto"], a.get("foto_alt") or "", lazy=False, sizes="(max-width: 1040px) 100vw, 1000px")}</figure>'
+             if a.get("foto") else "")
+    foto = [f for f in (a.get("immagini") or []) if f]
+    galleria = blocco({"tipo": "galleria", "immagini": foto, "colonne": "2" if len(foto) < 3 else "3"}, a["titolo"])
+    iscrizione = f'\n        <p class="lavoro__link">{link_iscrizione(a)}</p>' if a.get("link") else ""
+    page(
+        url_lavoro(a), "lavori",
+        f"{html.escape(a['titolo'])} · Lavori in corso di Baruch",
+        html.escape(a.get("testo") or a["titolo"]),
+        f"""    <article class="article">
+      <a class="back reveal" href="index.html#lavori-in-corso"><img class="back__art" src="assets/img/ui/lavori-in-corso.webp" alt="" width="360" height="560"> Lavori in corso</a>
+      <header class="article__head reveal">{quando}
+        <h1 class="hand-title hand-title--big">{in_linea(a["titolo"])}</h1>{sub}
+      </header>{cover}
+      <div class="article__body">
+        <div class="blk blk-testo">
+{testo(a.get("dettagli"))}
+        </div>{iscrizione}
+{galleria}
+        <p class="article__sign">Caterina</p>
+      </div>
+    </article>""",
         extra="\n  " + LIGHTBOX.format(single=""),
     )
 

@@ -73,18 +73,18 @@ if ("ResizeObserver" in window) {
   document.querySelectorAll(".works > *, .entries > *").forEach((el) => misura.observe(el));
 }
 
-/* ---------- Fascia "Adesso": via gli annunci scaduti, al massimo tre; senza annunci sparisce ---------- */
-const adesso = document.querySelector(".adesso");
-if (adesso) {
+/* ---------- Lavori in corso in home: via gli annunci scaduti, al massimo tre ---------- */
+document.querySelectorAll("[data-annunci]").forEach((box) => {
   const oggi = new Date().toLocaleDateString("sv"); // AAAA-MM-GG nell'ora di chi visita
+  const max = +box.dataset.annunci || Infinity;
   let visibili = 0;
-  adesso.querySelectorAll("[data-fino]").forEach((a) => {
+  box.querySelectorAll("[data-fino]").forEach((a) => {
     const scaduto = a.dataset.fino && a.dataset.fino < oggi;
-    a.hidden = scaduto || visibili >= 3;
+    a.hidden = scaduto || visibili >= max;
     if (!a.hidden) visibili++;
   });
-  adesso.hidden = visibili === 0;
-}
+  box.classList.toggle("vuoto", !visibili); // senza annunci visibili la fascia sparisce
+});
 
 /* ---------- Filtro del Diario per sezione ---------- */
 const filtro = document.querySelector("[data-filtro]");

@@ -1,3 +1,25 @@
 {
-  "annunci": []
+  "annunci": [
+    {
+      "titolo": "Laboratori natalizi per bambini",
+      "quando": "20-27 novembre, dalle 16.30 alle 18.30",
+      "testo": "Alla biblioteca Librolandia, insieme all'Associazione Don Chisciotte.",
+      "dettagli": "- **Quando**: 20-27 novembre, dalle 16.30 alle 18.30\n- **Dove**: biblioteca Librolandia\n- **Con**: Associazione Don Chisciotte\n\nPer informazioni e iscrizioni scrivimi.",
+      "foto": "/contenuti/media/laboratori-natalizi-librolandia.jpg",
+      "foto_alt": "Locandina dei laboratori natalizi per bambini: una renna di legno snodata e un folletto con il berretto a righe",
+      "link": "mailto:illustraremondi@gmail.com",
+      "link_testo": "Scrivimi per iscriverti",
+      "fino_al": "2026-11-27"
+    },
+    {
+      "titolo": "Un lettino per l'arca di Noè",
+      "quando": "Sul tavolo in questi giorni",
+      "testo": "I primi bozzetti per una commissione: decorare il lettino di una bambina, a tema arca di Noè.",
+      "foto": "/contenuti/media/lettino-arca-di-noe-bozzetti.jpg",
+      "foto_alt": "Bozzetti a pastello: due giraffe, due leoni e due gatti abbracciati, un lettino di legno a pois e la tavolozza dei colori",
+      "link": "",
+      "link_testo": "",
+      "fino_al": ""
+    }
+  ]
 }

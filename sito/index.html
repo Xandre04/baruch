@@ -13,7 +13,7 @@
   <link rel="preload" href="assets/fonts/kalam-400-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="assets/css/fonts.css?v=d079829f">
   <link rel="stylesheet" href="assets/css/icone.css?v=a9ea510f">
-  <link rel="stylesheet" href="assets/css/style.css?v=341d8879">
+  <link rel="stylesheet" href="assets/css/style.css?v=efcc7ff6">
   <link rel="preload" as="image" href="assets/img/ui/hero.webp" imagesrcset="assets/img/ui/hero-1100.webp 1100w, assets/img/ui/hero.webp 2200w" imagesizes="100vw">
 </head>
 <body id="top" class="pagina-home">
@@ -65,6 +65,31 @@
     <div class="hero-spazio" aria-hidden="true"></div>
 
     <div class="copertura">
+      <section class="lavori" id="lavori-in-corso" aria-labelledby="lavori-titolo" data-annunci="3">
+        <h2 class="lavori__intestazione reveal" id="lavori-titolo">
+          <img class="lavori__disegno" src="assets/img/ui/lavori-in-corso.webp" alt="" width="360" height="560"> Lavori in corso
+        </h2>
+        <div class="lavori__voci">
+        <article class="lavoro reveal" data-fino="2026-11-27">
+          <a class="lavoro__foto" href="lavori-in-corso/laboratori-natalizi-per-bambini.html" tabindex="-1" aria-hidden="true"><img src="assets/img/contenuti/laboratori-natalizi-librolandia-fcca5b1b-720.webp" srcset="assets/img/contenuti/laboratori-natalizi-librolandia-fcca5b1b-720.webp 720w, assets/img/contenuti/laboratori-natalizi-librolandia-fcca5b1b-1400.webp 1400w" sizes="(max-width: 760px) 100vw, 420px" alt="Locandina dei laboratori natalizi per bambini: una renna di legno snodata e un folletto con il berretto a righe" width="720" height="720" loading="lazy"></a>
+          <div class="lavoro__testo">
+            <p class="lavoro__quando">20-27 novembre, dalle 16.30 alle 18.30</p>
+            <h3 class="lavoro__titolo"><a href="lavori-in-corso/laboratori-natalizi-per-bambini.html">Laboratori natalizi per bambini</a></h3>
+            <p class="lavoro__breve">Alla biblioteca Librolandia, insieme all'Associazione Don Chisciotte.</p>
+            <p class="lavoro__link"><a class="entry__more" href="lavori-in-corso/laboratori-natalizi-per-bambini.html">Tutti i dettagli <i class="ph-bold ph-arrow-right" aria-hidden="true"></i></a><a class="entry__more" href="mailto:illustraremondi@gmail.com">Scrivimi per iscriverti <i class="ph-bold ph-arrow-right" aria-hidden="true"></i></a></p>
+          </div>
+        </article>
+        <article class="lavoro reveal" data-fino="">
+          <button class="art-fig lavoro__foto" type="button" data-full="assets/img/contenuti/lettino-arca-di-noe-bozzetti-74def09b-1400.webp" data-title="Un lettino per l&#x27;arca di Noè"><img src="assets/img/contenuti/lettino-arca-di-noe-bozzetti-74def09b-720.webp" srcset="assets/img/contenuti/lettino-arca-di-noe-bozzetti-74def09b-720.webp 720w, assets/img/contenuti/lettino-arca-di-noe-bozzetti-74def09b-1400.webp 1400w" sizes="(max-width: 760px) 100vw, 420px" alt="Bozzetti a pastello: due giraffe, due leoni e due gatti abbracciati, un lettino di legno a pois e la tavolozza dei colori" width="720" height="720" loading="lazy"></button>
+          <div class="lavoro__testo">
+            <p class="lavoro__quando">Sul tavolo in questi giorni</p>
+            <h3 class="lavoro__titolo">Un lettino per l'arca di Noè</h3>
+            <p class="lavoro__breve">I primi bozzetti per una commissione: decorare il lettino di una bambina, a tema arca di Noè.</p>
+            <p class="lavoro__link"></p>
+          </div>
+        </article>
+        </div>
+      </section>
       <nav class="home-sezioni" aria-label="Le sezioni del diario">
       <a class="diary-item tile tile--mondi-illustrati reveal" style="--d:0.00s" href="diario/mondi-illustrati/index.html">
         <span class="tile__art"><img src="assets/img/diario/mondi-disegnati.webp" alt="Una casetta fatta di foglie d’autunno con la sua ombra" width="900" height="543"></span>
@@ -108,6 +133,15 @@
       <p class="footer__legal"><a href="privacy/index.html">Privacy e cookie</a></p>
     </div>
   </footer>
-  <script src="assets/js/main.js?v=e1cadd81" defer></script>
+  <dialog class="lightbox" id="lightbox" aria-label="Immagine ingrandita">
+    <div class="lightbox__bar"><button class="icon-btn" type="button" data-close aria-label="Chiudi"><i class="ph-bold ph-x" aria-hidden="true"></i></button></div>
+    <div class="lightbox__stage">
+      <button class="icon-btn lightbox__prev" type="button" aria-label="Immagine precedente"><i class="ph-bold ph-arrow-left" aria-hidden="true"></i></button>
+      <img alt="">
+      <button class="icon-btn lightbox__next" type="button" aria-label="Immagine successiva"><i class="ph-bold ph-arrow-right" aria-hidden="true"></i></button>
+    </div>
+    <p class="lightbox__caption" aria-live="polite"></p>
+  </dialog>
+  <script src="assets/js/main.js?v=514e08ca" defer></script>
 </body>
 </html>

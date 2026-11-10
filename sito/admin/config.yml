@@ -35,10 +35,10 @@ slug:
   clean_accents: true
 
 collections:
-  # ---------------------------------------------------------------- Adesso
+  # ---------------------------------------------------------------- Lavori in corso
   - name: adesso
-    label: Adesso
-    description: Gli annunci in evidenza nella home, per esempio un laboratorio in arrivo o cosa stai facendo in questo momento.
+    label: Lavori in corso
+    description: Laboratori in arrivo e lavori sul tavolo, nei riquadri a quadretti in cima alla home (al massimo tre). Con dettagli o altre foto, il riquadro apre una pagina tutta sua. Il link per Instagram è illustraremondi.it/#lavori-in-corso
     files:
       - name: annunci
         label: Annunci in evidenza
@@ -65,7 +65,15 @@ collections:
                 label: Testo breve
                 widget: text
                 required: false
-                hint: Una o due righe. Facoltativo.
+                hint: Le informazioni essenziali che si leggono nel riquadro in home, accanto alla foto: per esempio date, orari e luogo. Facoltativo.
+              - name: dettagli
+                label: Tutte le informazioni
+                widget: markdown
+                required: false
+                modes: [rich_text]
+                buttons: [bold, italic, link, bulleted-list]
+                editor_components: []
+                hint: "Per un laboratorio: che cosa si fa, per che età, dove, quando, quanto costa, come iscriversi. Si leggono nella pagina che si apre cliccando il riquadro."
               - name: foto
                 label: Foto o disegno
                 widget: image
@@ -75,6 +83,13 @@ collections:
                 label: Descrizione della foto
                 widget: string
                 required: false
+              - name: immagini
+                label: Altre foto
+                widget: image
+                multiple: true
+                required: false
+                choose_url: false
+                hint: Selezionale tutte insieme. Compaiono in galleria nella pagina dell'annuncio, sotto i dettagli.
               - name: link
                 label: Link
                 widget: string
@@ -249,6 +264,11 @@ collections:
               - name: descrizione
                 label: Descrizione della foto
                 widget: string
+              - name: didascalia
+                label: Didascalia
+                widget: string
+                required: false
+                hint: Una riga sotto la foto, per esempio misure e materiale. Facoltativa.
               - name: testo
                 label: Testo
                 widget: markdown
@@ -296,6 +316,11 @@ collections:
                   - name: descrizione
                     label: Descrizione
                     widget: string
+                  - name: didascalia
+                    label: Didascalia
+                    widget: string
+                    required: false
+                    hint: Una riga sotto la foto, per esempio misure e materiale. Facoltativa.
               - name: formato
                 label: Formato
                 widget: select
