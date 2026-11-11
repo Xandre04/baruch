@@ -724,24 +724,23 @@ body:has(.lightbox[open]) { overflow: hidden; }
   max-width: 1040px; margin: 0 auto clamp(24px, 3vw, 36px); display: flex; align-items: flex-end; gap: 12px;
   font-family: var(--hand); font-weight: 400; font-size: clamp(32px, 3.6vw, 48px); line-height: 1; color: var(--ink);
 }
-.lavori__disegno { width: auto; height: 2.1em; mix-blend-mode: multiply; transform: rotate(-4deg); }
-.lavori__voci { max-width: 1040px; margin: 0 auto; display: grid; gap: clamp(20px, 3vw, 32px); }
-.lavoro {
-  display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: clamp(20px, 3.4vw, 44px); align-items: start;
-  padding: clamp(18px, 2.6vw, 32px); background: var(--paper); border: 1.5px solid var(--ink);
+.lavori__disegno { width: auto; height: 3.4em; margin-bottom: -.2em; transform: rotate(-4deg); }
+/* riquadri piccoli, uno accanto all'altro (fino a tre per riga), senza bordo */
+.lavori__voci {
+  max-width: 1040px; margin: 0 auto; display: grid; align-items: start;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 260px), 1fr)); gap: clamp(20px, 3vw, 32px);
 }
+.lavoro { display: grid; gap: 14px; padding: 14px 14px 18px; background: var(--paper); }
 .lavoro[hidden] { display: none; }
-.lavoro--solo-testo { grid-template-columns: 1fr; }
 .lavoro__foto img { width: 100%; }
 .lavoro__quando { margin: 0; font-family: var(--hand); font-size: 18px; line-height: 1.3; color: var(--terracotta); }
-.lavoro__titolo { margin: 2px 0 10px; font-family: var(--hand); font-weight: 400; font-size: clamp(26px, 2.6vw, 34px); line-height: 1.15; }
-.lavoro__breve { margin: 0 0 12px; }
+.lavoro__titolo { margin: 2px 0 8px; font-family: var(--hand); font-weight: 400; font-size: 24px; line-height: 1.2; }
+.lavoro__breve { margin: 0 0 10px; font-size: .95em; }
 .lavoro__foto { display: block; }
 .lavoro__titolo a { color: inherit; text-decoration: none; }
 .lavoro__titolo a:hover { color: var(--terracotta); }
 .lavoro__link { display: flex; flex-wrap: wrap; gap: 6px 28px; margin: 0; }
 .lavoro__link .entry__more { color: var(--ink); text-decoration: none; }
-@media (max-width: 760px) { .lavoro { grid-template-columns: 1fr; } }
 .lavori + .home-sezioni { padding-top: clamp(56px, 7vw, 96px); }
 /* didascalie delle foto in fila e accanto al testo (misure, materiale...) */
 .blk-fila figure { margin: 0; }

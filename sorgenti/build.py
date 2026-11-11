@@ -345,7 +345,7 @@ def lavoro(a):
     breve = f'<p class="lavoro__breve">{in_linea(a["testo"])}</p>' if a.get("testo") else ""
     leggi = (f'<a class="entry__more" href="{pagina}">Tutti i dettagli <i class="ph-bold ph-arrow-right" aria-hidden="true"></i></a>'
              if pagina else "")
-    return f"""        <article class="lavoro reveal{'' if foto else ' lavoro--solo-testo'}" data-fino="{fino}">
+    return f"""        <article class="lavoro reveal" data-fino="{fino}">
           {foto}
           <div class="lavoro__testo">
             {quando}
@@ -366,7 +366,7 @@ def fascia_adesso():
         return ""
     return f"""      <section class="lavori" id="lavori-in-corso" aria-labelledby="lavori-titolo" data-annunci="3">
         <h2 class="lavori__intestazione reveal" id="lavori-titolo">
-          <img class="lavori__disegno" src="assets/img/ui/lavori-in-corso.webp" alt="" width="360" height="560"> Lavori in corso
+          <img class="lavori__disegno" src="assets/img/ui/portapenne.webp" alt="" width="360" height="560"> Lavori in corso
         </h2>
         <div class="lavori__voci">
 {voci}
@@ -710,7 +710,7 @@ for a in annunci():
         f"{html.escape(a['titolo'])} · Lavori in corso di Baruch",
         html.escape(a.get("testo") or a["titolo"]),
         f"""    <article class="article">
-      <a class="back reveal" href="index.html#lavori-in-corso"><img class="back__art" src="assets/img/ui/lavori-in-corso.webp" alt="" width="360" height="560"> Lavori in corso</a>
+      <a class="back reveal" href="index.html#lavori-in-corso"><img class="back__art" src="assets/img/ui/portapenne.webp" alt="" width="360" height="560"> Lavori in corso</a>
       <header class="article__head reveal">{quando}
         <h1 class="hand-title hand-title--big">{in_linea(a["titolo"])}</h1>{sub}
       </header>{cover}
