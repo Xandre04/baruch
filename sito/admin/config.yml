@@ -65,7 +65,7 @@ collections:
                 label: Testo breve
                 widget: text
                 required: false
-                hint: Le informazioni essenziali che si leggono nel riquadro in home, accanto alla foto: per esempio date, orari e luogo. Facoltativo.
+                hint: "Le informazioni essenziali che si leggono nel riquadro in home, accanto alla foto: per esempio date, orari e luogo. Facoltativo."
               - name: dettagli
                 label: Tutte le informazioni
                 widget: markdown

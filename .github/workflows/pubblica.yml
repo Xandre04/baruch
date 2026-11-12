@@ -46,7 +46,7 @@ jobs:
 
       - name: Genera il sito
         run: |
-          pip install --quiet pillow
+          pip install --quiet pillow pyyaml
           python sorgenti/build.py
 
       - name: Controlla link e immagini

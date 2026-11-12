@@ -7,6 +7,8 @@ import sys
 from pathlib import Path
 from urllib.parse import unquote
 
+import yaml
+
 SITO = Path(__file__).parent.parent / "sito"
 ESTERNO = re.compile(r"^(?:[a-z][a-z0-9+.-]*:|#|//)")
 
@@ -30,6 +32,13 @@ for u in re.findall(r"url\(([^)]+)\)", css.read_text(encoding="utf-8")):
     if not (css.parent / u.strip("'\"")).resolve().exists():
         rotti += 1
         print(f"style.css -> {u}")
+
+# la configurazione dell'editor: se non si legge, l'editor di Caterina non si apre
+try:
+    yaml.safe_load((SITO / "admin/config.yml").read_text(encoding="utf-8"))
+except yaml.YAMLError as e:
+    rotti += 1
+    print(f"admin/config.yml non valido: {e}")
 
 print(f"{len(pagine)} pagine controllate, riferimenti rotti: {rotti}")
 sys.exit(1 if rotti else 0)
