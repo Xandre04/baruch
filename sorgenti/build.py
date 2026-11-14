@@ -319,7 +319,7 @@ GRIGLIA = ["mondi-illustrati", "le-avventure-di-baruch", "come-fiori-selvatici",
 
 def url_lavoro(a):
     """La pagina dell'annuncio, solo se c'è qualcosa in più da leggere o da guardare."""
-    return f"lavori-in-corso/{nome_sito(a['titolo'])}.html" if a.get("dettagli") or a.get("immagini") else ""
+    return f"lavori-in-corso/{nome_sito(a['titolo'])}.html" if a.get("dettagli") or a.get("immagini") or a.get("video") else ""
 
 
 def link_iscrizione(a):
@@ -329,12 +329,16 @@ def link_iscrizione(a):
 
 
 def lavoro(a):
-    """Un riquadro: la foto e, accanto, le informazioni essenziali; foto e titolo aprono la pagina con tutti i dettagli."""
+    """Un riquadro: la foto (o il video) e, accanto, le informazioni essenziali; foto e titolo aprono la pagina con tutti i dettagli."""
     fino = a.get("fino_al") or ""
     fino = fino[:10] if re.fullmatch(r"\d{4}-\d{2}-\d{2}.*", fino) else ""
     pagina = url_lavoro(a)
     foto, titolo = "", in_linea(a["titolo"])
-    if a.get("foto"):
+    if a.get("video") and (a.get("video_in_home") or not a.get("foto")):   # la foto, se c'è, fa da anteprima
+        poster = f' poster="{immagine(a["foto"])["piccola"]}"' if a.get("foto") else ""
+        foto = (f'<video class="lavoro__foto" src="{url_quote(a["video"].lstrip("/"))}{"" if poster else "#t=0.1"}" controls '
+                f'preload="metadata" playsinline{poster} aria-label="{html.escape(a.get("video_descrizione") or a["titolo"])}"></video>')
+    elif a.get("foto"):
         img = pic(a["foto"], a.get("foto_alt") or "", sizes="(max-width: 760px) 100vw, 420px")
         foto = (f'<a class="lavoro__foto" href="{pagina}" tabindex="-1" aria-hidden="true">{img}</a>' if pagina else
                 f'<button class="art-fig lavoro__foto" type="button" data-full="{immagine(a["foto"])["grande"]}" '
@@ -704,6 +708,7 @@ for a in annunci():
              if a.get("foto") else "")
     foto = [f for f in (a.get("immagini") or []) if f]
     galleria = blocco({"tipo": "galleria", "immagini": foto, "colonne": "2" if len(foto) < 3 else "3"}, a["titolo"])
+    video = blocco({"tipo": "video", "video": a.get("video"), "descrizione": a.get("video_descrizione"), "larghezza": "larga"}, a["titolo"])
     iscrizione = f'\n        <p class="lavoro__link">{link_iscrizione(a)}</p>' if a.get("link") else ""
     page(
         url_lavoro(a), "lavori",
@@ -718,6 +723,7 @@ for a in annunci():
         <div class="blk blk-testo">
 {testo(a.get("dettagli"))}
         </div>{iscrizione}
+{video}
 {galleria}
         <p class="article__sign">Caterina</p>
       </div>

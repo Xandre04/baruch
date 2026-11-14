@@ -737,6 +737,7 @@ body:has(.lightbox[open]) { overflow: hidden; }
 .lavoro__titolo { margin: 2px 0 8px; font-family: var(--hand); font-weight: 400; font-size: 24px; line-height: 1.2; }
 .lavoro__breve { margin: 0 0 10px; font-size: .95em; }
 .lavoro__foto { display: block; }
+video.lavoro__foto { width: 100%; background: #000; }
 .lavoro__titolo a { color: inherit; text-decoration: none; }
 .lavoro__titolo a:hover { color: var(--terracotta); }
 .lavoro__link { display: flex; flex-wrap: wrap; gap: 6px 28px; margin: 0; }

@@ -90,6 +90,25 @@ collections:
                 required: false
                 choose_url: false
                 hint: Selezionale tutte insieme. Compaiono in galleria nella pagina dell'annuncio, sotto i dettagli.
+              - name: video
+                label: Video
+                widget: file
+                required: false
+                accept: video/*
+                media_folder: /sito/assets/video
+                public_folder: /assets/video
+                hint: "File MP4. Si guarda nella pagina dell'annuncio, sotto i dettagli; se vuoi anche nel riquadro in home, spunta la casella qui sotto. Da qui passano file fino a circa 10 MB: per quelli più pesanti vedi \"File pesanti\" nella guida."
+              - name: video_descrizione
+                label: Descrizione del video
+                widget: string
+                required: false
+                hint: Una riga sotto il video, scritta a mano. Facoltativa.
+              - name: video_in_home
+                label: Video nel riquadro in home
+                widget: boolean
+                required: false
+                default: false
+                hint: Spenta, in home si vede la foto di copertina e il video sta nella pagina. Accesa, in home si vede il video (la foto fa da anteprima).
               - name: link
                 label: Link
                 widget: string

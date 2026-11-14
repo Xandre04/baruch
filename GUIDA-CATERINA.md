@@ -134,9 +134,9 @@ I progetti della sezione **Mondi illustrati** (calendari, rassegne teatrali, sto
 Per un laboratorio in arrivo, un evento o quello che stai disegnando in questo momento:
 
 1. A sinistra scegli **Lavori in corso** e apri **Annunci in evidenza**.
-2. Premi **Aggiungi** e scrivi il **titolo**. Il resto è facoltativo: **quando**, **testo breve**, **tutte le informazioni**, **foto**, **altre foto**, **link**.
-3. Nel **testo breve** metti l'essenziale (date, orari, luogo): si legge in home, accanto alla foto. In **Tutte le informazioni** scrivi i dettagli: che cosa si fa, per che età, quanto costa, come iscriversi. Le **altre foto** vanno in galleria.
-   Se compili i dettagli o le altre foto, cliccando il riquadro si apre una pagina tutta sua, come un articolo del diario.
+2. Premi **Aggiungi** e scrivi il **titolo**. Il resto è facoltativo: **quando**, **testo breve**, **tutte le informazioni**, **foto**, **altre foto**, **video**, **link**.
+3. Nel **testo breve** metti l'essenziale (date, orari, luogo): si legge in home, accanto alla foto. In **Tutte le informazioni** scrivi i dettagli: che cosa si fa, per che età, quanto costa, come iscriversi. Le **altre foto** vanno in galleria. Puoi aggiungere anche un **video** (MP4, fino a circa 10 MB: vedi "File pesanti"): si guarda nella pagina, sotto i dettagli. In home resta la foto di copertina; se invece vuoi il video anche nel riquadro, spunta **Video nel riquadro in home** (la foto diventa l'anteprima prima di premere play).
+   Se compili i dettagli, le altre foto o il video, cliccando il riquadro si apre una pagina tutta sua, come un articolo del diario.
 4. In **Visibile fino al** scegli l'ultimo giorno: dopo quella data l'annuncio sparisce da solo dal sito. Per un annuncio senza scadenza, lascialo vuoto e toglilo quando vuoi.
 5. Premi **Salva**.
 
