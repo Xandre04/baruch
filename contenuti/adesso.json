@@ -10,6 +10,9 @@
       "immagini": [
         "/contenuti/media/IMG_0499.webp"
       ],
+      "video": "",
+      "video_descrizione": "",
+      "video_in_home": false,
       "link": "mailto:illustraremondi@gmail.com",
       "link_testo": "Scrivimi per iscriverti",
       "fino_al": "2026-11-27"
@@ -22,9 +25,31 @@
       "foto": "/contenuti/media/lettino-arca-di-noe-bozzetti.jpg",
       "foto_alt": "Bozzetti a pastello: due giraffe, due leoni e due gatti abbracciati, un lettino di legno a pois e la tavolozza dei colori",
       "immagini": [],
+      "video": "",
+      "video_descrizione": "",
+      "video_in_home": false,
       "link": "",
       "link_testo": "",
-      "fino_al": ""
+      "fino_al": "2026-12-31"
+    },
+    {
+      "titolo": "Bozzetti per quadretto",
+      "quando": "",
+      "testo": "Studi per realizzare un disegno su carta o legno per una nascita.",
+      "dettagli": "Immagino una coccola e i colori come acqua colorata che si mescolano. \n\nImmagino una grafica pulita, semplice che li tiene uniti, stretti di gioia delicata.",
+      "foto": "/contenuti/media/IMG_0548.webp",
+      "foto_alt": "Illustrazione grafica di mamma papà e bambina",
+      "immagini": [
+        "/contenuti/media/IMG_0546.webp",
+        "/contenuti/media/IMG_0547.webp",
+        "/contenuti/media/IMG_0545.webp"
+      ],
+      "video": "",
+      "video_descrizione": "",
+      "video_in_home": false,
+      "link": "",
+      "link_testo": "",
+      "fino_al": "2026-11-26"
     }
   ]
 }
