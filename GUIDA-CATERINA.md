@@ -113,9 +113,17 @@ I progetti della sezione **Mondi illustrati** (calendari, rassegne teatrali, sto
 
 ---
 
-## Aggiungere immagini a Collaborazioni
+## La pagina Collaborazioni (per le aziende)
 
-1. A sinistra scegli **Collaborazioni** e apri **Galleria delle collaborazioni**.
+A sinistra scegli **Collaborazioni** e apri **Pagina Collaborazioni**. Dall'alto in basso:
+
+- **Frase in alto** e **Presentazione per le aziende**: cosa fai, per chi e come si può collaborare.
+- **Collezioni**: ogni collezione (per esempio *Il bosco fatato*, *Bereshit*) ha un titolo, due righe e le sue immagini. Per aggiungerne una premi **Aggiungi**; per aggiungere un'immagine a una collezione, aprila e premi **Aggiungi** in **Immagini**. A ogni immagine puoi dare un titolo breve (Poster, Pattern, Cartoleria…) e una descrizione.
+- **Lavori su commissione**: la galleria di sempre (vedi sotto).
+
+## Aggiungere immagini ai Lavori su commissione
+
+1. A sinistra scegli **Collaborazioni** e apri **Pagina Collaborazioni**.
 2. In **Carica più immagini insieme** seleziona tutte le immagini in una volta e premi **Salva**.
 3. Dopo un paio di minuti compaiono in cima alla galleria del sito.
 4. Riaprendo la galleria nell'editor, le trovi in cima all'elenco **Immagini della galleria**. Lì puoi, se vuoi:

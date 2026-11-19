@@ -59,9 +59,9 @@ button { font: inherit; color: inherit; }
 }
 /* la striscia di macchie dipinte, con i nomi scritti a mano sopra, nelle stesse coordinate dell'originale */
 .strip {
-  position: relative; flex: 1 1 auto; max-width: 578px;
-  aspect-ratio: 1746 / 231;
-  background: url(../img/ui/nav-strip.webp) center / 100% 100% no-repeat;
+  position: relative; flex: 1 1 auto; max-width: 795px;
+  aspect-ratio: 2403 / 231;
+  background: url(../img/ui/nav-barra.webp) center / 100% 100% no-repeat;
   margin: 0; padding: 0; list-style: none;
 }
 .strip li { position: absolute; top: 0; height: 100%; }
@@ -81,15 +81,17 @@ button { font: inherit; color: inherit; }
   background: var(--terracotta); border-radius: 3px; opacity: .75;
   transform: rotate(-1deg);
 }
-/* posizioni ricavate dal file originale: striscia ricomposta con Home, Chi è Baruch, Diario e Contatti (1746 x 231) */
-.strip .n-home           { left: 0;      width: 20.90%; }
+/* posizioni ricavate dal file originale: striscia ricomposta con Home, Chi è Baruch, Diario, Collaborazioni e Contatti (2403 x 231) */
+.strip .n-home           { left: 0;      width: 15.19%; }
 .strip .n-home img       { left: 15.34%; width: 79.45%; top: 27.27%; }
-.strip .n-chi            { left: 20.90%; width: 28.69%; }
+.strip .n-chi            { left: 15.19%; width: 20.86%; }
 .strip .n-chi img        { left: 3.99%;  width: 92.61%; top: 23.81%; }
-.strip .n-diario         { left: 49.60%; width: 17.87%; }
-.strip .n-diario img     { left: 5.45%;  width: 91.67%; top: 32.9%; }
-.strip .n-contatti       { left: 67.47%; width: 32.53%; }
-.strip .n-contatti img   { left: 11.09%; width: 78.7%;  top: 29%; }
+.strip .n-diario         { left: 36.04%; width: 13.61%; }
+.strip .n-diario img     { left: 5.2%;   width: 87.46%; top: 32.9%; }
+.strip .n-collaborazioni { left: 49.65%; width: 26.67%; }
+.strip .n-collaborazioni img { left: 3.74%; width: 92%; top: 29.44%; }
+.strip .n-contatti       { left: 76.32%; width: 23.68%; }
+.strip .n-contatti img   { left: 11.25%; width: 78.6%;  top: 29%; }
 
 .social { display: flex; align-items: center; gap: clamp(10px, 1.4vw, 22px); margin: 0; padding: 0; list-style: none; }
 .social a {
@@ -746,3 +748,22 @@ video.lavoro__foto { width: 100%; background: #000; }
 /* didascalie delle foto in fila e accanto al testo (misure, materiale...) */
 .blk-fila figure { margin: 0; }
 .blk-fila figcaption, .blk-fototesto figcaption { margin-top: 8px; text-align: center; font-family: var(--hand); font-size: 17px; line-height: 1.35; color: var(--ink-soft); }
+
+/* Home: due righe sotto "illustrare mondi" per chi cerca un'illustratrice per prodotti e aziende */
+.presentazione {
+  max-width: 760px; margin: 0 auto; padding: clamp(40px, 5vw, 64px) var(--gutter) 0;
+  display: flex; flex-direction: column; align-items: center; gap: 14px; text-align: center;
+}
+.presentazione p { margin: 0; font-family: var(--hand); font-size: clamp(22px, 2.2vw, 30px); line-height: 1.35; color: var(--ink); }
+.presentazione .entry__more { font-size: 17px; color: var(--terracotta); }
+.presentazione + .lavori { margin-top: clamp(24px, 3vw, 40px); }
+
+/* Collaborazioni: presentazione per le aziende e collezioni */
+.collab-intro { max-width: 720px; margin: 0 auto clamp(48px, 7vw, 96px); }
+.collab-intro .lead-hand { max-width: none; margin-bottom: 18px; color: var(--terracotta); font-size: clamp(24px, 2.4vw, 32px); }
+.collab-intro .blk-testo { margin-bottom: 28px; }
+.collab-intro ul { margin: 0 0 1.1em; padding-left: 1.2em; }
+.collab-intro li { margin-bottom: .5em; }
+.collezione { margin-bottom: clamp(56px, 8vw, 110px); }
+.collezione__titolo { text-align: center; }
+.collezione__testo { max-width: 62ch; margin: 0 auto clamp(24px, 3vw, 40px); text-align: center; color: var(--ink-soft); }

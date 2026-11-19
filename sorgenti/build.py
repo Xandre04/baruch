@@ -51,6 +51,7 @@ NAV = [
     (HOME, "home", "Home"),
     (CHI, "chi", "Chi è Baruch"),
     (DIARIO, "diario", "Diario"),
+    (COLLAB, "collaborazioni", "Collaborazioni"),
     (CONTATTI, "contatti", "Contatti"),
 ]
 
@@ -390,6 +391,10 @@ def griglia_sezioni():
     # "copertura": il foglio che, scorrendo, sale sopra l'immagine principale ferma
     return f"""
     <div class="copertura">
+      <div class="presentazione reveal">
+        <p>Illustrazioni, personaggi e pattern<br>per la cartoleria, l’infanzia e la casa.</p>
+        <a class="entry__more" href="{COLLAB}">Collaborazioni per le aziende <i class="ph-bold ph-arrow-right" aria-hidden="true"></i></a>
+      </div>
 {fascia_adesso()}      <nav class="home-sezioni" aria-label="Le sezioni del diario">
 {tiles}
       </nav>
@@ -422,8 +427,8 @@ page(
 # ---------------- HOME ----------------
 page(
     HOME, "home",
-    "Baruch · illustrare mondi",
-    "Baruch è il progetto di Caterina Santambrogio, illustratrice: immagini, pattern e laboratori creativi ispirati alla natura.",
+    "Baruch · illustrare mondi · Caterina Santambrogio, illustratrice per l’infanzia",
+    "Caterina Santambrogio, illustratrice per l’infanzia: illustrazioni, personaggi e pattern per cartoleria, prodotti per bambini e casa, collaborazioni con aziende ed editori, laboratori creativi.",
     """    <section class="hero" aria-label="Baruch, illustrare mondi">
       <img class="hero__art" src="assets/img/ui/hero.webp" srcset="assets/img/ui/hero-1100.webp 1100w, assets/img/ui/hero.webp 2200w" sizes="100vw"
         alt="Un bambino dipinto sorride tra grandi foglie verdi e fiori, abbracciando una foglia" width="2200" height="1080" fetchpriority="high">
@@ -732,26 +737,55 @@ for a in annunci():
     )
 
 # ---------------- COLLABORAZIONI ----------------
-# l'elenco si modifica dall'editor (contenuti/collaborazioni.json)
-cells = []
-for v in collaborazioni():
-    i = immagine(v["immagine"])
-    alt = v["descrizione"] or v["titolo"] or "Illustrazione di Caterina Santambrogio"
-    cut = ' class="is-cutout"' if i["trasparente"] else ""
-    cells.append(
-        f"""        <button class="gallery__item reveal" type="button" data-full="{i['grande']}" data-title="{v['titolo']}" data-note="{v['nota']}">
+# per le aziende: presentazione, collezioni in licenza e galleria dei lavori; tutto dall'editor (contenuti/collaborazioni.json)
+COLLAB_DATI = collaborazioni()
+
+
+def galleria_collab(voci, gruppo):
+    cells = []
+    for v in voci:
+        i = immagine(v["immagine"])
+        alt = v["descrizione"] or v["titolo"] or gruppo
+        cut = ' class="is-cutout"' if i["trasparente"] else ""
+        cells.append(
+            f"""        <button class="gallery__item reveal" type="button" data-full="{i['grande']}" data-title="{v['titolo']}" data-note="{v['nota']}">
           <img{cut} src="{i['piccola']}" alt="{alt}" width="{i['w']}" height="{i['h']}" loading="lazy">
         </button>"""
-    )
+        )
+    return f'''      <div class="gallery">
+{chr(10).join(cells)}
+      </div>'''
+
+
+collezioni_html = "".join(
+    f"""
+    <section class="collezione" aria-labelledby="collezione-{nome_sito(c['titolo'])}">
+      <h2 class="hand-title collezione__titolo reveal" id="collezione-{nome_sito(c['titolo'])}">{html.escape(c['titolo'])}</h2>
+      <p class="collezione__testo reveal">{in_linea(c['testo'])}</p>
+{galleria_collab(c['immagini'], c['titolo'])}
+    </section>"""
+    for c in COLLAB_DATI["collezioni"]
+)
+lavori_html = f"""
+    <section class="collezione" aria-labelledby="collezione-lavori">
+      <h2 class="hand-title collezione__titolo reveal" id="collezione-lavori">Lavori su commissione</h2>
+      <p class="collezione__testo reveal">Calendari, libri, rassegne e oggetti dipinti per editori, scuole e committenti.</p>
+{galleria_collab(COLLAB_DATI['immagini'], 'Illustrazione di Caterina Santambrogio')}
+    </section>""" if COLLAB_DATI["immagini"] else ""
 page(
     COLLAB, "collaborazioni",
-    "Collaborazioni · Baruch illustrare mondi",
-    "Illustrazioni, copertine, mappe e oggetti dipinti da Caterina Santambrogio per editori, scuole e committenti.",
+    "Collaborazioni per aziende · illustrazioni e pattern per cartoleria e infanzia · Baruch",
+    "Caterina Santambrogio, illustratrice: illustrazioni, personaggi e pattern in licenza per cartoleria, prodotti per l’infanzia, poster, tessili e packaging. Collezioni su misura per aziende ed editori.",
     f"""    <div class="page">
       <h1 class="page-title page-title--wide reveal"><img src="assets/img/ui/titolo-collaborazioni.webp" alt="Collaborazioni" width="685" height="231"></h1>
-      <div class="gallery">
-{chr(10).join(cells)}
-      </div>
+      <section class="collab-intro reveal">
+        <p class="lead-hand">{html.escape(COLLAB_DATI['titoletto'])}</p>
+        <div class="blk-testo">
+{testo(COLLAB_DATI['intro'])}
+        </div>
+        <a class="cta" href="{CONTATTI}">Scrivimi per una proposta</a>
+      </section>{collezioni_html}{lavori_html}
+      <p class="more-link reveal"><a class="cta" href="{CONTATTI}">Parliamo della tua collezione</a></p>
     </div>""",
     extra="\n  " + LIGHTBOX.format(single=""),
 )

@@ -177,13 +177,20 @@ def opere():
 
 
 def collaborazioni():
-    """Le immagini della galleria Collaborazioni, nell'ordine scelto nell'editor."""
+    """La pagina Collaborazioni: presentazione, collezioni per le aziende e galleria dei lavori, come nell'editor."""
     dati = json.loads((CONTENUTI / "collaborazioni.json").read_text(encoding="utf-8"))
-    voci = []
-    for v in dati.get("immagini") or []:
-        if v.get("immagine"):
-            voci.append({k: html.escape(v.get(k) or "") for k in ("titolo", "nota", "descrizione")} | {"immagine": v["immagine"]})
-    return voci
+
+    def voci(lista):
+        return [{k: html.escape(v.get(k) or "") for k in ("titolo", "nota", "descrizione")} | {"immagine": v["immagine"]}
+                for v in lista or [] if v.get("immagine")]
+
+    return {
+        "titoletto": dati.get("titoletto") or "",
+        "intro": dati.get("intro") or "",
+        "collezioni": [{"titolo": c["titolo"], "testo": c.get("testo") or "", "immagini": voci(c.get("immagini"))}
+                       for c in dati.get("collezioni") or [] if c.get("titolo")],
+        "immagini": voci(dati.get("immagini")),
+    }
 
 
 def annunci():

@@ -582,12 +582,59 @@ collections:
   # ---------------------------------------------------------------- Collaborazioni
   - name: pagine
     label: Collaborazioni
-    description: La galleria della pagina Collaborazioni.
+    description: La pagina Collaborazioni, per le aziende - presentazione, collezioni e galleria dei lavori.
     files:
       - name: collaborazioni
-        label: Galleria delle collaborazioni
+        label: Pagina Collaborazioni
         file: contenuti/collaborazioni.json
         fields:
+          - name: titoletto
+            label: Frase in alto
+            widget: string
+            required: false
+            hint: La prima frase della pagina, scritta a mano in terracotta.
+          - name: intro
+            label: Presentazione per le aziende
+            widget: markdown
+            required: false
+            buttons: [bold, italic, link, bulleted-list]
+            hint: Cosa fai, per chi e come si può collaborare.
+          - name: collezioni
+            label: Collezioni
+            label_singular: Collezione
+            widget: list
+            required: false
+            summary: "{{fields.titolo}}"
+            hint: Ogni collezione ha il suo titolo, due righe e le sue immagini. L'ordine dell'elenco è l'ordine della pagina.
+            fields:
+              - name: titolo
+                label: Titolo
+                widget: string
+              - name: testo
+                label: Due righe di presentazione
+                widget: text
+                required: false
+              - name: immagini
+                label: Immagini
+                label_singular: Immagine
+                widget: list
+                required: false
+                summary: "{{fields.titolo}}"
+                fields:
+                  - name: immagine
+                    label: Immagine
+                    widget: image
+                    choose_url: false
+                  - name: titolo
+                    label: Titolo
+                    widget: string
+                    required: false
+                    hint: Per esempio Poster, Pattern, Cartoleria. Compare quando l'immagine si ingrandisce.
+                  - name: descrizione
+                    label: Descrizione
+                    widget: string
+                    required: false
+                    hint: Cosa si vede nell'immagine (serve a chi non vede le immagini e a Google).
           - name: carica
             label: Carica più immagini insieme
             widget: image
@@ -599,7 +646,7 @@ collections:
               e si spostano nell'elenco qui sotto, dove puoi dare un titolo, riordinarle o toglierle.
               Riapri poi questa pagina dell'editor per vederle.
           - name: immagini
-            label: Immagini della galleria
+            label: Lavori su commissione (galleria)
             label_singular: Immagine
             widget: list
             required: false

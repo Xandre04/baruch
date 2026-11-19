@@ -1,4 +1,185 @@
 {
+  "titoletto": "Illustrazioni e pattern per la cartoleria, l’infanzia e la casa.",
+  "intro": "Disegno personaggi, pattern e illustrazioni pensati per diventare oggetti: quaderni, astucci e adesivi, carta da regalo, tessili e poster per la cameretta, tazze, segnalibri e biglietti.\n\nCollaboro con **aziende, editori e negozi** in tre modi:\n\n- **Licenza** delle collezioni che trovi in questa pagina, per stampe e prodotti.\n- **Collezioni su misura**: personaggi e pattern coordinati, pensati per il vostro catalogo, i vostri colori e i vostri formati.\n- **Illustrazione su commissione** per libri, calendari, packaging e comunicazione.\n\nI disegni nascono a mano, con gouache, acrilico e pastello, e vengono preparati in digitale per la stampa.",
+  "collezioni": [
+    {
+      "titolo": "Il bosco fatato",
+      "testo": "Una famiglia di piccoli abitanti del bosco, con i loro pattern coordinati: foglie d’autunno, funghi, righe e fiori. Pensata per la cartoleria e la cameretta dei bambini.",
+      "immagini": [
+        {
+          "immagine": "/contenuti/media/bosco-cartoleria.webp",
+          "titolo": "Cartoleria",
+          "descrizione": "Quaderni, astucci, matite e adesivi decorati con i pattern del bosco"
+        },
+        {
+          "immagine": "/contenuti/media/bosco-cameretta-letto.webp",
+          "titolo": "Cameretta",
+          "descrizione": "Una cameretta con lenzuola e tappeto a foglie e un folletto pigna appeso al muro"
+        },
+        {
+          "immagine": "/contenuti/media/bosco-poster-volpe.webp",
+          "titolo": "Poster",
+          "descrizione": "Poster con la volpe vestita di foglie e la scritta Piccola volpe, grande furbizia"
+        },
+        {
+          "immagine": "/contenuti/media/bosco-coordinato-volpe.webp",
+          "titolo": "Personaggio e pattern",
+          "descrizione": "La volpe accanto al pattern di foglie coordinato"
+        },
+        {
+          "immagine": "/contenuti/media/bosco-regalo.webp",
+          "titolo": "Carta da regalo",
+          "descrizione": "Un pacco regalo con la carta a foglie, la sagoma della volpe e un poster"
+        },
+        {
+          "immagine": "/contenuti/media/bosco-coordinato-gufo.webp",
+          "titolo": "Personaggio e pattern",
+          "descrizione": "Il folletto gufo accanto al pattern verde a righe e fiori"
+        },
+        {
+          "immagine": "/contenuti/media/bosco-cameretta-culla.webp",
+          "titolo": "Cameretta",
+          "descrizione": "Una culla di legno con un folletto gufo appeso alla parete"
+        },
+        {
+          "immagine": "/contenuti/media/bosco-coordinato-cervo.webp",
+          "titolo": "Personaggio e pattern",
+          "descrizione": "Il folletto cervo accanto al pattern giallo con i personaggi"
+        },
+        {
+          "immagine": "/contenuti/media/bosco-cameretta-tappeto.webp",
+          "titolo": "Cameretta",
+          "descrizione": "Una cameretta con il tappeto a foglie e il folletto pigna"
+        },
+        {
+          "immagine": "/contenuti/media/bosco-cameretta-gufo.webp",
+          "titolo": "Cameretta",
+          "descrizione": "Una cameretta con un poster verde del folletto gufo sopra la culla"
+        },
+        {
+          "immagine": "/contenuti/media/bosco-cameretta-volpe.webp",
+          "titolo": "Cameretta",
+          "descrizione": "Una cameretta con il poster della volpe sopra il letto"
+        },
+        {
+          "immagine": "/contenuti/media/bosco-volpe.webp",
+          "titolo": "Personaggio",
+          "descrizione": "La volpe con le ali di foglia e un mantello rosso"
+        },
+        {
+          "immagine": "/contenuti/media/bosco-gufo.webp",
+          "titolo": "Personaggio",
+          "descrizione": "Un folletto con il cappuccio da gufo e le ali di foglia"
+        },
+        {
+          "immagine": "/contenuti/media/bosco-cervo.webp",
+          "titolo": "Personaggio",
+          "descrizione": "Un folletto con le corna di cervo e un mantello di foglie"
+        },
+        {
+          "immagine": "/contenuti/media/bosco-pigna.webp",
+          "titolo": "Personaggio",
+          "descrizione": "Un folletto vestito da pigna con le ali verdi"
+        },
+        {
+          "immagine": "/contenuti/media/bosco-fungo.webp",
+          "titolo": "Personaggio",
+          "descrizione": "Una folletta con il cappello a fungo e un cestino di fragole"
+        },
+        {
+          "immagine": "/contenuti/media/bosco-folletto-felce.webp",
+          "titolo": "Personaggio",
+          "descrizione": "Un folletto con le orecchie da orsetto e le ali di felce"
+        },
+        {
+          "immagine": "/contenuti/media/bosco-folletto-candela.webp",
+          "titolo": "Personaggio",
+          "descrizione": "Un folletto con il berretto a righe e una candela"
+        },
+        {
+          "immagine": "/contenuti/media/bosco-schiaccianoci.webp",
+          "titolo": "Personaggio",
+          "descrizione": "Un folletto vestito da schiaccianoci con la giubba rossa"
+        },
+        {
+          "immagine": "/contenuti/media/bosco-pattern-foglie.webp",
+          "titolo": "Pattern",
+          "descrizione": "Pattern di foglie d’autunno su fondo crema"
+        },
+        {
+          "immagine": "/contenuti/media/bosco-pattern-foglie-grandi.webp",
+          "titolo": "Pattern",
+          "descrizione": "Foglie d’autunno grandi e bacche su fondo crema"
+        },
+        {
+          "immagine": "/contenuti/media/bosco-pattern-funghi.webp",
+          "titolo": "Pattern",
+          "descrizione": "Pattern di funghi rossi a pois"
+        },
+        {
+          "immagine": "/contenuti/media/bosco-pattern-personaggi.webp",
+          "titolo": "Pattern",
+          "descrizione": "Pattern giallo con i folletti del bosco"
+        },
+        {
+          "immagine": "/contenuti/media/bosco-pattern-righe.webp",
+          "titolo": "Pattern",
+          "descrizione": "Pattern verde a righe con mazzetti di fiori"
+        }
+      ]
+    },
+    {
+      "titolo": "Bereshit",
+      "testo": "Illustrazioni dipinte nei blu e nei verdi, con frasi brevi scritte a mano: poster, quadretti, segnalibri e tazze. Per la casa e per un regalo pensato.",
+      "immagini": [
+        {
+          "immagine": "/contenuti/media/bereshit-poster-tenerezza.webp",
+          "titolo": "Poster 30 x 40 cm",
+          "descrizione": "Poster incorniciato: una mamma e un bambino su un’amaca sotto le lucine, La tenerezza illumina"
+        },
+        {
+          "immagine": "/contenuti/media/bereshit-segnalibri.webp",
+          "titolo": "Segnalibri 7 x 21 cm",
+          "descrizione": "Quattro segnalibri illustrati appoggiati su vecchi libri"
+        },
+        {
+          "immagine": "/contenuti/media/bereshit-tazze.webp",
+          "titolo": "Tazze",
+          "descrizione": "Quattro tazze illustrate su un tavolo di legno"
+        },
+        {
+          "immagine": "/contenuti/media/bereshit-poster-viaggio.webp",
+          "titolo": "Quadretto A4",
+          "descrizione": "Quadretto con una barca a vela tra i gabbiani, La meta è nel viaggio"
+        },
+        {
+          "immagine": "/contenuti/media/bereshit-tazza-tisana.webp",
+          "titolo": "Tazza",
+          "descrizione": "Una tazza con la mamma e il bambino sull’amaca e una cartolina coordinata"
+        },
+        {
+          "immagine": "/contenuti/media/bereshit-poster-miracoli.webp",
+          "titolo": "Poster",
+          "descrizione": "Poster in una cameretta: animali del bosco tra alberi blu, Chi guarda con timidezza vede i miracoli"
+        },
+        {
+          "immagine": "/contenuti/media/bereshit-tazze-meraviglia.webp",
+          "titolo": "Tazze",
+          "descrizione": "Tazze Custodire la meraviglia, con insetti e foglie disegnati in blu"
+        },
+        {
+          "immagine": "/contenuti/media/bereshit-tazze-piccole-cose.webp",
+          "titolo": "Tazze",
+          "descrizione": "Tazze La semplicità delle piccole cose"
+        },
+        {
+          "immagine": "/contenuti/media/bereshit-tazze-tenerezza.webp",
+          "titolo": "Tazze",
+          "descrizione": "Tazze La tenerezza illumina, con le lucine e due tazzine che si sorridono"
+        }
+      ]
+    }
+  ],
   "carica": [],
   "immagini": [
     {
