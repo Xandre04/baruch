@@ -827,7 +827,7 @@ def collab_main():
       </section>""" if lavori else ""
     mail = f'\n        <p class="hp-mail">{e(CD["fine_email"])}</p>' if CD.get("fine_email") else ""
     return f"""    <div class="page hp">
-      <h1 class="page-title page-title--wide reveal"><img src="assets/img/ui/titolo-collaborazioni.webp" alt="Collaborazioni" width="685" height="231"></h1>
+      <h1 class="page-title page-title--wide reveal"><img src="assets/img/ui/titolo-collaborazioni-2.webp" alt="Collaborazioni" width="680" height="231"></h1>
 
       <section class="hp-apertura">
         <div class="hp-apertura__testo reveal">
