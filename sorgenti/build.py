@@ -6,6 +6,7 @@ Dopo una modifica, dalla cartella principale del progetto:  python sorgenti/buil
 import hashlib
 import html
 import re
+import sys
 from pathlib import Path
 from urllib.parse import quote as url_quote
 
@@ -757,38 +758,35 @@ def galleria_collab(voci, gruppo):
       </div>'''
 
 
-collezioni_html = "".join(
-    f"""
-    <section class="collezione" aria-labelledby="collezione-{nome_sito(c['titolo'])}">
-      <h2 class="hand-title collezione__titolo reveal" id="collezione-{nome_sito(c['titolo'])}">{html.escape(c['titolo'])}</h2>
-      <p class="collezione__testo reveal">{in_linea(c['testo'])}</p>
-{galleria_collab(c['immagini'], c['titolo'])}
-    </section>"""
-    for c in COLLAB_DATI["collezioni"]
-)
-lavori_html = f"""
-    <section class="collezione" aria-labelledby="collezione-lavori">
-      <h2 class="hand-title collezione__titolo reveal" id="collezione-lavori">Lavori su commissione</h2>
-      <p class="collezione__testo reveal">Calendari, libri, rassegne e oggetti dipinti per editori, scuole e committenti.</p>
-{galleria_collab(COLLAB_DATI['immagini'], 'Illustrazione di Caterina Santambrogio')}
-    </section>""" if COLLAB_DATI["immagini"] else ""
+# la pagina per le aziende e una pagina per ogni collezione, che si apre dalla sua copertina;
+# i testi sono in sorgenti/collaborazioni/*.html, dove {img:nome|descrizione} diventa la foto da 1400 px
+# ponytail: per ora la pagina non si modifica dall'editor (contenuti/collaborazioni.json non è più usato qui)
+COLLAB_DIR = Path(__file__).parent / "collaborazioni"
+COLLAB_FOTO = [p.name for p in (SITO / "assets/img/contenuti").glob("*-1400.webp")]
+
+
+def collab_html(nome):
+    def img(m):
+        foto, alt = m.groups()
+        trovate = [f for f in COLLAB_FOTO if re.fullmatch(re.escape(foto) + r"(-[0-9a-f]{8})?-1400\.webp", f)]
+        if len(trovate) != 1:
+            sys.exit(f"collaborazioni/{nome}: foto non trovata (o ambigua): {foto} -> {trovate}")
+        return f'<img src="assets/img/contenuti/{trovate[0]}" alt="{html.escape(alt)}" loading="lazy">'
+    return re.sub(r"\{img:([^|}]+)\|([^}]*)\}", img, (COLLAB_DIR / nome).read_text(encoding="utf-8"))
+
+
 page(
     COLLAB, "collaborazioni",
     "Collaborazioni per aziende · illustrazioni e pattern per cartoleria e infanzia · Baruch",
     "Caterina Santambrogio, illustratrice: illustrazioni, personaggi e pattern in licenza per cartoleria, prodotti per l’infanzia, poster, tessili e packaging. Collezioni su misura per aziende ed editori.",
-    f"""    <div class="page">
-      <h1 class="page-title page-title--wide reveal"><img src="assets/img/ui/titolo-collaborazioni.webp" alt="Collaborazioni" width="685" height="231"></h1>
-      <section class="collab-intro reveal">
-        <p class="lead-hand">{html.escape(COLLAB_DATI['titoletto'])}</p>
-        <div class="blk-testo">
-{testo(COLLAB_DATI['intro'])}
-        </div>
-        <a class="cta" href="{CONTATTI}">Scrivimi per una proposta</a>
-      </section>{collezioni_html}{lavori_html}
-      <p class="more-link reveal"><a class="cta" href="{CONTATTI}">Parliamo della tua collezione</a></p>
-    </div>""",
-    extra="\n  " + LIGHTBOX.format(single=""),
+    collab_html("pagina.html"),
 )
+COLLEZIONI = [
+    ("il-bosco-fatato", "Il bosco fatato", "Il bosco fatato: personaggi e pattern coordinati di Caterina Santambrogio per cartoleria, cameretta e tessile, in licenza o in esclusiva."),
+    ("bereshit", "Bereshit", "Bereshit: illustrazioni nei blu e nei verdi con frasi scritte a mano, per poster, quadretti, segnalibri e tazze, in licenza o in esclusiva."),
+]
+for slug, titolo, desc in COLLEZIONI:
+    page(f"collaborazioni/{slug}.html", "collaborazioni", f"{titolo} · Collaborazioni per le aziende · Baruch", desc, collab_html(f"{slug}.html"))
 
 # ---------------- SHOP ----------------
 OGGETTI_SHOP = [
