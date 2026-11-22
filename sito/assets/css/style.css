@@ -585,8 +585,13 @@ button { font: inherit; color: inherit; }
 
 /* ---------- Comparsa allo scorrimento ---------- */
 @media (prefers-reduced-motion: no-preference) {
-  .js .reveal { opacity: 0; transform: translateY(22px); transition: opacity .9s var(--ease), transform 1s var(--ease); transition-delay: var(--d, 0s); }
-  .js .reveal.is-in { opacity: 1; transform: none; }
+  /* "translate" e non "transform": così le foto inclinate (polaroid, copertine) restano inclinate dopo la comparsa */
+  .js .reveal {
+    opacity: 0; translate: 0 22px;
+    transition: opacity .9s var(--ease) var(--d, 0s), translate 1s var(--ease) var(--d, 0s),
+                transform .5s var(--ease), box-shadow .5s var(--ease);
+  }
+  .js .reveal.is-in { opacity: 1; translate: none; }
 }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
@@ -902,3 +907,50 @@ video.lavoro__foto { width: 100%; background: #000; }
 .hp-copertina:hover .lavoro__foto img { transform: scale(1.04); }
 /* la pagina di una collezione: si apre subito con il titolo */
 .hp-sezione--prima { margin-top: clamp(24px, 4vw, 48px); }
+
+/* ---------- Movimento: il sito "dipinto" si muove come la carta e il pennello ----------
+   Tutto solo con prefers-reduced-motion: no-preference. Si animano solo transform, translate, rotate,
+   opacity e clip-path (leggeri anche sul telefono). Le animazioni continue si fermano fuori dallo schermo (.in-vista, main.js). */
+@media (prefers-reduced-motion: no-preference) {
+  /* 1. le pennellate si stendono da sinistra a destra quando compaiono, come nella testata della home.
+     Dentro un .reveal si scopre l'elemento (clip-path); su un .reveal stesso si allarga solo la pennellata
+     di sfondo, perché un clip-path sull'elemento osservato impedirebbe a main.js di vederlo comparire */
+  .js :is(.reveal .diary-item__label, .reveal .hp-servizio__titolo, .reveal .cta, .page-title.reveal img) {
+    clip-path: inset(-20% 100% -20% -20%);
+    transition: clip-path 1.1s var(--ease) calc(var(--d, 0s) + .2s), transform .45s var(--ease);
+  }
+  .js :is(.reveal.is-in .diary-item__label, .reveal.is-in .hp-servizio__titolo, .reveal.is-in .cta, .page-title.reveal.is-in img) {
+    clip-path: inset(-20% -20% -20% -20%);
+  }
+  .js :is(.reveal.hp-clienti, .reveal.hp-scheda, .journal .reveal.hand-title) {
+    background-size: 0% 100%; background-position: left center;
+    transition: opacity .9s var(--ease) var(--d, 0s), translate 1s var(--ease) var(--d, 0s),
+                background-size 1.2s var(--ease) calc(var(--d, 0s) + .15s);
+  }
+  .js :is(.reveal.is-in.hp-clienti, .reveal.is-in.hp-scheda, .journal .reveal.is-in.hand-title) { background-size: 100% 100%; }
+
+  /* 2. le griglie compaiono una scheda dopo l'altra */
+  :is(.lavori__voci, .hp-lavori, .works, .hp-passi) > :nth-child(4n+2) { --d: .08s; }
+  :is(.lavori__voci, .hp-lavori, .works, .hp-passi) > :nth-child(4n+3) { --d: .16s; }
+  :is(.lavori__voci, .hp-lavori, .works, .hp-passi) > :nth-child(4n+4) { --d: .24s; }
+
+  /* 3. piccoli movimenti dei disegni: la pianta ondeggia, Baruch e il bottone "torna su" galleggiano,
+     il ramo di fiori selvatici si muove come al vento, il portapenne dondola quando arriva */
+  .scrivimi__pianta { animation: ondeggia 7s ease-in-out infinite; }
+  .scrivimi__baruch { animation: galleggia 4.6s ease-in-out infinite; }
+  .tile--come-fiori-selvatici .tile__art img { transform-origin: 50% 100%; animation: ondeggia 8s ease-in-out -2s infinite; }
+  .to-top img { animation: galleggia 3.8s ease-in-out infinite; }
+  .js :is(.scrivimi, .tile--come-fiori-selvatici, .to-top):not(.in-vista) :is(img, .scrivimi__pianta) { animation-play-state: paused; }
+  .lavori__intestazione.is-in .lavori__disegno { transform-origin: 50% 100%; animation: dondola 1.4s .5s var(--ease) both; }
+}
+@keyframes ondeggia { 0%, 100% { rotate: -1.4deg; } 50% { rotate: 1.4deg; } }
+@keyframes galleggia { 0%, 100% { translate: 0 0; } 50% { translate: 0 -5px; } }
+@keyframes dondola { 0% { rotate: 0deg; } 25% { rotate: -7deg; } 50% { rotate: 5deg; } 75% { rotate: -2deg; } 100% { rotate: 0deg; } }
+
+/* 4. al passaggio del mouse le foto e le schede si sollevano dal foglio (solo con il mouse, non sul telefono) */
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .hp-foto, .lavoro { transition: transform .5s var(--ease), box-shadow .5s var(--ease); }
+  .hp-lavori .hp-foto:hover { transform: rotate(0) translateY(-8px); box-shadow: 0 30px 46px -24px rgba(52, 67, 47, .6); }
+  .lavori .lavoro:hover, .hp-copertina:hover { transform: translateY(-6px) rotate(-.4deg); box-shadow: 0 24px 40px -26px rgba(52, 67, 47, .55); }
+  .hp-foto--destra:hover { transform: rotate(.6deg) translateY(-4px); }
+}
