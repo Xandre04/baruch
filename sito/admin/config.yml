@@ -13,7 +13,7 @@ backend:
     uploadMedia: "Nuova foto: {{path}}"
     deleteMedia: "Foto eliminata: {{path}}"
 
-site_url: https://xandre04.github.io/baruch/
+site_url: https://illustraremondi.it/
 
 # Le foto caricate finiscono qui e il sito ne prepara da solo le versioni ridotte.
 media_folder: /contenuti/media
