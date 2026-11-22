@@ -6,7 +6,6 @@ Dopo una modifica, dalla cartella principale del progetto:  python sorgenti/buil
 import hashlib
 import html
 import re
-import sys
 from pathlib import Path
 from urllib.parse import quote as url_quote
 
@@ -738,55 +737,173 @@ for a in annunci():
     )
 
 # ---------------- COLLABORAZIONI ----------------
-# per le aziende: presentazione, collezioni in licenza e galleria dei lavori; tutto dall'editor (contenuti/collaborazioni.json)
-COLLAB_DATI = collaborazioni()
+# per le aziende: la pagina con le copertine delle collezioni, e una pagina per ogni collezione;
+# tutto dall'editor (contenuti/collaborazioni.json)
+CD = collaborazioni()
 
 
-def galleria_collab(voci, gruppo):
-    cells = []
-    for v in voci:
-        i = immagine(v["immagine"])
-        alt = v["descrizione"] or v["titolo"] or gruppo
-        cut = ' class="is-cutout"' if i["trasparente"] else ""
-        cells.append(
-            f"""        <button class="gallery__item reveal" type="button" data-full="{i['grande']}" data-title="{v['titolo']}" data-note="{v['nota']}">
-          <img{cut} src="{i['piccola']}" alt="{alt}" width="{i['w']}" height="{i['h']}" loading="lazy">
-        </button>"""
-        )
-    return f'''      <div class="gallery">
-{chr(10).join(cells)}
-      </div>'''
+def e(t):
+    return html.escape(t or "")
 
 
-# la pagina per le aziende e una pagina per ogni collezione, che si apre dalla sua copertina;
-# i testi sono in sorgenti/collaborazioni/*.html, dove {img:nome|descrizione} diventa la foto da 1400 px
-# ponytail: per ora la pagina non si modifica dall'editor (contenuti/collaborazioni.json non è più usato qui)
-COLLAB_DIR = Path(__file__).parent / "collaborazioni"
-COLLAB_FOTO = [p.name for p in (SITO / "assets/img/contenuti").glob("*-1400.webp")]
+def scheda(voci, cls="hp-scheda"):
+    """Le voci della scheda su una pennellata crema; il **grassetto** diventa evidenziato in giallo."""
+    righe = "".join(f"<div><dt>{e(v.get('voce'))}</dt><dd>{in_linea(v.get('valore') or '').replace('<strong>', '<mark>').replace('</strong>', '</mark>')}</dd></div>"
+                    for v in voci or [] if v.get("voce") or v.get("valore"))
+    return f'<dl class="{cls} reveal">{righe}</dl>' if righe else ""
 
 
-def collab_html(nome):
-    def img(m):
-        foto, alt = m.groups()
-        trovate = [f for f in COLLAB_FOTO if re.fullmatch(re.escape(foto) + r"(-[0-9a-f]{8})?-1400\.webp", f)]
-        if len(trovate) != 1:
-            sys.exit(f"collaborazioni/{nome}: foto non trovata (o ambigua): {foto} -> {trovate}")
-        return f'<img src="assets/img/contenuti/{trovate[0]}" alt="{html.escape(alt)}" loading="lazy">'
-    return re.sub(r"\{img:([^|}]+)\|([^}]*)\}", img, (COLLAB_DIR / nome).read_text(encoding="utf-8"))
+def foto_hp(v, didascalia="", cls="hp-foto reveal", sizes="(max-width: 900px) 50vw, 420px"):
+    return f'<figure class="{cls}">{pic(v["immagine"], v.get("descrizione") or v.get("titolo") or "", sizes=sizes)}<figcaption>{didascalia}</figcaption></figure>'
+
+
+def url_collezione(c):
+    return f"collaborazioni/{nome_sito(c['titolo'])}.html"
+
+
+def collab_main():
+    ap = CD.get("apertura") or {}
+    apertura_foto = (f"""
+        <figure class="hp-foto hp-foto--destra reveal">{pic(ap['foto'], ap.get('foto_alt') or '', lazy=False, sizes="(max-width: 900px) 100vw, 560px")}
+          <figcaption>{e(ap.get('didascalia'))}</figcaption>
+        </figure>""" if ap.get("foto") else "")
+    clienti = "".join(f"<li>{e(c.get('nome'))}</li>" for c in CD.get("clienti") or [] if c.get("nome"))
+    clienti = f"""
+      <section class="hp-clienti reveal">
+        <p>{e(CD.get('clienti_titolo'))}</p>
+        <ul>{clienti}</ul>
+      </section>""" if clienti else ""
+    colori = ("verde", "pesca", "crema")
+    servizi = "".join(f"""
+          <article class="hp-servizio reveal" style="--d:{.05 + i * .1:.2f}s">
+            <h3 class="hp-servizio__titolo hp-servizio__titolo--{colori[i % 3]}"><span>{i + 1}</span> {e(v.get('titolo'))}</h3>
+            <p>{in_linea(v.get('testo') or '')}</p>
+            <ul>{''.join(f'<li>{in_linea(r.strip())}</li>' for r in (v.get('punti') or '').splitlines() if r.strip())}</ul>
+          </article>""" for i, v in enumerate(CD.get("servizi") or []))
+    servizi = f"""
+      <section class="hp-sezione" id="servizi">
+        <h2 class="hp-titolo reveal">{e(CD.get('servizi_titolo'))}</h2>
+        <p class="hp-intro reveal">{in_linea(CD.get('servizi_intro') or '')}</p>
+        <div class="hp-servizi">{servizi}
+        </div>
+      </section>""" if servizi else ""
+    copertine = "".join(f"""
+          <article class="lavoro hp-copertina reveal" style="--d:{.05 + i * .1:.2f}s">
+            <a class="lavoro__foto" href="{url_collezione(c)}" tabindex="-1" aria-hidden="true">{pic(c['copertina'], c.get('copertina_alt') or '', sizes="(max-width: 760px) 100vw, 400px") if c.get('copertina') else ''}</a>
+            <div class="lavoro__testo">
+              <p class="lavoro__quando">Collezione {i + 1}{' · ' + e(c['etichetta']) if c.get('etichetta') else ''}</p>
+              <h3 class="lavoro__titolo"><a href="{url_collezione(c)}">{e(c['titolo'])}</a></h3>
+              <p class="lavoro__breve">{in_linea(c.get('breve') or '')}</p>
+              <p class="lavoro__link"><a class="entry__more" href="{url_collezione(c)}">Apri la collezione <i class="ph-bold ph-arrow-right" aria-hidden="true"></i></a></p>
+            </div>
+          </article>""" for i, c in enumerate(CD["collezioni"]))
+    collezioni = f"""
+      <section class="hp-sezione" id="collezioni">
+        <h2 class="hp-titolo reveal">{e(CD.get('collezioni_titolo'))}</h2>
+        <p class="hp-intro reveal">{in_linea(CD.get('collezioni_intro') or '')}</p>
+        <div class="hp-copertine">{copertine}
+        </div>
+      </section>""" if copertine else ""
+    passi = "".join(f"""
+          <li class="reveal" style="--d:{.05 + i * .1:.2f}s"><span>{i + 1}</span><strong>{e(v.get('titolo'))}</strong>{in_linea(v.get('testo') or '').replace('<strong>', '<mark>').replace('</strong>', '</mark>')}</li>"""
+                    for i, v in enumerate(CD.get("passi") or []))
+    metodo = f"""
+      <section class="hp-sezione hp-metodo">
+        <h2 class="hp-titolo reveal">{e(CD.get('metodo_titolo'))}</h2>
+        <ol class="hp-passi">{passi}
+        </ol>
+        {scheda(CD.get('scheda_tecnica'), 'hp-scheda hp-scheda--larga')}
+      </section>""" if passi or CD.get("scheda_tecnica") else ""
+    lavori = "".join(
+        "\n          " + foto_hp(v, e(v.get("titolo")) + (f"<small>{e(v['committente'])}</small>" if v.get("committente") else ""),
+                                 sizes="(max-width: 900px) 50vw, 300px")
+        for v in CD["immagini"])
+    lavori = f"""
+      <section class="hp-sezione">
+        <h2 class="hp-titolo reveal">{e(CD.get('lavori_titolo'))}</h2>
+        <p class="hp-intro reveal">{in_linea(CD.get('lavori_intro') or '')}</p>
+        <div class="hp-lavori">{lavori}
+        </div>
+      </section>""" if lavori else ""
+    mail = f'\n        <p class="hp-mail">{e(CD["fine_email"])}</p>' if CD.get("fine_email") else ""
+    return f"""    <div class="page hp">
+      <h1 class="page-title page-title--wide reveal"><img src="assets/img/ui/titolo-collaborazioni.webp" alt="Collaborazioni" width="685" height="231"></h1>
+
+      <section class="hp-apertura">
+        <div class="hp-apertura__testo reveal">
+          <p class="hp-occhiello">{e(ap.get('occhiello'))}</p>
+          <h2 class="hp-titolo-grande">{e(ap.get('titolo'))} <span>{e(ap.get('titolo_colore'))}</span></h2>
+          <p class="hp-lead">{in_linea(ap.get('testo') or '')}</p>
+          <p class="hp-azioni"><a class="cta" href="{CONTATTI}">{e(ap.get('pulsante') or 'Scrivimi')}</a>{' <a class="hp-link" href="#collezioni">Guarda le collezioni →</a>' if CD['collezioni'] else ''}</p>
+        </div>{apertura_foto}
+      </section>
+{clienti}{servizi}{collezioni}{metodo}{lavori}
+
+      <section class="hp-sezione hp-fine reveal">
+        <h2 class="hp-titolo-grande">{e(CD.get('fine_titolo'))} <span>{e(CD.get('fine_colore'))}</span></h2>
+        <p class="hp-lead">{in_linea(CD.get('fine_testo') or '')}</p>
+        <p class="hp-azioni"><a class="cta" href="{CONTATTI}">{e(CD.get('fine_pulsante') or 'Scrivimi')}</a></p>{mail}
+      </section>
+    </div>"""
+
+
+def collezione_main(i, c):
+    titolo_cls = ("verde", "pesca")[i % 2]
+    album_cls = ("hp-a1", "hp-a2", "hp-a3", "hp-a4")
+    album = "".join("\n          " + foto_hp(v, e(v.get("titolo")), f"hp-foto {album_cls[j] if j < 4 else ''} reveal".replace("  ", " "))
+                    for j, v in enumerate(c["prodotti"]))
+    album = f'\n        <div class="hp-album">{album}\n        </div>' if album else ""
+
+    def elenco(voci, cls, sizes):
+        return "".join(f"\n            <li>{pic(v['immagine'], v.get('nome') or '', sizes=sizes)}<span>{e(v.get('nome'))}</span></li>" for v in voci)
+    sotto = lambda t, n: f'{e(t)}{f" <small>{e(n)}</small>" if n else ""}'
+    personaggi = (f"""
+        <div class="hp-quadretti reveal">
+          <h3 class="hp-sottotitolo">{sotto(c.get('personaggi_titolo') or 'I personaggi', c.get('personaggi_nota'))}</h3>
+          <ul class="hp-personaggi">{elenco(c['personaggi'], 'hp-personaggi', '(max-width: 900px) 25vw, 140px')}
+          </ul>
+        </div>""" if c["personaggi"] else "")
+    pattern = (f"""
+        <h3 class="hp-sottotitolo reveal">{sotto(c.get('pattern_titolo') or 'I pattern', c.get('pattern_nota'))}</h3>
+        <ul class="hp-pattern reveal">{elenco(c['pattern'], 'hp-pattern', '(max-width: 900px) 33vw, 220px')}
+        </ul>""" if c["pattern"] else "")
+    altre = [x for x in CD["collezioni"] if x is not c]
+    altra = altre[i % len(altre)] if altre else None
+    link_altra = f' <a class="hp-link" href="{url_collezione(altra)}">Guarda anche {e(altra["titolo"])} →</a>' if altra else ""
+    return f"""    <div class="page hp">
+      <a class="back reveal" href="{COLLAB}#collezioni"><img class="back__art" src="assets/img/ui/portapenne.webp" alt="" width="360" height="560"> Tutte le collezioni</a>
+
+      <section class="hp-sezione hp-sezione--prima">
+        <div class="hp-collezione__testa">
+          <div class="reveal">
+            <p class="hp-occhiello">Collezione {i + 1}{' · ' + e(c['etichetta']) if c.get('etichetta') else ''}</p>
+            <h1 class="hp-titolo hp-titolo--{titolo_cls}">{e(c['titolo'])}</h1>
+            <p class="hp-lead">{in_linea(c.get('presentazione') or c.get('breve') or '')}</p>
+          </div>
+          {scheda(c.get('scheda'))}
+        </div>{album}{personaggi}{pattern}
+      </section>
+
+      <section class="hp-sezione hp-fine reveal">
+        <h2 class="hp-titolo-grande">Ti piace <span>{e(c['titolo'])}</span>?</h2>
+        <p class="hp-lead">Scrivimi per ricevere i file di prova, le condizioni di licenza o una variante pensata per il vostro catalogo.</p>
+        <p class="hp-azioni"><a class="cta" href="{CONTATTI}">Richiedi questa collezione</a>{link_altra}</p>
+      </section>
+    </div>"""
 
 
 page(
     COLLAB, "collaborazioni",
     "Collaborazioni per aziende · illustrazioni e pattern per cartoleria e infanzia · Baruch",
     "Caterina Santambrogio, illustratrice: illustrazioni, personaggi e pattern in licenza per cartoleria, prodotti per l’infanzia, poster, tessili e packaging. Collezioni su misura per aziende ed editori.",
-    collab_html("pagina.html"),
+    collab_main(),
 )
-COLLEZIONI = [
-    ("il-bosco-fatato", "Il bosco fatato", "Il bosco fatato: personaggi e pattern coordinati di Caterina Santambrogio per cartoleria, cameretta e tessile, in licenza o in esclusiva."),
-    ("bereshit", "Bereshit", "Bereshit: illustrazioni nei blu e nei verdi con frasi scritte a mano, per poster, quadretti, segnalibri e tazze, in licenza o in esclusiva."),
-]
-for slug, titolo, desc in COLLEZIONI:
-    page(f"collaborazioni/{slug}.html", "collaborazioni", f"{titolo} · Collaborazioni per le aziende · Baruch", desc, collab_html(f"{slug}.html"))
+for vecchia in (SITO / "collaborazioni").glob("*.html"):   # una collezione tolta o rinominata non lascia pagine orfane
+    if vecchia.name != "index.html":
+        vecchia.unlink()
+for i, c in enumerate(CD["collezioni"]):
+    page(url_collezione(c), "collaborazioni", f"{html.escape(c['titolo'])} · Collaborazioni per le aziende · Baruch",
+         html.escape(c.get("breve") or c.get("presentazione") or c["titolo"]), collezione_main(i, c))
 
 # ---------------- SHOP ----------------
 OGGETTI_SHOP = [
