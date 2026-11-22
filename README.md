@@ -149,6 +149,7 @@ Dopo un push conviene fare `git pull`, perché il workflow aggiunge il suo commi
 - **Colori** (variabili in `style.css`): carta `#fefdfb`, verde scuro `#34432f`, terracotta `#c9623f`.
 - **Font:** Kalam per le scritte a mano, Barlow Semi Condensed per il testo.
 - **Elementi dipinti:** pennellate verde, pesca e crema dietro titoli e pulsanti (`.cta`), carta a quadretti, titoli delle pagine come immagini dipinte.
+- **Movimento** (fine di `style.css`, sezione "Movimento"): pennellate che si stendono quando compaiono, schede che arrivano una dopo l'altra, pianta e fiori che ondeggiano, Baruch e il bottone "torna su" che galleggiano, foto che si sollevano al passaggio del mouse. Tutto spento con "riduci movimento"; le animazioni continue si fermano fuori schermo (`.in-vista` in `main.js`). La comparsa usa `translate`, non `transform`, per non raddrizzare le foto inclinate.
 - **Lo stile deve restare "dipinto a mano":** Caterina lo vuole personale, ma per i Lavori in corso ha chiesto uno stile pulito, "grafico" (solo la griglia dietro, niente pennellate né bordi).
 
 ---

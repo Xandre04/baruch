@@ -61,6 +61,17 @@ if ("IntersectionObserver" in window) {
   reveals.forEach((el) => el.classList.add("is-in"));
 }
 
+/* ---------- I disegni che si muovono piano (style.css, "Movimento") si fermano quando escono dallo schermo ---------- */
+const vivi = document.querySelectorAll(".scrivimi, .tile--come-fiori-selvatici, .to-top");
+if ("IntersectionObserver" in window) {
+  const vista = new IntersectionObserver((entries) =>
+    entries.forEach((en) => en.target.classList.toggle("in-vista", en.isIntersecting))
+  );
+  vivi.forEach((el) => vista.observe(el));
+} else {
+  vivi.forEach((el) => el.classList.add("in-vista"));
+}
+
 /* ---------- A mattoncini (Mondi illustrati e pagine del Diario): ogni scheda occupa le righe da 8px che le servono ---------- */
 if ("ResizeObserver" in window) {
   const RIGA = 8; // come grid-auto-rows nel CSS; lo spazio tra le schede è --spazio
