@@ -1,366 +1,499 @@
 {
-  "titoletto": "Illustrazioni e pattern per la cartoleria, l’infanzia e la casa.",
-  "intro": "Disegno personaggi, pattern e illustrazioni pensati per diventare oggetti: quaderni, astucci e adesivi, carta da regalo, tessili e poster per la cameretta, tazze, segnalibri e biglietti.\n\nCollaboro con **aziende, editori e negozi** in tre modi:\n\n- **Licenza** delle collezioni che trovi in questa pagina, per stampe e prodotti.\n- **Collezioni su misura**: personaggi e pattern coordinati, pensati per il vostro catalogo, i vostri colori e i vostri formati.\n- **Illustrazione su commissione** per libri, calendari, packaging e comunicazione.\n\nI disegni nascono a mano, con gouache, acrilico e pastello, e vengono preparati in digitale per la stampa.",
+  "apertura": {
+    "occhiello": "Illustrazione e surface design per le aziende",
+    "titolo": "Illustrazioni che diventano",
+    "titolo_colore": "prodotti",
+    "testo": "Personaggi, pattern e collezioni coordinate per la cartoleria, l’infanzia e la casa. Dipinti a mano, preparati per la stampa e pronti per il vostro catalogo.",
+    "pulsante": "Richiedi il catalogo completo",
+    "foto": "/contenuti/media/bosco-cartoleria.webp",
+    "foto_alt": "Quaderni, astucci e adesivi con i pattern del bosco fatato",
+    "didascalia": "Il bosco fatato, collezione disponibile in licenza"
+  },
+  "clienti_titolo": "Hanno scelto i miei disegni",
+  "clienti": [
+    {
+      "nome": "Associazione Bereshit"
+    },
+    {
+      "nome": "Molino Rosenkranz"
+    },
+    {
+      "nome": "Teatro Improbabile"
+    },
+    {
+      "nome": "CEDAM"
+    }
+  ],
+  "servizi_titolo": "Tre modi per lavorare insieme",
+  "servizi_intro": "Dalla licenza di una collezione pronta allo sviluppo di una linea esclusiva: ogni progetto parte dal vostro prodotto, dal vostro pubblico e dai tempi della produzione.",
+  "servizi": [
+    {
+      "titolo": "Licenza",
+      "testo": "Le collezioni già pronte, da usare sui vostri prodotti con un accordo di licenza chiaro.",
+      "punti": "esclusiva o non esclusiva\nper categoria di prodotto e territorio\ndurata e compenso concordati"
+    },
+    {
+      "titolo": "Collezioni su misura",
+      "testo": "Una linea pensata per voi: personaggi, pattern coordinati e palette sul vostro brand.",
+      "punti": "personaggi e pattern ripetibili\nvarianti di colore e stagionali\nadattamento ai formati di produzione"
+    },
+    {
+      "titolo": "Su commissione",
+      "testo": "Illustrazioni per libri, calendari, packaging, eventi e comunicazione.",
+      "punti": "editoria e calendari\npackaging e materiali stampati\ncampagne ed eventi"
+    }
+  ],
+  "collezioni_titolo": "Le collezioni",
+  "collezioni_intro": "Collezioni già pronte, disponibili in licenza o in esclusiva. Aprile per vedere tutti i prodotti, i personaggi e i pattern.",
   "collezioni": [
     {
       "titolo": "Il bosco fatato",
-      "testo": "Una famiglia di piccoli abitanti del bosco, con i loro pattern coordinati: foglie d’autunno, funghi, righe e fiori. Pensata per la cartoleria e la cameretta dei bambini.",
-      "immagini": [
+      "etichetta": "infanzia e cartoleria",
+      "copertina": "/contenuti/media/bosco-cameretta-letto.webp",
+      "copertina_alt": "Cameretta con lenzuola e tappeto a foglie e il folletto pigna",
+      "breve": "Otto piccoli abitanti del bosco e cinque pattern coordinati, per la cameretta e la cartoleria.",
+      "presentazione": "Otto piccoli abitanti del bosco e una famiglia di pattern coordinati nei toni caldi dell’autunno. Nata per la cameretta e la cartoleria, funziona anche su tessile, carta regalo e decorazione.",
+      "scheda": [
         {
-          "immagine": "/contenuti/media/bosco-cartoleria.webp",
-          "titolo": "Cartoleria",
-          "descrizione": "Quaderni, astucci, matite e adesivi decorati con i pattern del bosco"
+          "voce": "Contenuto",
+          "valore": "8 personaggi e 5 pattern"
         },
+        {
+          "voce": "Applicazioni",
+          "valore": "cartoleria, tessile, poster, carta regalo"
+        },
+        {
+          "voce": "Pubblico",
+          "valore": "prima infanzia, 0–8 anni"
+        },
+        {
+          "voce": "Disponibilità",
+          "valore": "**licenza o esclusiva**"
+        }
+      ],
+      "prodotti": [
         {
           "immagine": "/contenuti/media/bosco-cameretta-letto.webp",
           "titolo": "Cameretta",
-          "descrizione": "Una cameretta con lenzuola e tappeto a foglie e un folletto pigna appeso al muro"
+          "descrizione": "Cameretta con lenzuola e tappeto a foglie e il folletto pigna"
+        },
+        {
+          "immagine": "/contenuti/media/bosco-regalo.webp",
+          "titolo": "Carta regalo",
+          "descrizione": "Carta regalo a foglie con la sagoma della volpe"
         },
         {
           "immagine": "/contenuti/media/bosco-poster-volpe.webp",
           "titolo": "Poster",
-          "descrizione": "Poster con la volpe vestita di foglie e la scritta Piccola volpe, grande furbizia"
-        },
-        {
-          "immagine": "/contenuti/media/bosco-coordinato-volpe.webp",
-          "titolo": "Personaggio e pattern",
-          "descrizione": "La volpe accanto al pattern di foglie coordinato"
-        },
-        {
-          "immagine": "/contenuti/media/bosco-regalo.webp",
-          "titolo": "Carta da regalo",
-          "descrizione": "Un pacco regalo con la carta a foglie, la sagoma della volpe e un poster"
-        },
-        {
-          "immagine": "/contenuti/media/bosco-coordinato-gufo.webp",
-          "titolo": "Personaggio e pattern",
-          "descrizione": "Il folletto gufo accanto al pattern verde a righe e fiori"
+          "descrizione": "Poster Piccola volpe, grande furbizia"
         },
         {
           "immagine": "/contenuti/media/bosco-cameretta-culla.webp",
-          "titolo": "Cameretta",
-          "descrizione": "Una culla di legno con un folletto gufo appeso alla parete"
-        },
-        {
-          "immagine": "/contenuti/media/bosco-coordinato-cervo.webp",
-          "titolo": "Personaggio e pattern",
-          "descrizione": "Il folletto cervo accanto al pattern giallo con i personaggi"
-        },
-        {
-          "immagine": "/contenuti/media/bosco-cameretta-tappeto.webp",
-          "titolo": "Cameretta",
-          "descrizione": "Una cameretta con il tappeto a foglie e il folletto pigna"
-        },
-        {
-          "immagine": "/contenuti/media/bosco-cameretta-gufo.webp",
-          "titolo": "Cameretta",
-          "descrizione": "Una cameretta con un poster verde del folletto gufo sopra la culla"
-        },
-        {
-          "immagine": "/contenuti/media/bosco-cameretta-volpe.webp",
-          "titolo": "Cameretta",
-          "descrizione": "Una cameretta con il poster della volpe sopra il letto"
-        },
+          "titolo": "Sagoma da parete",
+          "descrizione": "Culla con il folletto gufo appeso alla parete"
+        }
+      ],
+      "personaggi_titolo": "I personaggi",
+      "personaggi_nota": "scontornati, pronti per adesivi e sagome",
+      "personaggi": [
         {
           "immagine": "/contenuti/media/bosco-volpe.webp",
-          "titolo": "Personaggio",
-          "descrizione": "La volpe con le ali di foglia e un mantello rosso"
+          "nome": "Volpe"
         },
         {
           "immagine": "/contenuti/media/bosco-gufo.webp",
-          "titolo": "Personaggio",
-          "descrizione": "Un folletto con il cappuccio da gufo e le ali di foglia"
+          "nome": "Gufo"
         },
         {
           "immagine": "/contenuti/media/bosco-cervo.webp",
-          "titolo": "Personaggio",
-          "descrizione": "Un folletto con le corna di cervo e un mantello di foglie"
+          "nome": "Cervo"
         },
         {
           "immagine": "/contenuti/media/bosco-pigna.webp",
-          "titolo": "Personaggio",
-          "descrizione": "Un folletto vestito da pigna con le ali verdi"
+          "nome": "Pigna"
         },
         {
           "immagine": "/contenuti/media/bosco-fungo.webp",
-          "titolo": "Personaggio",
-          "descrizione": "Una folletta con il cappello a fungo e un cestino di fragole"
+          "nome": "Fungo"
         },
         {
           "immagine": "/contenuti/media/bosco-folletto-felce.webp",
-          "titolo": "Personaggio",
-          "descrizione": "Un folletto con le orecchie da orsetto e le ali di felce"
+          "nome": "Felce"
         },
         {
           "immagine": "/contenuti/media/bosco-folletto-candela.webp",
-          "titolo": "Personaggio",
-          "descrizione": "Un folletto con il berretto a righe e una candela"
+          "nome": "Candela"
         },
         {
           "immagine": "/contenuti/media/bosco-schiaccianoci.webp",
-          "titolo": "Personaggio",
-          "descrizione": "Un folletto vestito da schiaccianoci con la giubba rossa"
-        },
+          "nome": "Schiaccianoci"
+        }
+      ],
+      "pattern_titolo": "I pattern",
+      "pattern_nota": "ripetibili senza cuciture",
+      "pattern": [
         {
           "immagine": "/contenuti/media/bosco-pattern-foglie.webp",
-          "titolo": "Pattern",
-          "descrizione": "Pattern di foglie d’autunno su fondo crema"
+          "nome": "Foglie d’autunno"
         },
         {
           "immagine": "/contenuti/media/bosco-pattern-foglie-grandi.webp",
-          "titolo": "Pattern",
-          "descrizione": "Foglie d’autunno grandi e bacche su fondo crema"
+          "nome": "Foglie e bacche"
         },
         {
           "immagine": "/contenuti/media/bosco-pattern-funghi.webp",
-          "titolo": "Pattern",
-          "descrizione": "Pattern di funghi rossi a pois"
+          "nome": "Funghi"
         },
         {
           "immagine": "/contenuti/media/bosco-pattern-personaggi.webp",
-          "titolo": "Pattern",
-          "descrizione": "Pattern giallo con i folletti del bosco"
+          "nome": "Abitanti del bosco"
         },
         {
           "immagine": "/contenuti/media/bosco-pattern-righe.webp",
-          "titolo": "Pattern",
-          "descrizione": "Pattern verde a righe con mazzetti di fiori"
+          "nome": "Righe e fiori"
         }
       ]
     },
     {
       "titolo": "Bereshit",
-      "testo": "Illustrazioni dipinte nei blu e nei verdi, con frasi brevi scritte a mano: poster, quadretti, segnalibri e tazze. Per la casa e per un regalo pensato.",
-      "immagini": [
+      "etichetta": "casa e regalo",
+      "copertina": "/contenuti/media/bereshit-poster-tenerezza.webp",
+      "copertina_alt": "Poster La tenerezza illumina",
+      "breve": "Illustrazioni nei blu e nei verdi con frasi scritte a mano: poster, quadretti, segnalibri e tazze.",
+      "presentazione": "Illustrazioni dipinte nei blu e nei verdi, con frasi brevi scritte a mano. Una linea per la casa e per un regalo pensato, già sviluppata in più formati.",
+      "scheda": [
         {
-          "immagine": "/contenuti/media/bereshit-poster-tenerezza.webp",
-          "titolo": "Poster 30 x 40 cm",
-          "descrizione": "Poster incorniciato: una mamma e un bambino su un’amaca sotto le lucine, La tenerezza illumina"
+          "voce": "Formati pronti",
+          "valore": "poster 30×40, quadretti A4, segnalibri 7×21"
         },
         {
-          "immagine": "/contenuti/media/bereshit-segnalibri.webp",
-          "titolo": "Segnalibri 7 x 21 cm",
-          "descrizione": "Quattro segnalibri illustrati appoggiati su vecchi libri"
+          "voce": "Applicazioni",
+          "valore": "stampe, tazze, cartoline, oggettistica"
+        },
+        {
+          "voce": "Pubblico",
+          "valore": "adulti, famiglie, idee regalo"
+        },
+        {
+          "voce": "Disponibilità",
+          "valore": "**licenza o esclusiva**"
+        }
+      ],
+      "prodotti": [
+        {
+          "immagine": "/contenuti/media/bereshit-poster-tenerezza.webp",
+          "titolo": "Poster 30×40",
+          "descrizione": "Poster La tenerezza illumina"
         },
         {
           "immagine": "/contenuti/media/bereshit-tazze.webp",
           "titolo": "Tazze",
-          "descrizione": "Quattro tazze illustrate su un tavolo di legno"
+          "descrizione": "Quattro tazze illustrate"
+        },
+        {
+          "immagine": "/contenuti/media/bereshit-segnalibri.webp",
+          "titolo": "Segnalibri",
+          "descrizione": "Segnalibri illustrati"
         },
         {
           "immagine": "/contenuti/media/bereshit-poster-viaggio.webp",
           "titolo": "Quadretto A4",
-          "descrizione": "Quadretto con una barca a vela tra i gabbiani, La meta è nel viaggio"
-        },
-        {
-          "immagine": "/contenuti/media/bereshit-tazza-tisana.webp",
-          "titolo": "Tazza",
-          "descrizione": "Una tazza con la mamma e il bambino sull’amaca e una cartolina coordinata"
-        },
-        {
-          "immagine": "/contenuti/media/bereshit-poster-miracoli.webp",
-          "titolo": "Poster",
-          "descrizione": "Poster in una cameretta: animali del bosco tra alberi blu, Chi guarda con timidezza vede i miracoli"
-        },
-        {
-          "immagine": "/contenuti/media/bereshit-tazze-meraviglia.webp",
-          "titolo": "Tazze",
-          "descrizione": "Tazze Custodire la meraviglia, con insetti e foglie disegnati in blu"
-        },
-        {
-          "immagine": "/contenuti/media/bereshit-tazze-piccole-cose.webp",
-          "titolo": "Tazze",
-          "descrizione": "Tazze La semplicità delle piccole cose"
-        },
-        {
-          "immagine": "/contenuti/media/bereshit-tazze-tenerezza.webp",
-          "titolo": "Tazze",
-          "descrizione": "Tazze La tenerezza illumina, con le lucine e due tazzine che si sorridono"
+          "descrizione": "Quadretto La meta è nel viaggio"
         }
-      ]
+      ],
+      "personaggi_titolo": "",
+      "personaggi_nota": "",
+      "personaggi": [],
+      "pattern_titolo": "",
+      "pattern_nota": "",
+      "pattern": []
     }
   ],
+  "metodo_titolo": "Come lavoro",
+  "passi": [
+    {
+      "titolo": "Brief",
+      "testo": "Mi raccontate prodotto, pubblico, quantità e tempi di uscita."
+    },
+    {
+      "titolo": "Proposta",
+      "testo": "Ricevete tipo di licenza o commissione, preventivo e calendario."
+    },
+    {
+      "titolo": "Bozze",
+      "testo": "Schizzi e palette da approvare, con **due giri** di revisione."
+    },
+    {
+      "titolo": "File finali",
+      "testo": "In alta risoluzione, pronti per la stampa, con le varianti concordate."
+    }
+  ],
+  "scheda_tecnica": [
+    {
+      "voce": "Tecnica",
+      "valore": "gouache, acrilico e pastello, preparati in digitale"
+    },
+    {
+      "voce": "Risoluzione",
+      "valore": "**300 dpi** al formato di stampa"
+    },
+    {
+      "voce": "Formati",
+      "valore": "**PSD a livelli, TIFF, PDF, PNG scontornati**"
+    },
+    {
+      "voce": "Colore",
+      "valore": "**RGB e CMYK**, varianti di palette"
+    }
+  ],
+  "lavori_titolo": "Su commissione",
+  "lavori_intro": "Editoria, calendari e rassegne teatrali.",
   "carica": [],
   "immagini": [
     {
       "immagine": "/contenuti/media/calendario.webp",
       "titolo": "Calendario “Vuoi guarire?”",
+      "committente": "Associazione Bereshit",
       "nota": "Tecnica mista: gouache e digitale",
-      "descrizione": "Una donna dai capelli rossi suona un liuto"
+      "descrizione": "Una donna dai capelli rossi suona un liuto",
+      "in_pagina": true
     },
     {
       "immagine": "/contenuti/media/yan-e-lorso.webp",
       "titolo": "Yan e l’Orso",
+      "committente": "Molino Rosenkranz",
       "nota": "Tecnica mista: acrilico e digitale",
-      "descrizione": "Un bambino dorme sulla schiena di un grande orso"
+      "descrizione": "Un bambino dorme sulla schiena di un grande orso",
+      "in_pagina": true
     },
     {
       "immagine": "/contenuti/media/ritratto-07.webp",
       "titolo": "Calendario “Che effetto ti fa?”",
+      "committente": "",
       "nota": "Tecnica mista: acrilico e pastello su carta",
-      "descrizione": "Ritratti di volti sorridenti tra fiori, foglie e ritagli"
+      "descrizione": "Ritratti di volti sorridenti tra fiori, foglie e ritagli",
+      "in_pagina": false
     },
     {
       "immagine": "/contenuti/media/06-prove-di-volo.webp",
       "titolo": "Calendario illustrato “Prove di volo”",
+      "committente": "",
       "nota": "Tecnica mista: gouache e digitale",
-      "descrizione": "Un campo di papaveri rossi sotto un grande cielo arancione"
+      "descrizione": "Un campo di papaveri rossi sotto un grande cielo arancione",
+      "in_pagina": false
     },
     {
       "immagine": "/contenuti/media/01-teatro-sotto-agli-alberi.webp",
       "titolo": "Teatro sotto gli alberi",
+      "committente": "Molino Rosenkranz",
       "nota": "Tecnica mista: gouache e digitale",
-      "descrizione": "Bambini e animali giocano tra alberi con le gambe, in un prato fiorito"
+      "descrizione": "Bambini e animali giocano tra alberi con le gambe, in un prato fiorito",
+      "in_pagina": true
     },
     {
       "immagine": "/contenuti/media/02-prato-fiorito.webp",
       "titolo": "Prato fiorito",
+      "committente": "",
       "nota": "",
-      "descrizione": "Un prato fitto di fiori colorati dipinti ad acquerello"
+      "descrizione": "Un prato fitto di fiori colorati dipinti ad acquerello",
+      "in_pagina": false
     },
     {
       "immagine": "/contenuti/media/03-orsa.webp",
       "titolo": "Yan e l’Orso",
+      "committente": "",
       "nota": "Tecnica mista: acrilico e digitale",
-      "descrizione": "Un’orsa abbraccia una madre e il suo bambino vestiti con abiti del nord"
+      "descrizione": "Un’orsa abbraccia una madre e il suo bambino vestiti con abiti del nord",
+      "in_pagina": false
     },
     {
       "immagine": "/contenuti/media/04-maestra-lucia.webp",
       "titolo": "La maestra Lucia",
+      "committente": "",
       "nota": "",
-      "descrizione": "La maestra Lucia in bicicletta tra rami disegnati"
+      "descrizione": "La maestra Lucia in bicicletta tra rami disegnati",
+      "in_pagina": false
     },
     {
       "immagine": "/contenuti/media/05-casetta.webp",
       "titolo": "Casetta",
+      "committente": "",
       "nota": "",
-      "descrizione": "Una casetta fatta di carte a fiori"
+      "descrizione": "Una casetta fatta di carte a fiori",
+      "in_pagina": false
     },
     {
       "immagine": "/contenuti/media/06-donnina-ingarbugliata.webp",
       "titolo": "Donnina ingarbugliata",
+      "committente": "",
       "nota": "",
-      "descrizione": "Una donna con un filo rosso ingarbugliato sulla testa"
+      "descrizione": "Una donna con un filo rosso ingarbugliato sulla testa",
+      "in_pagina": false
     },
     {
       "immagine": "/contenuti/media/07-casa-con-personaggio.webp",
       "titolo": "Casa con personaggio",
+      "committente": "",
       "nota": "",
-      "descrizione": "Una figura con una colomba dentro una casa gialla"
+      "descrizione": "Una figura con una colomba dentro una casa gialla",
+      "in_pagina": false
     },
     {
       "immagine": "/contenuti/media/08-copertina-libro.webp",
       "titolo": "Le grandi leggi dell’umanità",
+      "committente": "CEDAM",
       "nota": "",
-      "descrizione": "Copertina del libro Le grandi leggi dell’umanità illustrata con un giardino"
+      "descrizione": "Copertina del libro Le grandi leggi dell’umanità illustrata con un giardino",
+      "in_pagina": true
     },
     {
       "immagine": "/contenuti/media/09-tulipani.webp",
       "titolo": "Tulipani",
+      "committente": "",
       "nota": "",
-      "descrizione": "Tulipani rossi fitti con piccole case tra gli steli"
+      "descrizione": "Tulipani rossi fitti con piccole case tra gli steli",
+      "in_pagina": false
     },
     {
       "immagine": "/contenuti/media/10-donna-ai-piedi.webp",
       "titolo": "Donna ai piedi",
+      "committente": "",
       "nota": "",
-      "descrizione": "Una donna dai capelli rossi dorme sotto una colomba bianca"
+      "descrizione": "Una donna dai capelli rossi dorme sotto una colomba bianca",
+      "in_pagina": false
     },
     {
       "immagine": "/contenuti/media/11-bambina-e-bambola.webp",
       "titolo": "Bambina e bambola",
+      "committente": "",
       "nota": "",
-      "descrizione": "Una madre abbraccia una bambina su uno sfondo turchese con carte a fiori"
+      "descrizione": "Una madre abbraccia una bambina su uno sfondo turchese con carte a fiori",
+      "in_pagina": false
     },
     {
       "immagine": "/contenuti/media/12-prove-di-volo.webp",
       "titolo": "Calendario illustrato “Prove di volo”",
+      "committente": "",
       "nota": "Tecnica mista: gouache e digitale",
-      "descrizione": "Un uccello giallo vola sopra un campo di papaveri"
+      "descrizione": "Un uccello giallo vola sopra un campo di papaveri",
+      "in_pagina": false
     },
     {
       "immagine": "/contenuti/media/13-sassi-sul-naso.webp",
       "titolo": "Sassi sul naso",
+      "committente": "",
       "nota": "",
-      "descrizione": "Una donna tiene in equilibrio una pila di sassi sul naso"
+      "descrizione": "Una donna tiene in equilibrio una pila di sassi sul naso",
+      "in_pagina": false
     },
     {
       "immagine": "/contenuti/media/14-testa-fiorita.webp",
       "titolo": "Testa fiorita",
+      "committente": "",
       "nota": "",
-      "descrizione": "Una donna con un garofano al posto dei capelli"
+      "descrizione": "Una donna con un garofano al posto dei capelli",
+      "in_pagina": false
     },
     {
       "immagine": "/contenuti/media/15-ciondoli.webp",
       "titolo": "Ciondoli",
+      "committente": "",
       "nota": "",
-      "descrizione": "Ciondoli in ceramica dipinti con volti e foglie blu"
+      "descrizione": "Ciondoli in ceramica dipinti con volti e foglie blu",
+      "in_pagina": false
     },
     {
       "immagine": "/contenuti/media/16-opera-16.webp",
       "titolo": "",
+      "committente": "",
       "nota": "",
-      "descrizione": "Un uccello dalle piume rosse e dalla coda a righe colorate"
+      "descrizione": "Un uccello dalle piume rosse e dalla coda a righe colorate",
+      "in_pagina": false
     },
     {
       "immagine": "/contenuti/media/17-opera-17.webp",
       "titolo": "",
+      "committente": "",
       "nota": "",
-      "descrizione": "Un uccello giallo fatto di due grandi foglie"
+      "descrizione": "Un uccello giallo fatto di due grandi foglie",
+      "in_pagina": false
     },
     {
       "immagine": "/contenuti/media/18-opera-18.webp",
       "titolo": "",
+      "committente": "",
       "nota": "",
-      "descrizione": "Un uccello verde ad acquerello in volo"
+      "descrizione": "Un uccello verde ad acquerello in volo",
+      "in_pagina": false
     },
     {
       "immagine": "/contenuti/media/19-sedia.webp",
       "titolo": "Sedia",
+      "committente": "",
       "nota": "",
-      "descrizione": "Una sedia di legno decorata con case e alberi"
+      "descrizione": "Una sedia di legno decorata con case e alberi",
+      "in_pagina": false
     },
     {
       "immagine": "/contenuti/media/20-mappa.webp",
       "titolo": "Mappa parlante di Casina",
+      "committente": "",
       "nota": "",
-      "descrizione": "Mappa illustrata del paese di Casina tra colline verdi"
+      "descrizione": "Mappa illustrata del paese di Casina tra colline verdi",
+      "in_pagina": false
     },
     {
       "immagine": "/contenuti/media/21-arte-canusina.webp",
       "titolo": "Arte canusina",
+      "committente": "",
       "nota": "",
-      "descrizione": "Una donna in camice legge un libro di arte canusina"
+      "descrizione": "Una donna in camice legge un libro di arte canusina",
+      "in_pagina": false
     },
     {
       "immagine": "/contenuti/media/22-conoglio.webp",
       "titolo": "Coniglio",
+      "committente": "",
       "nota": "",
-      "descrizione": "Un coniglio e uno scoiattolo con un rametto di alchechengi"
+      "descrizione": "Un coniglio e uno scoiattolo con un rametto di alchechengi",
+      "in_pagina": false
     },
     {
       "immagine": "/contenuti/media/23-bambina-prato.webp",
       "titolo": "Bambina nel prato",
+      "committente": "",
       "nota": "",
-      "descrizione": "Una bambina dorme nell’erba alta tra fiori gialli"
+      "descrizione": "Una bambina dorme nell’erba alta tra fiori gialli",
+      "in_pagina": false
     },
     {
       "immagine": "/contenuti/media/img-6334.webp",
       "titolo": "",
+      "committente": "",
       "nota": "",
-      "descrizione": "Quattro fragole dipinte, due con un volto"
+      "descrizione": "Quattro fragole dipinte, due con un volto",
+      "in_pagina": false
     },
     {
       "immagine": "/contenuti/media/img-6431.webp",
       "titolo": "",
+      "committente": "",
       "nota": "",
-      "descrizione": "Una teiera in ceramica con un uccellino sul coperchio"
+      "descrizione": "Una teiera in ceramica con un uccellino sul coperchio",
+      "in_pagina": false
     },
     {
       "immagine": "/contenuti/media/img-6437.webp",
       "titolo": "",
+      "committente": "",
       "nota": "",
-      "descrizione": "Una ragazza dai capelli al vento dentro una grande tazza blu"
+      "descrizione": "Una ragazza dai capelli al vento dentro una grande tazza blu",
+      "in_pagina": false
     }
-  ]
+  ],
+  "fine_titolo": "Parliamo della vostra",
+  "fine_colore": "prossima collezione",
+  "fine_testo": "Scrivetemi per ricevere il catalogo completo, le condizioni di licenza o un preventivo per un progetto su misura.",
+  "fine_pulsante": "Scrivimi per una proposta",
+  "fine_email": "illustraremondi@gmail.com"
 }

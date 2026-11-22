@@ -115,20 +115,27 @@ I progetti della sezione **Mondi illustrati** (calendari, rassegne teatrali, sto
 
 ## La pagina Collaborazioni (per le aziende)
 
-A sinistra scegli **Collaborazioni** e apri **Pagina Collaborazioni**. Dall'alto in basso:
+A sinistra scegli **Collaborazioni** e apri **Pagina Collaborazioni**. I campi seguono la pagina dall'alto in basso:
 
-- **Frase in alto** e **Presentazione per le aziende**: cosa fai, per chi e come si può collaborare.
-- **Collezioni**: ogni collezione (per esempio *Il bosco fatato*, *Bereshit*) ha un titolo, due righe e le sue immagini. Per aggiungerne una premi **Aggiungi**; per aggiungere un'immagine a una collezione, aprila e premi **Aggiungi** in **Immagini**. A ogni immagine puoi dare un titolo breve (Poster, Pattern, Cartoleria…) e una descrizione.
-- **Lavori su commissione**: la galleria di sempre (vedi sotto).
+- **In alto (apertura)**: la riga piccola, il titolo (l'ultima parola va nel campo a parte, in terracotta), il testo, il pulsante e la foto a destra.
+- **Clienti**: i nomi sulla pennellata crema.
+- **Modi di lavorare**: titolo, testo ed elenco puntato (una voce per riga).
+- **Collezioni**: ognuna compare come copertina, una accanto all'altra; cliccandola si apre la sua pagina. Per ogni collezione scegli la **foto di copertina**, **una riga sulla copertina** e, per la sua pagina, la **presentazione**, la **scheda**, le **foto dei prodotti** (le prime quattro fanno il collage), i **personaggi** e i **pattern** (se li lasci vuoti, quella parte non compare). Per una nuova collezione premi **Aggiungi**.
+- **Passi** e **Scheda tecnica**: come lavori.
+- **Lavori su commissione**: compaiono solo quelli con **Nella pagina** acceso (quattro per riga); gli altri restano nell'elenco da parte.
+- **In fondo**: titolo, testo, pulsante ed email.
+
+> Nelle schede e nei passi, le parole tra **due asterischi** (`**così**`) compaiono evidenziate in giallo. Toglili se non vuoi l'evidenziato.
 
 ## Aggiungere immagini ai Lavori su commissione
 
 1. A sinistra scegli **Collaborazioni** e apri **Pagina Collaborazioni**.
 2. In **Carica più immagini insieme** seleziona tutte le immagini in una volta e premi **Salva**.
-3. Dopo un paio di minuti compaiono in cima alla galleria del sito.
-4. Riaprendo la galleria nell'editor, le trovi in cima all'elenco **Immagini della galleria**. Lì puoi, se vuoi:
-   - dare a ciascuna un **titolo**, la **tecnica o il committente** e una **descrizione**;
-   - cambiarne l'ordine trascinandole (l'ordine dell'elenco è l'ordine della galleria);
+3. Dopo un paio di minuti compaiono in cima ai lavori su commissione del sito.
+4. Riaprendo la pagina nell'editor, le trovi in cima all'elenco **Lavori su commissione**. Lì puoi, se vuoi:
+   - dare a ciascuna un **titolo**, il **committente**, la **tecnica** e una **descrizione**;
+   - spegnere **Nella pagina** per tenerla da parte senza mostrarla;
+   - cambiarne l'ordine trascinandole (l'ordine dell'elenco è l'ordine della pagina);
    - toglierne una dal menu dell'immagine.
 
    Poi premi **Salva**.

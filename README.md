@@ -26,10 +26,12 @@ Il sito di **Caterina Santambrogio**, illustratrice (Pordenone). Lo segue **Vale
   - Come fiori selvatici;
   - Costruire con Baruch;
   - Le cose magiche di Baruch.
-- **Collaborazioni**: la pagina per le aziende, in tre parti:
-  - la presentazione;
-  - le collezioni in licenza (*Il bosco fatato*, *Bereshit*);
-  - la galleria dei lavori su commissione.
+- **Collaborazioni**: la pagina per le aziende (classi `hp-…`), tutta dall'editor:
+  - apertura, committenti, tre modi di lavorare;
+  - le collezioni in licenza come copertine affiancate sulla carta a quadretti; ognuna apre la sua pagina `sito/collaborazioni/<titolo>.html` con scheda, foto dei prodotti, personaggi e pattern;
+  - come lavora, con la scheda tecnica;
+  - i lavori su commissione (solo quelli con "Nella pagina" acceso) e la chiusura.
+  - Nelle schede e nei passi il **grassetto** diventa evidenziato in giallo (`<mark>`).
 - **Contatti**: modulo inviato da `sito/contatti/invia.php` con la funzione `mail()` di PHP, quindi funziona solo su Keliweb.
 - **Lavori in corso**: annunci in home; quelli con dettagli, altre foto o video hanno una pagina propria in `sito/lavori-in-corso/`.
 - **Shop** e **Privacy e cookie**: pagine esistenti ma fuori dal menu. Shop dice "in preparazione". La privacy è una bozza da far verificare a chi segue Caterina per la parte legale.
@@ -46,7 +48,7 @@ baruch/
 │   ├── articoli/                  una pagina del Diario per file, composta a blocchi
 │   ├── opere/                     un progetto su commissione per file (Mondi illustrati)
 │   ├── adesso.json                gli annunci "Lavori in corso"
-│   ├── collaborazioni.json        pagina Collaborazioni: presentazione, collezioni, galleria
+│   ├── collaborazioni.json        pagina Collaborazioni e pagine delle collezioni
 │   └── media/                     le foto caricate, a piena qualità
 │
 ├── sito/                          ← quello che va online (su Keliweb si carica solo questa cartella)
@@ -173,25 +175,10 @@ $PY sorgenti/contenuti.py    # piccolo autotest, stampa "ok"
 
 ## Bozze non pubblicate
 
-### `bozze/collaborazioni-aziende/`: Collaborazioni come portfolio per le aziende
+### `bozze/collaborazioni-aziende/`: pubblicata il 22 novembre 2026
 
-Caterina vuole rendere il sito più adatto alla **vendita alle aziende**: licenza di illustrazioni e pattern per cartoleria, infanzia e casa. Lo ha chiesto su consiglio della nipote. La versione pubblicata di Collaborazioni è una prima risposta. Questa bozza è più "seria", ma nello stile dipinto del sito.
+La bozza "portfolio per le aziende" è diventata la pagina Collaborazioni, con i contenuti in `contenuti/collaborazioni.json`. Nella cartella delle bozze restano solo gli script per le schermate e il PDF.
 
-- **Contenuto:**
-  - l'apertura "Illustrazioni che diventano prodotti";
-  - i committenti;
-  - i tre servizi (licenza, collezioni su misura, commissione);
-  - le schede delle collezioni *Il bosco fatato* e *Bereshit* (applicazioni, 8 personaggi, 5 pattern);
-  - come lavora, con le specifiche dei file;
-  - i lavori su commissione e i contatti.
-  - "Chi sono" è stato tolto perché c'è già nel sito.
-- **File:**
-  - `pagina.html` e `stile.css` (classi `hp-…`). Le foto sono scritte come `{img:nome|descrizione}`.
-  - `Bozza-sito-per-Caterina.pdf`: le schermate su computer e su telefono, già mandate a Caterina.
-- **Provarla:**
-  - `python bozze/collaborazioni-aziende/applica.py` applica la bozza in locale e rigenera il sito;
-  - `python bozze/collaborazioni-aziende/applica.py annulla` torna alla versione pubblicata.
-  - Non committare mai con la bozza applicata.
 - **Le parti evidenziate in giallo (`<mark>`) sono da chiedere a Caterina:**
   - se le collezioni le dà in licenza, in esclusiva o in tutti e due i modi;
   - risoluzione, formati e colori dei file;

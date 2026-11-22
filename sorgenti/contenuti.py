@@ -177,20 +177,14 @@ def opere():
 
 
 def collaborazioni():
-    """La pagina Collaborazioni: presentazione, collezioni per le aziende e galleria dei lavori, come nell'editor."""
+    """La pagina Collaborazioni per le aziende, com'è nell'editor; le voci senza immagine o senza titolo si saltano."""
     dati = json.loads((CONTENUTI / "collaborazioni.json").read_text(encoding="utf-8"))
-
-    def voci(lista):
-        return [{k: html.escape(v.get(k) or "") for k in ("titolo", "nota", "descrizione")} | {"immagine": v["immagine"]}
-                for v in lista or [] if v.get("immagine")]
-
-    return {
-        "titoletto": dati.get("titoletto") or "",
-        "intro": dati.get("intro") or "",
-        "collezioni": [{"titolo": c["titolo"], "testo": c.get("testo") or "", "immagini": voci(c.get("immagini"))}
-                       for c in dati.get("collezioni") or [] if c.get("titolo")],
-        "immagini": voci(dati.get("immagini")),
-    }
+    dati["collezioni"] = [c for c in dati.get("collezioni") or [] if c.get("titolo")]
+    for c in dati["collezioni"]:
+        for k in ("prodotti", "personaggi", "pattern"):
+            c[k] = [v for v in c.get(k) or [] if v.get("immagine")]
+    dati["immagini"] = [v for v in dati.get("immagini") or [] if v.get("immagine") and v.get("in_pagina", True)]
+    return dati
 
 
 def annunci():
@@ -222,8 +216,9 @@ def accogli_caricamenti():
     nuove = dati.get("carica") or []
     if nuove:
         presenti = {v.get("immagine") for v in dati.get("immagini") or []}
-        voci = [{"immagine": p, "titolo": "", "nota": "", "descrizione": ""} for p in nuove if p not in presenti]
-        dati["immagini"] = voci + (dati.get("immagini") or [])   # le nuove in cima alla galleria
+        voci = [{"immagine": p, "titolo": "", "committente": "", "nota": "", "descrizione": "", "in_pagina": True}
+                for p in nuove if p not in presenti]
+        dati["immagini"] = voci + (dati.get("immagini") or [])   # le nuove in cima ai lavori
         dati["carica"] = []
         _scrivi(file, dati)
         modificati.append(file)

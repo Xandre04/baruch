@@ -582,76 +582,282 @@ collections:
   # ---------------------------------------------------------------- Collaborazioni
   - name: pagine
     label: Collaborazioni
-    description: La pagina Collaborazioni, per le aziende - presentazione, collezioni e galleria dei lavori.
+    description: La pagina Collaborazioni, per le aziende - presentazione, collezioni (ognuna con la sua pagina) e lavori su commissione.
     files:
       - name: collaborazioni
         label: Pagina Collaborazioni
         file: contenuti/collaborazioni.json
         fields:
-          - name: titoletto
-            label: Frase in alto
+          - name: apertura
+            label: In alto (apertura)
+            widget: object
+            fields:
+              - name: occhiello
+                label: Riga piccola sopra il titolo
+                widget: string
+                required: false
+              - name: titolo
+                label: Titolo
+                widget: string
+                required: false
+              - name: titolo_colore
+                label: Ultima parola del titolo, in terracotta
+                widget: string
+                required: false
+                hint: "Per esempio prodotti."
+              - name: testo
+                label: Testo sotto il titolo
+                widget: text
+                required: false
+              - name: pulsante
+                label: Testo del pulsante
+                widget: string
+                required: false
+                hint: "Il pulsante porta alla pagina Contatti."
+              - name: foto
+                label: Foto a destra
+                widget: image
+                required: false
+                choose_url: false
+              - name: foto_alt
+                label: Cosa si vede nella foto
+                widget: string
+                required: false
+                hint: "Serve a chi non vede le immagini e a Google."
+              - name: didascalia
+                label: Didascalia della foto
+                widget: string
+                required: false
+          - name: clienti_titolo
+            label: Titolo della fascia clienti
             widget: string
             required: false
-            hint: La prima frase della pagina, scritta a mano in terracotta.
-          - name: intro
-            label: Presentazione per le aziende
-            widget: markdown
+            hint: "Per esempio Hanno scelto i miei disegni."
+          - name: clienti
+            label: Clienti
+            label_singular: Cliente
+            widget: list
             required: false
-            buttons: [bold, italic, link, bulleted-list]
-            hint: Cosa fai, per chi e come si può collaborare.
+            summary: "{{fields.nome}}"
+            fields:
+              - name: nome
+                label: Nome
+                widget: string
+          - name: servizi_titolo
+            label: Titolo dei modi di lavorare
+            widget: string
+            required: false
+          - name: servizi_intro
+            label: Due righe sotto il titolo
+            widget: text
+            required: false
+          - name: servizi
+            label: Modi di lavorare
+            label_singular: Modo di lavorare
+            widget: list
+            required: false
+            summary: "{{fields.titolo}}"
+            hint: "Ognuno ha il numero e il titolo su una pennellata, a colori alterni."
+            fields:
+              - name: titolo
+                label: Titolo
+                widget: string
+              - name: testo
+                label: Testo
+                widget: text
+                required: false
+              - name: punti
+                label: Elenco puntato
+                widget: text
+                required: false
+                hint: "Una voce per riga."
+          - name: collezioni_titolo
+            label: Titolo delle collezioni
+            widget: string
+            required: false
+          - name: collezioni_intro
+            label: Due righe sotto il titolo
+            widget: text
+            required: false
           - name: collezioni
             label: Collezioni
             label_singular: Collezione
             widget: list
             required: false
             summary: "{{fields.titolo}}"
-            hint: Ogni collezione ha il suo titolo, due righe e le sue immagini. L'ordine dell'elenco è l'ordine della pagina.
+            hint: "Ogni collezione ha una copertina nella pagina Collaborazioni e una pagina sua. L'ordine dell'elenco è l'ordine delle copertine."
             fields:
               - name: titolo
                 label: Titolo
                 widget: string
-              - name: testo
-                label: Due righe di presentazione
+              - name: etichetta
+                label: Etichetta
+                widget: string
+                required: false
+                hint: "Compare dopo Collezione 1 ·, per esempio infanzia e cartoleria."
+              - name: copertina
+                label: Foto di copertina
+                widget: image
+                required: false
+                hint: "La foto della copertina nella pagina Collaborazioni; cliccandola si apre la pagina della collezione."
+                choose_url: false
+              - name: copertina_alt
+                label: Cosa si vede nella copertina
+                widget: string
+                required: false
+              - name: breve
+                label: Una riga sulla copertina
                 widget: text
                 required: false
-              - name: immagini
-                label: Immagini
-                label_singular: Immagine
+              - name: presentazione
+                label: Presentazione nella pagina della collezione
+                widget: text
+                required: false
+              - name: scheda
+                label: Scheda
+                label_singular: Voce
+                widget: list
+                required: false
+                summary: "{{fields.voce}}"
+                hint: "Le voci sulla pennellata crema accanto al titolo."
+                fields:
+                  - name: voce
+                    label: Voce
+                    widget: string
+                    hint: "Per esempio Pubblico, Formati."
+                  - name: valore
+                    label: Valore
+                    widget: string
+                    required: false
+                    hint: "Metti tra **due asterischi** le parole da evidenziare in giallo."
+              - name: prodotti
+                label: Foto dei prodotti
+                label_singular: Foto
                 widget: list
                 required: false
                 summary: "{{fields.titolo}}"
+                hint: "Le prime quattro formano il collage (la prima e la terza sono verticali)."
                 fields:
                   - name: immagine
                     label: Immagine
                     widget: image
                     choose_url: false
                   - name: titolo
-                    label: Titolo
+                    label: Didascalia
                     widget: string
                     required: false
-                    hint: Per esempio Poster, Pattern, Cartoleria. Compare quando l'immagine si ingrandisce.
+                    hint: "Per esempio Poster, Cameretta."
                   - name: descrizione
-                    label: Descrizione
+                    label: Cosa si vede
                     widget: string
                     required: false
-                    hint: Cosa si vede nell'immagine (serve a chi non vede le immagini e a Google).
-          - name: carica
-            label: Carica più immagini insieme
-            widget: image
-            multiple: true
+              - name: personaggi_titolo
+                label: Titolo dei personaggi
+                widget: string
+                required: false
+                hint: "Per esempio I personaggi."
+              - name: personaggi_nota
+                label: Nota accanto al titolo dei personaggi
+                widget: string
+                required: false
+              - name: personaggi
+                label: Personaggi
+                label_singular: Personaggio
+                widget: list
+                required: false
+                summary: "{{fields.nome}}"
+                hint: "Facoltativi: se l'elenco è vuoto la fascia non compare."
+                fields:
+                  - name: immagine
+                    label: Immagine scontornata
+                    widget: image
+                    choose_url: false
+                  - name: nome
+                    label: Nome
+                    widget: string
+                    required: false
+              - name: pattern_titolo
+                label: Titolo dei pattern
+                widget: string
+                required: false
+                hint: "Per esempio I pattern."
+              - name: pattern_nota
+                label: Nota accanto al titolo dei pattern
+                widget: string
+                required: false
+              - name: pattern
+                label: Pattern
+                label_singular: Pattern
+                widget: list
+                required: false
+                summary: "{{fields.nome}}"
+                hint: "Facoltativi: se l'elenco è vuoto la fascia non compare."
+                fields:
+                  - name: immagine
+                    label: Immagine
+                    widget: image
+                    choose_url: false
+                  - name: nome
+                    label: Nome
+                    widget: string
+                    required: false
+          - name: metodo_titolo
+            label: Titolo di come lavori
+            widget: string
             required: false
-            choose_url: false
-            hint: >-
-              Selezionale tutte in una volta e salva. Alla pubblicazione compaiono in cima alla galleria
-              e si spostano nell'elenco qui sotto, dove puoi dare un titolo, riordinarle o toglierle.
-              Riapri poi questa pagina dell'editor per vederle.
-          - name: immagini
-            label: Lavori su commissione (galleria)
-            label_singular: Immagine
+          - name: passi
+            label: Passi
+            label_singular: Passo
             widget: list
             required: false
             summary: "{{fields.titolo}}"
-            hint: L'ordine dell'elenco è l'ordine della galleria. Trascina per spostare.
+            fields:
+              - name: titolo
+                label: Titolo
+                widget: string
+              - name: testo
+                label: Testo
+                widget: text
+                required: false
+                hint: "Metti tra **due asterischi** le parole da evidenziare in giallo."
+          - name: scheda_tecnica
+            label: Scheda tecnica
+            label_singular: Voce
+            widget: list
+            required: false
+            summary: "{{fields.voce}}"
+            fields:
+              - name: voce
+                label: Voce
+                widget: string
+                hint: "Per esempio Pubblico, Formati."
+              - name: valore
+                label: Valore
+                widget: string
+                required: false
+                hint: "Metti tra **due asterischi** le parole da evidenziare in giallo."
+          - name: lavori_titolo
+            label: Titolo dei lavori su commissione
+            widget: string
+            required: false
+          - name: lavori_intro
+            label: Riga sotto il titolo
+            widget: text
+            required: false
+          - name: carica
+            label: Carica più immagini insieme
+            widget: image
+            required: false
+            hint: "Selezionale tutte in una volta e salva. Alla pubblicazione si spostano in cima ai lavori qui sotto, dove puoi dare un titolo, riordinarle o toglierle. Riapri poi questa pagina dell'editor per vederle."
+            multiple: true
+            choose_url: false
+          - name: immagini
+            label: Lavori su commissione
+            label_singular: Lavoro
+            widget: list
+            required: false
+            summary: "{{fields.titolo}}"
+            hint: "Compaiono solo quelli con Nella pagina acceso, nell'ordine dell'elenco (quattro per riga). Gli altri restano qui da parte."
             fields:
               - name: immagine
                 label: Immagine
@@ -661,14 +867,44 @@ collections:
                 label: Titolo
                 widget: string
                 required: false
-                hint: Compare quando l'immagine si ingrandisce. Facoltativo.
+              - name: committente
+                label: Committente
+                widget: string
+                required: false
+                hint: "Compare sotto il titolo, per esempio CEDAM."
               - name: nota
-                label: Tecnica o committente
+                label: Tecnica
                 widget: string
                 required: false
-                hint: "Per esempio Tecnica mista: gouache e digitale. Facoltativo."
               - name: descrizione
-                label: Descrizione
+                label: Cosa si vede
                 widget: string
                 required: false
-                hint: Cosa si vede nell'immagine (serve a chi non vede le immagini e a Google).
+                hint: "Serve a chi non vede le immagini e a Google."
+              - name: in_pagina
+                label: Nella pagina
+                widget: boolean
+                required: false
+                default: true
+          - name: fine_titolo
+            label: Titolo in fondo
+            widget: string
+            required: false
+            hint: "Per esempio Parliamo della vostra."
+          - name: fine_colore
+            label: Fine del titolo in fondo, in terracotta
+            widget: string
+            required: false
+            hint: "Per esempio prossima collezione."
+          - name: fine_testo
+            label: Testo in fondo
+            widget: text
+            required: false
+          - name: fine_pulsante
+            label: Testo del pulsante in fondo
+            widget: string
+            required: false
+          - name: fine_email
+            label: Email sotto il pulsante
+            widget: string
+            required: false
