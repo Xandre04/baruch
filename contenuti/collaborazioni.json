@@ -6,8 +6,8 @@
     "testo": "Personaggi, pattern e collezioni coordinate per la cartoleria, l’infanzia e la casa. Dipinti a mano, preparati per la stampa e pronti per il vostro catalogo.",
     "pulsante": "Richiedi il catalogo completo",
     "foto": "/contenuti/media/bosco-cartoleria.webp",
-    "foto_alt": "Quaderni, astucci e adesivi con i pattern del bosco fatato",
-    "didascalia": "Il bosco fatato, collezione disponibile in licenza"
+    "foto_alt": "Quaderni, astucci e adesivi con i pattern di Profumo di sottobosco",
+    "didascalia": "Profumo di sottobosco, collezione disponibile su licenza"
   },
   "clienti_titolo": "Hanno scelto i miei disegni",
   "clienti": [
@@ -47,7 +47,7 @@
   "collezioni_intro": "Collezioni già pronte, disponibili in licenza o in esclusiva. Aprile per vedere tutti i prodotti, i personaggi e i pattern.",
   "collezioni": [
     {
-      "titolo": "Il bosco fatato",
+      "titolo": "Profumo di sottobosco",
       "etichetta": "infanzia e cartoleria",
       "copertina": "/contenuti/media/bosco-cameretta-letto.webp",
       "copertina_alt": "Cameretta con lenzuola e tappeto a foglie e il folletto pigna",

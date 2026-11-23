@@ -1069,6 +1069,8 @@ REDIRECT = {
     "portfolio/teatro-e-bosco-sotto-gli-alberi": url_opera(OPERA_BY["teatro-sotto-gli-alberi"]),
     "portfolio/yan-e-orso": url_opera(OPERA_BY["yan-e-l-orso"]),
     "portfolio/calendario-vuoi-guarire": url_opera(OPERA_BY["vuoi-guarire"]),
+    # la collezione "Il bosco fatato" è stata rinominata "Profumo di sottobosco"
+    r"collaborazioni/il-bosco-fatato\.html": url_collezione(next(c for c in CD["collezioni"] if c["titolo"] == "Profumo di sottobosco")),
 }
 righe = "\n".join(f"RedirectMatch 301 ^/{old}/?$ /{new}" for old, new in REDIRECT.items())
 (SITO / ".htaccess").write_text(f"""# Generato da sorgenti/build.py: non modificare a mano.
