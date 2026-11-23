@@ -776,6 +776,31 @@ collections:
                     label: Nome
                     widget: string
                     required: false
+              - name: elementi_titolo
+                label: Titolo degli elementi
+                widget: string
+                required: false
+                hint: "Per esempio Gli elementi."
+              - name: elementi_nota
+                label: Nota accanto al titolo degli elementi
+                widget: string
+                required: false
+              - name: elementi
+                label: Elementi
+                label_singular: Elemento
+                widget: list
+                required: false
+                summary: "{{fields.nome}}"
+                hint: "Foglie, pigne, casette e altri soggetti scontornati. Facoltativi: se l'elenco è vuoto la fascia non compare."
+                fields:
+                  - name: immagine
+                    label: Immagine scontornata
+                    widget: image
+                    choose_url: false
+                  - name: nome
+                    label: Nome
+                    widget: string
+                    required: false
               - name: pattern_titolo
                 label: Titolo dei pattern
                 widget: string

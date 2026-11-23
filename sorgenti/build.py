@@ -863,6 +863,10 @@ def collezione_main(i, c):
           <ul class="hp-personaggi">{elenco(c['personaggi'], 'hp-personaggi', '(max-width: 900px) 25vw, 140px')}
           </ul>
         </div>""" if c["personaggi"] else "")
+    elementi = (f"""
+        <h3 class="hp-sottotitolo reveal">{sotto(c.get('elementi_titolo') or 'Gli elementi', c.get('elementi_nota'))}</h3>
+        <ul class="hp-personaggi hp-elementi reveal">{elenco(c['elementi'], 'hp-elementi', '(max-width: 900px) 25vw, 140px')}
+        </ul>""" if c["elementi"] else "")
     pattern = (f"""
         <h3 class="hp-sottotitolo reveal">{sotto(c.get('pattern_titolo') or 'I pattern', c.get('pattern_nota'))}</h3>
         <ul class="hp-pattern reveal">{elenco(c['pattern'], 'hp-pattern', '(max-width: 900px) 33vw, 220px')}
@@ -881,7 +885,7 @@ def collezione_main(i, c):
             <p class="hp-lead">{in_linea(c.get('presentazione') or c.get('breve') or '')}</p>
           </div>
           {scheda(c.get('scheda'))}
-        </div>{album}{personaggi}{pattern}
+        </div>{album}{personaggi}{elementi}{pattern}
       </section>
 
       <section class="hp-sezione hp-fine reveal">

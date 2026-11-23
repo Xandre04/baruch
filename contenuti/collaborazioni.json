@@ -56,7 +56,7 @@
       "scheda": [
         {
           "voce": "Contenuto",
-          "valore": "7 personaggi e 6 pattern"
+          "valore": "7 personaggi, 7 elementi e 6 pattern"
         },
         {
           "voce": "Applicazioni",
@@ -123,6 +123,38 @@
         {
           "immagine": "/contenuti/media/bosco-folletto-candela.webp",
           "nome": "Candela"
+        }
+      ],
+      "elementi_titolo": "Gli elementi",
+      "elementi_nota": "foglie, pigne e casette del sottobosco, da combinare liberamente",
+      "elementi": [
+        {
+          "immagine": "/contenuti/media/bosco-elemento-quercia.webp",
+          "nome": "Foglia di quercia"
+        },
+        {
+          "immagine": "/contenuti/media/bosco-elemento-pigna.webp",
+          "nome": "Pigna"
+        },
+        {
+          "immagine": "/contenuti/media/bosco-elemento-casa-porcino.webp",
+          "nome": "Casetta porcino"
+        },
+        {
+          "immagine": "/contenuti/media/bosco-elemento-foglia-verde.webp",
+          "nome": "Foglia verde"
+        },
+        {
+          "immagine": "/contenuti/media/bosco-elemento-foglia-rossa.webp",
+          "nome": "Foglia rossa"
+        },
+        {
+          "immagine": "/contenuti/media/bosco-elemento-casa-amanita.webp",
+          "nome": "Casetta amanita"
+        },
+        {
+          "immagine": "/contenuti/media/bosco-elemento-bacche.webp",
+          "nome": "Rametto di bacche"
         }
       ],
       "pattern_titolo": "I pattern",

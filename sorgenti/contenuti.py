@@ -181,7 +181,7 @@ def collaborazioni():
     dati = json.loads((CONTENUTI / "collaborazioni.json").read_text(encoding="utf-8"))
     dati["collezioni"] = [c for c in dati.get("collezioni") or [] if c.get("titolo")]
     for c in dati["collezioni"]:
-        for k in ("prodotti", "personaggi", "pattern"):
+        for k in ("prodotti", "personaggi", "elementi", "pattern"):
             c[k] = [v for v in c.get(k) or [] if v.get("immagine")]
     dati["immagini"] = [v for v in dati.get("immagini") or [] if v.get("immagine") and v.get("in_pagina", True)]
     return dati

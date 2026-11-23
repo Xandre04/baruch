@@ -120,7 +120,7 @@ A sinistra scegli **Collaborazioni** e apri **Pagina Collaborazioni**. I campi s
 - **In alto (apertura)**: la riga piccola, il titolo (l'ultima parola va nel campo a parte, in terracotta), il testo, il pulsante e la foto a destra.
 - **Clienti**: i nomi sulla pennellata crema.
 - **Modi di lavorare**: titolo, testo ed elenco puntato (una voce per riga).
-- **Collezioni**: ognuna compare come copertina, una accanto all'altra; cliccandola si apre la sua pagina. Per ogni collezione scegli la **foto di copertina**, **una riga sulla copertina** e, per la sua pagina, la **presentazione**, la **scheda**, le **foto dei prodotti** (le prime quattro fanno il collage), i **personaggi** e i **pattern** (se li lasci vuoti, quella parte non compare). Per una nuova collezione premi **Aggiungi**.
+- **Collezioni**: ognuna compare come copertina, una accanto all'altra; cliccandola si apre la sua pagina. Per ogni collezione scegli la **foto di copertina**, **una riga sulla copertina** e, per la sua pagina, la **presentazione**, la **scheda**, le **foto dei prodotti** (le prime quattro fanno il collage), i **personaggi**, gli **elementi** (foglie, pigne, casette e altri soggetti scontornati) e i **pattern** (se li lasci vuoti, quella parte non compare). Per una nuova collezione premi **Aggiungi**.
 - **Passi** e **Scheda tecnica**: come lavori.
 - **Lavori su commissione**: compaiono solo quelli con **Nella pagina** acceso (quattro per riga); gli altri restano nell'elenco da parte.
 - **In fondo**: titolo, testo, pulsante ed email.

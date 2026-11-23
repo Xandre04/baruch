@@ -849,6 +849,7 @@ video.lavoro__foto { width: 100%; background: #000; }
 .hp-personaggi img { aspect-ratio: 2 / 3; object-fit: contain; width: 100%; }
 .hp-personaggi li:nth-child(odd) img { transform: rotate(-3deg); }
 .hp-personaggi li:nth-child(even) img { transform: rotate(3deg) translateY(10px); }
+.hp-elementi img { aspect-ratio: 1; }
 .hp-pattern { grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); }
 .hp-pattern img { aspect-ratio: 1; object-fit: cover; width: 100%; border: 8px solid #fff; box-shadow: 0 16px 28px -18px rgba(52, 67, 47, .55); }
 .hp-pattern li:nth-child(odd) img { transform: rotate(-2deg); }
