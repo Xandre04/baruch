@@ -51,12 +51,12 @@
       "etichetta": "infanzia e cartoleria",
       "copertina": "/contenuti/media/bosco-cameretta-letto.webp",
       "copertina_alt": "Cameretta con lenzuola e tappeto a foglie e il folletto pigna",
-      "breve": "Otto piccoli abitanti del bosco e cinque pattern coordinati, per la cameretta e la cartoleria.",
+      "breve": "Otto piccoli abitanti del bosco e sei pattern coordinati, per la cameretta e la cartoleria.",
       "presentazione": "Otto piccoli abitanti del bosco e una famiglia di pattern coordinati nei toni caldi dell’autunno. Nata per la cameretta e la cartoleria, funziona anche su tessile, carta regalo e decorazione.",
       "scheda": [
         {
           "voce": "Contenuto",
-          "valore": "8 personaggi e 5 pattern"
+          "valore": "8 personaggi e 6 pattern"
         },
         {
           "voce": "Applicazioni",
@@ -151,6 +151,10 @@
         {
           "immagine": "/contenuti/media/bosco-pattern-righe.webp",
           "nome": "Righe e fiori"
+        },
+        {
+          "immagine": "/contenuti/media/bosco-pattern-quadri.webp",
+          "nome": "Quadri e foglie"
         }
       ]
     },
