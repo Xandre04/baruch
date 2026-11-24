@@ -855,7 +855,7 @@ def collezione_main(i, c):
     album = f'\n        <div class="hp-album">{album}\n        </div>' if album else ""
 
     def elenco(voci, cls, sizes):
-        return "".join(f"\n            <li>{pic(v['immagine'], v.get('nome') or '', sizes=sizes)}<span>{e(v.get('nome'))}</span></li>" for v in voci)
+        return "".join(f"\n            <li>{pic(v['immagine'], v.get('nome') or '', sizes=sizes)}{'' if cls == 'hp-personaggi' else f"<span>{e(v.get('nome'))}</span>"}</li>" for v in voci)
     sotto = lambda t, n: f'{e(t)}{f" <small>{e(n)}</small>" if n else ""}'
     personaggi = (f"""
         <div class="hp-quadretti reveal">
