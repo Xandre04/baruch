@@ -6,8 +6,8 @@
     "testo": "Personaggi, pattern e collezioni coordinate per la cartoleria, l’infanzia e la casa. Dipinti a mano, preparati per la stampa e pronti per il vostro catalogo.",
     "pulsante": "Richiedi il catalogo completo",
     "foto": "/contenuti/media/bosco-cartoleria.webp",
-    "foto_alt": "Quaderni, astucci e adesivi con i pattern del bosco fatato",
-    "didascalia": "Il bosco fatato, collezione disponibile in licenza"
+    "foto_alt": "Quaderni, astucci e adesivi con i pattern di Profumo di sottobosco",
+    "didascalia": "Profumo di sottobosco, collezione disponibile su licenza"
   },
   "clienti_titolo": "Hanno scelto i miei disegni",
   "clienti": [
@@ -47,16 +47,16 @@
   "collezioni_intro": "Collezioni già pronte, disponibili in licenza o in esclusiva. Aprile per vedere tutti i prodotti, i personaggi e i pattern.",
   "collezioni": [
     {
-      "titolo": "Il bosco fatato",
+      "titolo": "Profumo di sottobosco",
       "etichetta": "infanzia e cartoleria",
       "copertina": "/contenuti/media/bosco-cameretta-letto.webp",
       "copertina_alt": "Cameretta con lenzuola e tappeto a foglie e il folletto pigna",
-      "breve": "Otto piccoli abitanti del bosco e cinque pattern coordinati, per la cameretta e la cartoleria.",
+      "breve": "Otto piccoli abitanti del bosco e sei pattern coordinati, per la cameretta e la cartoleria.",
       "presentazione": "Otto piccoli abitanti del bosco e una famiglia di pattern coordinati nei toni caldi dell’autunno. Nata per la cameretta e la cartoleria, funziona anche su tessile, carta regalo e decorazione.",
       "scheda": [
         {
           "voce": "Contenuto",
-          "valore": "8 personaggi e 5 pattern"
+          "valore": "8 personaggi, 7 elementi e 6 pattern"
         },
         {
           "voce": "Applicazioni",
@@ -125,8 +125,40 @@
           "nome": "Candela"
         },
         {
-          "immagine": "/contenuti/media/bosco-schiaccianoci.webp",
-          "nome": "Schiaccianoci"
+          "immagine": "/contenuti/media/bosco-scoiattolo.webp",
+          "nome": "Scoiattolo"
+        }
+      ],
+      "elementi_titolo": "Gli elementi",
+      "elementi_nota": "foglie, pigne e casette del sottobosco, da combinare liberamente",
+      "elementi": [
+        {
+          "immagine": "/contenuti/media/bosco-elemento-quercia.webp",
+          "nome": "Foglia di quercia"
+        },
+        {
+          "immagine": "/contenuti/media/bosco-elemento-pigna.webp",
+          "nome": "Pigna"
+        },
+        {
+          "immagine": "/contenuti/media/bosco-elemento-casa-porcino.webp",
+          "nome": "Casetta porcino"
+        },
+        {
+          "immagine": "/contenuti/media/bosco-elemento-foglia-verde.webp",
+          "nome": "Foglia verde"
+        },
+        {
+          "immagine": "/contenuti/media/bosco-elemento-foglia-rossa.webp",
+          "nome": "Foglia rossa"
+        },
+        {
+          "immagine": "/contenuti/media/bosco-elemento-casa-amanita.webp",
+          "nome": "Casetta amanita"
+        },
+        {
+          "immagine": "/contenuti/media/bosco-elemento-bacche.webp",
+          "nome": "Rametto di bacche"
         }
       ],
       "pattern_titolo": "I pattern",
@@ -151,6 +183,10 @@
         {
           "immagine": "/contenuti/media/bosco-pattern-righe.webp",
           "nome": "Righe e fiori"
+        },
+        {
+          "immagine": "/contenuti/media/bosco-pattern-quadri.webp",
+          "nome": "Quadri e foglie"
         }
       ]
     },

@@ -855,7 +855,7 @@ def collezione_main(i, c):
     album = f'\n        <div class="hp-album">{album}\n        </div>' if album else ""
 
     def elenco(voci, cls, sizes):
-        return "".join(f"\n            <li>{pic(v['immagine'], v.get('nome') or '', sizes=sizes)}<span>{e(v.get('nome'))}</span></li>" for v in voci)
+        return "".join(f"\n            <li>{pic(v['immagine'], v.get('nome') or '', sizes=sizes)}{'' if cls == 'hp-personaggi' else f"<span>{e(v.get('nome'))}</span>"}</li>" for v in voci)
     sotto = lambda t, n: f'{e(t)}{f" <small>{e(n)}</small>" if n else ""}'
     personaggi = (f"""
         <div class="hp-quadretti reveal">
@@ -863,6 +863,10 @@ def collezione_main(i, c):
           <ul class="hp-personaggi">{elenco(c['personaggi'], 'hp-personaggi', '(max-width: 900px) 25vw, 140px')}
           </ul>
         </div>""" if c["personaggi"] else "")
+    elementi = (f"""
+        <h3 class="hp-sottotitolo reveal">{sotto(c.get('elementi_titolo') or 'Gli elementi', c.get('elementi_nota'))}</h3>
+        <ul class="hp-personaggi hp-elementi reveal">{elenco(c['elementi'], 'hp-elementi', '(max-width: 900px) 25vw, 140px')}
+        </ul>""" if c["elementi"] else "")
     pattern = (f"""
         <h3 class="hp-sottotitolo reveal">{sotto(c.get('pattern_titolo') or 'I pattern', c.get('pattern_nota'))}</h3>
         <ul class="hp-pattern reveal">{elenco(c['pattern'], 'hp-pattern', '(max-width: 900px) 33vw, 220px')}
@@ -881,7 +885,7 @@ def collezione_main(i, c):
             <p class="hp-lead">{in_linea(c.get('presentazione') or c.get('breve') or '')}</p>
           </div>
           {scheda(c.get('scheda'))}
-        </div>{album}{personaggi}{pattern}
+        </div>{album}{personaggi}{elementi}{pattern}
       </section>
 
       <section class="hp-sezione hp-fine reveal">
@@ -1069,6 +1073,8 @@ REDIRECT = {
     "portfolio/teatro-e-bosco-sotto-gli-alberi": url_opera(OPERA_BY["teatro-sotto-gli-alberi"]),
     "portfolio/yan-e-orso": url_opera(OPERA_BY["yan-e-l-orso"]),
     "portfolio/calendario-vuoi-guarire": url_opera(OPERA_BY["vuoi-guarire"]),
+    # la collezione "Il bosco fatato" è stata rinominata "Profumo di sottobosco"
+    r"collaborazioni/il-bosco-fatato\.html": url_collezione(next(c for c in CD["collezioni"] if c["titolo"] == "Profumo di sottobosco")),
 }
 righe = "\n".join(f"RedirectMatch 301 ^/{old}/?$ /{new}" for old, new in REDIRECT.items())
 (SITO / ".htaccess").write_text(f"""# Generato da sorgenti/build.py: non modificare a mano.

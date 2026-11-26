@@ -845,11 +845,12 @@ video.lavoro__foto { width: 100%; background: #000; }
 .hp-quadretti { margin-top: clamp(56px, 7vw, 88px); padding: 6px clamp(18px, 3vw, 40px) clamp(24px, 3vw, 40px); background: url(../img/ui/quadretti-ripetibili.webp) center top / max(100%, 1100px) auto repeat-y; }
 .hp-quadretti .hp-sottotitolo { margin-top: 24px; }
 .hp-personaggi, .hp-pattern { display: grid; gap: clamp(12px, 2vw, 24px); margin: 0; padding: 0; list-style: none; text-align: center; font-family: var(--hand); font-size: 18px; color: var(--ink-soft); }
-.hp-personaggi { grid-template-columns: repeat(8, minmax(0, 1fr)); }
+.hp-personaggi { grid-template-columns: repeat(auto-fit, minmax(110px, 1fr)); }
 .hp-personaggi img { aspect-ratio: 2 / 3; object-fit: contain; width: 100%; }
 .hp-personaggi li:nth-child(odd) img { transform: rotate(-3deg); }
 .hp-personaggi li:nth-child(even) img { transform: rotate(3deg) translateY(10px); }
-.hp-pattern { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+.hp-elementi img { aspect-ratio: 1; }
+.hp-pattern { grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); }
 .hp-pattern img { aspect-ratio: 1; object-fit: cover; width: 100%; border: 8px solid #fff; box-shadow: 0 16px 28px -18px rgba(52, 67, 47, .55); }
 .hp-pattern li:nth-child(odd) img { transform: rotate(-2deg); }
 .hp-pattern li:nth-child(even) img { transform: rotate(2deg); }
